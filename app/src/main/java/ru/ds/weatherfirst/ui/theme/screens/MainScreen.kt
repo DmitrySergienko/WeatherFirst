@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -24,7 +23,6 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 import ru.ds.weatherfirst.ui.theme.BlueLight
-import ru.ds.weatherfirst.ui.theme.WeatherFirstTheme
 
 
 private const val API_KEY = "886e042c31bc49c3a3f131017220902"
