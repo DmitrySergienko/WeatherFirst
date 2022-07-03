@@ -1,4 +1,4 @@
-package ru.ds.weatherfirst.ui.theme.screens
+package ru.ds.weatherfirst.ui.screens
 
 import android.content.Context
 import android.util.Log

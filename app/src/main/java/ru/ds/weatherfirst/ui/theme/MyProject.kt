@@ -10,7 +10,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import ru.ds.weatherfirst.R
-import ru.ds.weatherfirst.ui.theme.screens.MainScreen
+import ru.ds.weatherfirst.ui.screens.MainScreen
 
 @Composable
 fun MyProject(context: Context) {
