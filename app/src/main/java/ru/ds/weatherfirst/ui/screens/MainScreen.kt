@@ -55,7 +55,7 @@ fun MainScreen(context: Context) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .alpha(0.9f)
+                .alpha(0.7f)
                 .padding(bottom = 5.dp),
             backgroundColor = BlueLight,
             elevation = 0.dp,

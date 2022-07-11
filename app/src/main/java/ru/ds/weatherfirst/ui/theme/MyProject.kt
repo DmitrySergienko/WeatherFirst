@@ -31,7 +31,7 @@ fun MyProject(context: Context) {
         ) {
 
             MainScreen(context)
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(1.dp))
             TabLayout()
 
         }
