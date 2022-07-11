@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             val adRequest = AdRequest.Builder().build()
-            InterstitialAd.load(this, ADV_TEST_START, adRequest,
+            InterstitialAd.load(this, ADV_MY_BANNER, adRequest,
                 object : InterstitialAdLoadCallback() {
 
                     override fun onAdFailedToLoad(p0: LoadAdError) {
@@ -58,16 +58,16 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Scaffold(
                        bottomBar = {
-                           AndroidView(factory = {
-                               AdView(it).apply {
-                                   var adSize = AdSize(300, 50)
-                                   adSize = AdSize.BANNER
-                                   setAdSize(adSize)
-                                   adUnitId = ADV_TEST_BANNER
-                                   loadAd(AdRequest.Builder().build())
-                               }
-                           })
-                       },
+                          AndroidView(factory = {
+                              AdView(it).apply {
+                                  var adSize = AdSize(300, 50)
+                                       adSize = AdSize.BANNER
+                                       setAdSize(adSize)
+                                       adUnitId = ADV_MY_BANNER
+                                       loadAd(AdRequest.Builder().build())
+                                   }
+                               })
+                           },
                         content = {
                             MyProject(context = this)
                         })
