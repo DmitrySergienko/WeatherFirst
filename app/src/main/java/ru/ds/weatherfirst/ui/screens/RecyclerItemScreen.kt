@@ -16,7 +16,7 @@ import ru.ds.weatherfirst.data.api.model.Hour
 import ru.ds.weatherfirst.ui.theme.BlueLight
 
 @Composable
-fun RecyclerItemScreen(cityName: Hour)  {
+fun RecyclerItemScreen(hour: Hour) {
 
     Card(
         modifier = Modifier
@@ -32,13 +32,46 @@ fun RecyclerItemScreen(cityName: Hour)  {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
-            Text(
-                modifier = Modifier.padding(15.dp),
-                text = "$cityName",
-                style = TextStyle(fontSize = 25.sp),
-                color = Color.White
+            Column() {
+                Text(
+                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
+                    text = "Temperature: ${hour.tempC} C",
+                    style = TextStyle(fontSize = 15.sp),
+                    color = Color.White
 
-            )
+                )
+                Text(
+                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
+                    text = "Feels like ${hour.feelslikeC} C",
+                    style = TextStyle(fontSize = 15.sp),
+                    color = Color.White
+
+                )
+                Text(
+                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
+                    text = "Wind ${hour.windKph} Kph",
+                    style = TextStyle(fontSize = 15.sp),
+                    color = Color.White
+
+                )
+            }
+            Column() {
+                Text(
+                    modifier = Modifier.padding(top = 35.dp, bottom = 5.dp, start = 15.dp),
+                    text = "${hour.condition.text}",
+                    style = TextStyle(fontSize = 15.sp),
+                    color = Color.White
+
+                )
+                Text(
+                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
+                    text = "${hour.time}",
+                    style = TextStyle(fontSize = 15.sp),
+                    color = Color.White
+
+                )
+            }
+
 
 
             AsyncImage(
@@ -46,8 +79,10 @@ fun RecyclerItemScreen(cityName: Hour)  {
                 contentDescription = "imageIcon",
                 modifier = Modifier
                     .size(45.dp)
-                    .padding(top = 14.dp, end = 2.dp)
+                    .padding(top = 10.dp, end = 2.dp)
             )
+
+
         }
     }
 }
