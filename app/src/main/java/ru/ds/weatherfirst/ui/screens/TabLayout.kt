@@ -77,6 +77,7 @@ fun TabLayout() {
                 //.fillMaxWidth()
                 .weight(1.0f)
         ) { tabIndex ->
+            RecyclerScreen()
         }
     }
 

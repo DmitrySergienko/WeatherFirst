@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.ui.screens.MainScreen
 import ru.ds.weatherfirst.ui.screens.RecyclerScreen
+import ru.ds.weatherfirst.ui.screens.TabLayout
 
 @Composable
 fun MyProject(context: Context) {
@@ -32,8 +33,8 @@ fun MyProject(context: Context) {
 
             MainScreen(context)
             Spacer(modifier = Modifier.height(1.dp))
-            //TabLayout()
-            RecyclerScreen()
+            TabLayout()
+
 
         }
     }
