@@ -1,22 +1,21 @@
 package ru.ds.weatherfirst.data.api
 
+
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Query
 import ru.ds.weatherfirst.data.api.model.Weather
 
+private const val DAYS = "2"
 private const val CITY = "q"
-private const val DAYS = "days"
-private const val KEY = "886e042c31bc49c3a3f131017220902"
-
+private const val KEY = "key"
 
 
 interface WeatherApi {
 
-    @GET(ApiConstants.END_POINT)
+    @GET("v1/forecast.json")
     suspend fun getWeather(
-        @Header(KEY) key: String,
-        @Header(CITY) q: String,
-        @Header(DAYS) days: Int,
-    ): List<Weather>
+        @Query(KEY) key: String,
+        @Query(CITY) city: String,
+        @Query(DAYS) days: String
+        ): Weather
 }
