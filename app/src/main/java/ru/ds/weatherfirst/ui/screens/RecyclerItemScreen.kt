@@ -12,10 +12,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import ru.ds.weatherfirst.data.api.model.Hour
 import ru.ds.weatherfirst.ui.theme.BlueLight
 
 @Composable
-fun RecyclerItemScreen(cityName: String)  {
+fun RecyclerItemScreen(cityName: Hour)  {
 
     Card(
         modifier = Modifier

@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import ru.ds.weatherfirst.data.api.model.Forecastday
+import ru.ds.weatherfirst.data.api.model.Hour
 import ru.ds.weatherfirst.data.repository.WeatherRepo
 import javax.inject.Inject
 
@@ -14,8 +15,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val weatherRepo: WeatherRepo): ViewModel() {
 
-        private val _state = MutableStateFlow(emptyList<Forecastday>())
-        val state: StateFlow<List<Forecastday>>
+        private val _state = MutableStateFlow(emptyList<Hour>())
+        val state: StateFlow<List<Hour>>
         get() = _state
 
 
@@ -23,7 +24,7 @@ class HomeViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             val weather = weatherRepo.weatherResponse()
-            _state.value = weather.forecast.forecastday
+            _state.value = weather.forecast.forecastday[0].hour
         }
     }
 }

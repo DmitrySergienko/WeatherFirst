@@ -19,7 +19,7 @@ import ru.ds.weatherfirst.data.api.model.Forecastday
 import ru.ds.weatherfirst.data.api.model.Weather
 import ru.ds.weatherfirst.ui.theme.BlueLight
 import ru.ds.weatherfirst.ui.theme.WeatherFirstTheme
-
+/*
 @Composable
 fun HomeScreen() {
     val homeViewModel = viewModel(modelClass = HomeViewModel::class.java)
@@ -42,7 +42,7 @@ fun HomeScreen() {
         }
     }
 }
-
+*/
 
 @Composable
 fun TestCard(name:Forecastday) {
@@ -72,14 +72,14 @@ fun TestCardPreview() {
         TestCard(name = "Forecastday()")
     }
 }*/
-
+/*
 @Preview
 @Composable
 fun HomeScreenPreview() {
     WeatherFirstTheme {
         HomeScreen()
     }
-}
+}*/
 
 @Composable
 fun WeatherImageCard(weather: Weather) {
