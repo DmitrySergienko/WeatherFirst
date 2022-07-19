@@ -23,6 +23,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 import ru.ds.weatherfirst.ui.theme.BlueLight
+import ru.ds.weatherfirst.ui.theme.TextLight
 
 
 private const val API_KEY = "886e042c31bc49c3a3f131017220902"
@@ -76,7 +77,7 @@ fun MainScreen(context: Context) {
                             .clickable { getConditions(text, context, stateDate) },
                         text = stateDate.value,
                         style = TextStyle(fontSize = 22.sp),
-                        color = Color.White
+                        color = TextLight
                     )
 
                     AsyncImage(
@@ -102,7 +103,7 @@ fun MainScreen(context: Context) {
                             .padding(start = 5.dp)
                             .align(Alignment.CenterHorizontally),
 
-                        textStyle = TextStyle(color = Color.White, fontSize = 26.sp),
+                        textStyle = TextStyle(color = TextLight, fontSize = 26.sp),
 
                         )
                 }
@@ -112,13 +113,13 @@ fun MainScreen(context: Context) {
                         .padding(top = 5.dp),
                     text = "${stateTemp.value} C",
                     style = TextStyle(fontSize = 65.sp),
-                    color = Color.White
+                    color = TextLight
                 )
                 Text(
                     modifier = Modifier.padding(1.dp),
                     text = stateWDetails.value,
                     style = TextStyle(fontSize = 22.sp),
-                    color = Color.White
+                    color = TextLight
                 )
 
             }
