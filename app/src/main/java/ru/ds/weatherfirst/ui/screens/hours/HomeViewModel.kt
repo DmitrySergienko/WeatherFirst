@@ -1,4 +1,4 @@
-package ru.ds.weatherfirst.ui.home
+package ru.ds.weatherfirst.ui.screens.hours
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import ru.ds.weatherfirst.data.api.model.Forecastday
 import ru.ds.weatherfirst.data.api.model.Hour
 import ru.ds.weatherfirst.data.repository.WeatherRepo
 import javax.inject.Inject
