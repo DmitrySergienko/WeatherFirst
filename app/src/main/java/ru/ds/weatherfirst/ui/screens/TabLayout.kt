@@ -23,6 +23,7 @@ import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 import ru.ds.weatherfirst.ui.theme.BlueLight
+import ru.ds.weatherfirst.ui.theme.TextLight
 import ru.ds.weatherfirst.ui.theme.WeatherFirstTheme
 
 @OptIn(ExperimentalPagerApi::class)
@@ -63,7 +64,7 @@ fun TabLayout() {
                         }
                     },
                     text = {
-                        Text(text = text, style = TextStyle(color = Color.White))
+                        Text(text = text, style = TextStyle(color = TextLight))
                     }
                 )
             }
