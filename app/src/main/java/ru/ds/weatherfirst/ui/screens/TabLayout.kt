@@ -22,6 +22,8 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
+import ru.ds.weatherfirst.ui.screens.days.RecyclerItemScreenDays
+import ru.ds.weatherfirst.ui.screens.days.RecyclerScreenDays
 import ru.ds.weatherfirst.ui.theme.BlueLight
 import ru.ds.weatherfirst.ui.theme.TextLight
 import ru.ds.weatherfirst.ui.theme.WeatherFirstTheme
@@ -30,7 +32,7 @@ import ru.ds.weatherfirst.ui.theme.WeatherFirstTheme
 @Composable
 fun TabLayout() {
 
-    val tabList = listOf("HOURS", "DAYS")
+    val tabList = listOf("HOURS", "3 DAYS")
     //для пейджера
     val pageState = rememberPagerState()
     val tabIndex = pageState.currentPage
@@ -51,7 +53,7 @@ fun TabLayout() {
             },
             backgroundColor = BlueLight,
             modifier = Modifier.alpha(0.7f),
-            contentColor = Color.White,
+            contentColor = TextLight,
 
             ) {
             //идет перебор списка, для каждого элемнета выводит "text" и Tab
@@ -78,7 +80,11 @@ fun TabLayout() {
                 //.fillMaxWidth()
                 .weight(1.0f)
         ) { tabIndex ->
-            RecyclerScreen()
+            when(tabIndex){
+                0 ->RecyclerScreen()
+                1 ->RecyclerScreenDays()
+            }
+
         }
     }
 

@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import ru.ds.weatherfirst.data.api.model.Weather
 
-private const val DAYS = "2"
+private const val DAYS = "3"
 private const val CITY = "q"
 private const val KEY = "key"
 

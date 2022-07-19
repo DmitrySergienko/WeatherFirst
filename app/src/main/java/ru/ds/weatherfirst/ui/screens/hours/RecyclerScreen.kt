@@ -12,13 +12,13 @@ import ru.ds.weatherfirst.ui.home.HomeViewModel
 
 
 @Composable
-fun RecyclerScreen(names: List<String> = List(100) { "Any date" }) {
+fun RecyclerScreen() {
 
     val homeViewModel = viewModel(modelClass = HomeViewModel::class.java)
     val state by homeViewModel.state.collectAsState()
 
     LazyColumn(
-        contentPadding = PaddingValues(bottom = 30.dp)
+        contentPadding = PaddingValues(bottom = 20.dp)
     ) {
 
         items(state) { name ->

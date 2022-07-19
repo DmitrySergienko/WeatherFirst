@@ -1,4 +1,4 @@
-package ru.ds.weatherfirst.ui.home
+package ru.ds.weatherfirst.ui.screens.days
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,24 +7,22 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import ru.ds.weatherfirst.data.api.model.Forecastday
-import ru.ds.weatherfirst.data.api.model.Hour
 import ru.ds.weatherfirst.data.repository.WeatherRepo
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class DateViewModel @Inject constructor(
     private val weatherRepo: WeatherRepo
-) : ViewModel() {
+):ViewModel(){
 
-    private val _state = MutableStateFlow(emptyList<Hour>())
-    val state: StateFlow<List<Hour>>
-        get() = _state
+    private val _stateDay = MutableStateFlow(emptyList<Forecastday>())
+    val stateDay :StateFlow<List<Forecastday>>
+    get() = _stateDay
 
     init {
         viewModelScope.launch {
-            val weather = weatherRepo.weatherResponse()
-            _state.value = weather.forecast.forecastday[0].hour
-
+            val day = weatherRepo.weatherResponse()
+            _stateDay.value = day.forecast.forecastday
         }
     }
 }

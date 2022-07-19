@@ -18,6 +18,8 @@ data class Day(
     val maxtempF: Double,
     @Json(name = "maxwind_mph")
     val maxwindMph: Double,
+    @Json(name = "maxwind_kph")
+    val maxwindKph: Double,
     @Json(name = "mintemp_c")
     val mintempC: Double,
     @Json(name = "mintemp_f")

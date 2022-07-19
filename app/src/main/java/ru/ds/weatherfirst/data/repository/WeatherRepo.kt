@@ -10,6 +10,7 @@ class WeatherRepo @Inject constructor(
     private val weatherApi: WeatherApi
 ) {
     suspend fun weatherResponse(): Weather{
-        return weatherApi.getWeather(API_KEY,"Dubai","2")
+        return weatherApi.getWeather(API_KEY,"Dubai","3")
     }
+
 }
