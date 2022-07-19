@@ -66,6 +66,13 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
                     color = TextLight
 
                 )
+                Text(
+                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
+                    text = "Moon phase: ${forecastday.astro.moonPhase}",
+                    style = TextStyle(fontSize = 15.sp),
+                    color = TextLight
+
+                )
 
             }
             Column() {
@@ -97,6 +104,7 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
                     color = TextLight
 
                 )
+
             }
             Image(
                 painter = imagePainter, contentDescription = null,

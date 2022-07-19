@@ -1,5 +1,6 @@
 package ru.ds.weatherfirst.ui.screens.days
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,6 +24,8 @@ class DateViewModel @Inject constructor(
         viewModelScope.launch {
             val day = weatherRepo.weatherResponse()
             _stateDay.value = day.forecast.forecastday
+            //val test = day.forecast.forecastday
+            //Log.d("VVV","${test.size}")
         }
     }
 }

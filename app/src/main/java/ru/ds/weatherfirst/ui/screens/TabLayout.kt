@@ -40,7 +40,7 @@ fun TabLayout() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 2.dp, end = 2.dp)
-            .clip(RoundedCornerShape(5.dp))
+            .clip(RoundedCornerShape(6.dp))
     ) {
         TabRow(
             selectedTabIndex = tabIndex,
@@ -50,7 +50,7 @@ fun TabLayout() {
                 )
             },
             backgroundColor = BlueLight,
-            modifier = Modifier.alpha(0.7f),
+            modifier = Modifier.alpha(0.94f),
             contentColor = TextLight,
 
             ) {
