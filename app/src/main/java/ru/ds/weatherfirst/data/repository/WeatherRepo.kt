@@ -9,8 +9,8 @@ private const val API_KEY = "886e042c31bc49c3a3f131017220902"
 class WeatherRepo @Inject constructor(
     private val weatherApi: WeatherApi
 ) {
-    suspend fun weatherResponse(): Weather{
-        return weatherApi.getWeather(API_KEY,"Dubai","3")
+    suspend fun weatherResponse(city: String): Weather{
+        return weatherApi.getWeather(API_KEY,city,"3")
     }
 
 }

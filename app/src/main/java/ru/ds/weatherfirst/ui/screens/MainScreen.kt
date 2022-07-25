@@ -16,11 +16,13 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
+import ru.ds.weatherfirst.ui.screens.hours.HomeViewModel
 import ru.ds.weatherfirst.ui.theme.BlueLight
 import ru.ds.weatherfirst.ui.theme.TextLight
 
@@ -31,21 +33,25 @@ private const val API_KEY = "886e042c31bc49c3a3f131017220902"
 @Composable
 fun MainScreen(context: Context) {
 
-    val stateTemp = rememberSaveable { mutableStateOf("Undefined") }
-    val stateDate = rememberSaveable { mutableStateOf("Undefined") }
-    val stateWDetails = rememberSaveable() { mutableStateOf("Undefined") }
-    val stateIcon = rememberSaveable() { mutableStateOf("Undefined") }
+    val homeViewModel = viewModel(modelClass = HomeViewModel::class.java)
+    val state by homeViewModel.stateMain.collectAsState()
 
-    var text by remember { mutableStateOf("Dubai") }
+
+    val stateTemp = rememberSaveable { mutableStateOf("") }
+    val stateDate = rememberSaveable { mutableStateOf("") }
+    val stateWDetails = rememberSaveable() { mutableStateOf("No internet") }
+    val stateIcon = rememberSaveable() { mutableStateOf("") }
+
+    var cityInputText by remember { mutableStateOf("Dubai") }
 
     // getTemperature("London")
-    getTemperature(text, context, stateTemp)
+    getTemperature(cityInputText, context, stateTemp)
     //get weather conditions (sunny, cold...)
-    getWeatherConditions(text, context, stateWDetails)
+    getWeatherConditions(cityInputText, context, stateWDetails)
     //Date of update
-    getConditions(text, context, stateDate)
+    getConditions(cityInputText, context, stateDate)
     //Get Icon
-    getIcon(text, context, stateIcon)
+    getIcon(cityInputText, context, stateIcon)
 
     Column(
         modifier = Modifier
@@ -73,14 +79,14 @@ fun MainScreen(context: Context) {
                     Text(
                         modifier = Modifier
                             .padding(1.dp)
-                            .clickable { getConditions(text, context, stateDate) },
-                        text = stateDate.value,
+                            .clickable { getConditions(cityInputText, context, stateDate) },
+                        text =" ${state.lastUpdated}",
                         style = TextStyle(fontSize = 22.sp),
                         color = TextLight
                     )
 
                     AsyncImage(
-                        model = "https:${stateIcon.value}",
+                        model = "https:${state.condition.icon}",
                         contentDescription = "imageIcon",
                         modifier = Modifier
                             .size(65.dp)
@@ -96,8 +102,8 @@ fun MainScreen(context: Context) {
                 ) {
                     BasicTextField(
 
-                        value = text,
-                        onValueChange = { newText -> text = newText },
+                        value = cityInputText,
+                        onValueChange = { newText -> cityInputText = newText },
                         modifier = Modifier
                             .padding(start = 5.dp)
                             .align(Alignment.CenterHorizontally),
@@ -110,13 +116,13 @@ fun MainScreen(context: Context) {
                 Text(
                     modifier = Modifier
                         .padding(top = 5.dp),
-                    text = "${stateTemp.value} C",
+                    text = "${state.tempC} C",
                     style = TextStyle(fontSize = 65.sp),
                     color = TextLight
                 )
                 Text(
                     modifier = Modifier.padding(1.dp),
-                    text = stateWDetails.value,
+                    text = state.condition.text,
                     style = TextStyle(fontSize = 22.sp),
                     color = TextLight
                 )
@@ -124,7 +130,10 @@ fun MainScreen(context: Context) {
             }
         }
     }
+
+    homeViewModel.getWeather(cityInputText)
 }
+
 
 
 fun getTemperature(name: String, context: Context, mState: MutableState<String>) {

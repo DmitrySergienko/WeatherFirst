@@ -11,21 +11,26 @@ import ru.ds.weatherfirst.data.api.model.Hour
 import ru.ds.weatherfirst.data.api.model.Weather
 import ru.ds.weatherfirst.data.repository.WeatherRepo
 import javax.inject.Inject
-
-@HiltViewModel
-class ForecastViewModel @Inject constructor(
-    private val weatherRepo: WeatherRepo
-) : ViewModel() {
-
-    private val _statef = MutableStateFlow(emptyList<Forecast>())
-    val statef: StateFlow<List<Forecast>>
-        get() = _statef
-
-    init {
-        viewModelScope.launch {
-            val weather = weatherRepo.weatherResponse()
-            //_statef.value = weather.forecast
-
-        }
-    }
-}
+//
+//@HiltViewModel
+//class ForecastViewModel @Inject constructor(
+//    private val weatherRepo: WeatherRepo
+//) : ViewModel() {
+//
+//    private val _statef = MutableStateFlow(emptyList<Forecast>())
+//    val statef: StateFlow<List<Forecast>>
+//        get() = _statef
+//
+//    init {
+//        getWeather(city = "Dubai")
+//
+//    }
+//
+//    private fun getWeather(city: String) {
+//        viewModelScope.launch {
+//            val weather = weatherRepo.weatherResponse(city)
+//            //_statef.value = weather.forecast
+//
+//        }
+//    }
+//}
