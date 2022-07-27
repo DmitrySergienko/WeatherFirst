@@ -37,9 +37,12 @@ fun RecyclerItemScreen(hour: Hour) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
-            Column() {
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
                 Text(
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
+                    modifier = Modifier
+                        .padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
                     text = "Temperature: ${hour.tempC} C",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
@@ -60,7 +63,7 @@ fun RecyclerItemScreen(hour: Hour) {
 
                 )
             }
-            Column() {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
                     text = "${hour.condition.text}",
@@ -90,6 +93,7 @@ fun RecyclerItemScreen(hour: Hour) {
             Image(
                 painter = imagePainter, contentDescription = null,
                 modifier = Modifier
+                    .weight(0.4f)
                     .size(65.dp)
                     .padding(top = 14.dp, end = 5.dp),
                 contentScale = ContentScale.FillBounds

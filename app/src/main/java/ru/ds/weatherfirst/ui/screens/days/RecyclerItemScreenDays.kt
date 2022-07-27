@@ -37,7 +37,7 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
-            Column() {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
                     text = "Date ${forecastday.date}",
@@ -75,7 +75,7 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
                 )
 
             }
-            Column() {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
                     text = "Wind: ${forecastday.day.maxwindKph} kph",
@@ -109,6 +109,7 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
             Image(
                 painter = imagePainter, contentDescription = null,
                 modifier = Modifier
+                    .weight(0.4f)
                     .size(65.dp)
                     .padding(top = 14.dp, end = 5.dp),
                 contentScale = ContentScale.FillBounds
