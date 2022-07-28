@@ -1,11 +1,13 @@
 package ru.ds.weatherfirst.ui.screens.main
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.Card
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +30,7 @@ fun MainScreen() {
     var cityInputText by remember { mutableStateOf("Dubai") }
 
 
+    mainScreenViewModel.getWeather("Dubai")
 
     Column(
         modifier = Modifier
@@ -66,6 +69,7 @@ fun MainScreen() {
                         modifier = Modifier
                             .size(65.dp)
                             .padding(top = 14.dp, end = 2.dp)
+                            .clickable { }
                     )
                 }
 
@@ -75,18 +79,31 @@ fun MainScreen() {
                         .fillMaxWidth()
 
                 ) {
-                    BasicTextField(
 
+                    OutlinedTextField(
                         value = cityInputText,
-                        onValueChange = { newText -> cityInputText = newText },
+                        onValueChange = { newText ->
+                            cityInputText = newText
+                        }, label = {
+                            Text(text = "City")
+                        },
+                        singleLine = true,
                         modifier = Modifier
                             .padding(start = 5.dp)
-                            .align(Alignment.CenterHorizontally)
-                            .clickable { },
+                            .align(Alignment.CenterHorizontally),
 
                         textStyle = TextStyle(color = TextLight, fontSize = 26.sp),
+                        trailingIcon = {
+                            IconButton(onClick = { mainScreenViewModel.getWeather(cityInputText) }) {
+                                Icon(
+                                    imageVector = Icons.Filled.Edit,
+                                    contentDescription = "City"
+                                )
 
-                        )
+                            }
+                        }
+
+                    )
                 }
 
                 Text(
@@ -107,6 +124,6 @@ fun MainScreen() {
         }
     }
 
-    mainScreenViewModel.getWeather(cityInputText)
+
 }
 
