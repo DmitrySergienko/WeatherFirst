@@ -4,4 +4,6 @@
     <style name="Theme.WeatherFirst" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/purple_700</item>
     </style>
+
+    <style name="Theme.NewSplash" parent="Theme.WeatherFirst"/>
 </resources>
