@@ -20,6 +20,8 @@ import ru.ds.weatherfirst.ui.theme.BlueLight
 import ru.ds.weatherfirst.ui.theme.TextLight
 
 
+
+
 @Composable
 fun MainScreen() {
 
@@ -67,7 +69,9 @@ fun MainScreen() {
                         modifier = Modifier
                             .size(65.dp)
                             .padding(top = 14.dp, end = 2.dp)
-                            .clickable { }
+                            .clickable {
+
+                            }
                     )
                 }
 

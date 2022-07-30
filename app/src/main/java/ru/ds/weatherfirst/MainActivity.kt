@@ -1,5 +1,6 @@
 package ru.ds.weatherfirst
 
+import android.Manifest
 import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
@@ -15,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
@@ -22,7 +24,6 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
-import ru.ds.weatherfirst.ui.theme.MyProject
 import ru.ds.weatherfirst.ui.theme.WeatherFirstTheme
 
 const val ADV_TEST_START = "ca-app-pub-3940256099942544/3419835294"
@@ -35,11 +36,13 @@ class MainActivity : ComponentActivity() {
 
     var mInterstitialAd: InterstitialAd? = null
 
+
+    @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //Splash Screen
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val splashScreen = installSplashScreen()
             splashScreen.setOnExitAnimationListener { splashScreenProvider ->
                 ObjectAnimator.ofFloat(
@@ -76,22 +79,31 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                   color = MaterialTheme.colors.background
+                    color = MaterialTheme.colors.background
                 ) {
                     Scaffold(
-                       bottomBar = {
-                          AndroidView(factory = {
-                              AdView(it).apply {
-                                  var adSize = AdSize(300, 50)
-                                       adSize = AdSize.BANNER
-                                       setAdSize(adSize)
-                                       adUnitId = ADV_MY_BANNER
-                                       loadAd(AdRequest.Builder().build())
-                                   }
-                               })
-                           },
+                        bottomBar = {
+                            AndroidView(factory = {
+                                AdView(it).apply {
+                                    var adSize = AdSize(300, 50)
+                                    adSize = AdSize.BANNER
+                                    setAdSize(adSize)
+                                    adUnitId = ADV_MY_BANNER
+                                    loadAd(AdRequest.Builder().build())
+                                }
+                            })
+                        },
                         content = {
-                            MyProject(context = this)
+//Request permissions
+                            RequestMultiplePermissions(
+                                permissions = listOf(
+                                    Manifest.permission.ACCESS_FINE_LOCATION,
+                                    Manifest.permission.ACCESS_COARSE_LOCATION
+                                )
+                            )
+                            //MyProject()
+
+
                         })
                 }
 

@@ -1,6 +1,5 @@
 package ru.ds.weatherfirst.ui.theme
 
-import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
@@ -14,7 +13,7 @@ import ru.ds.weatherfirst.ui.screens.TabLayout
 import ru.ds.weatherfirst.ui.screens.main.MainScreen
 
 @Composable
-fun MyProject(context: Context) {
+fun MyProject() {
     WeatherFirstTheme {
         Image(
             painter = painterResource(id = R.drawable.ic_back_new),
@@ -33,7 +32,6 @@ fun MyProject(context: Context) {
             MainScreen()
             Spacer(modifier = Modifier.height(1.dp))
             TabLayout()
-
 
 
         }

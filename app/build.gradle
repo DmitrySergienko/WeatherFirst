@@ -103,6 +103,9 @@ dependencies {
     //upd compose for status bar upd
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
 
+    //permissions
+    implementation "com.google.accompanist:accompanist-permissions:$accompanist_version"
+
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
