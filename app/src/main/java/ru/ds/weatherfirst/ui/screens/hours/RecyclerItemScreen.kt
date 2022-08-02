@@ -12,7 +12,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
 import ru.ds.weatherfirst.data.api.model.Hour
 import ru.ds.weatherfirst.ui.theme.BlueLight
 import ru.ds.weatherfirst.ui.theme.TextLight
@@ -21,7 +21,7 @@ import ru.ds.weatherfirst.ui.theme.TextLight
 @Composable
 fun RecyclerItemScreen(hour: Hour) {
 
-    val imagePainter = rememberImagePainter(data = "https:${hour.condition.icon}")
+    val imagePainter = rememberAsyncImagePainter(model = "https:${hour.condition.icon}")
 
     Card(
         modifier = Modifier
@@ -43,14 +43,14 @@ fun RecyclerItemScreen(hour: Hour) {
                 Text(
                     modifier = Modifier
                         .padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Temperature: ${hour.tempC} C",
+                    text = "Temperature: ${hour.tempC.toInt()}°C",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Feels like ${hour.feelslikeC} C",
+                    text = "Feels like ${hour.feelslikeC.toInt()}°C",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
@@ -66,14 +66,14 @@ fun RecyclerItemScreen(hour: Hour) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "${hour.condition.text}",
+                    text = hour.condition.text,
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Humidity ${hour.humidity}",
+                    text = "Humidity ${hour.humidity}%",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 

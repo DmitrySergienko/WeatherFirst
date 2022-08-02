@@ -20,8 +20,6 @@ import ru.ds.weatherfirst.ui.theme.BlueLight
 import ru.ds.weatherfirst.ui.theme.TextLight
 
 
-
-
 @Composable
 fun MainScreen() {
 
@@ -58,7 +56,7 @@ fun MainScreen() {
                     Text(
                         modifier = Modifier
                             .padding(1.dp),
-                        text = " ${state.lastUpdated}",
+                        text = "Feels like ${state.feelslikeC.toInt()}°C",
                         style = TextStyle(fontSize = 22.sp),
                         color = TextLight
                     )
@@ -111,16 +109,37 @@ fun MainScreen() {
                 Text(
                     modifier = Modifier
                         .padding(top = 5.dp),
-                    text = "${state.tempC} C",
+                    text = "${state.tempC.toInt()}°C",
                     style = TextStyle(fontSize = 65.sp),
                     color = TextLight
                 )
-                Text(
-                    modifier = Modifier.padding(1.dp),
-                    text = state.condition.text,
-                    style = TextStyle(fontSize = 22.sp),
-                    color = TextLight
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 4.dp, end = 4.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        modifier = Modifier.padding(1.dp),
+                        text = state.condition.text,
+                        style = TextStyle(fontSize = 22.sp),
+                        color = TextLight
+                    )
+                    Text(
+                        modifier = Modifier.padding(1.dp),
+                        text = "UV ${state.uv}",
+                        style = TextStyle(fontSize = 22.sp),
+                        color = TextLight
+                    )
+                    Text(
+                        modifier = Modifier.padding(1.dp),
+                        text = "Humidity ${state.humidity}%",
+                        style = TextStyle(fontSize = 22.sp),
+                        color = TextLight
+                    )
+
+                }
+
 
             }
         }

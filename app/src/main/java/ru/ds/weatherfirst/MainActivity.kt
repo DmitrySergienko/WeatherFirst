@@ -1,6 +1,5 @@
 package ru.ds.weatherfirst
 
-import android.Manifest
 import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
@@ -16,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
@@ -24,6 +22,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
+import ru.ds.weatherfirst.ui.theme.MyProject
 import ru.ds.weatherfirst.ui.theme.WeatherFirstTheme
 
 const val ADV_TEST_START = "ca-app-pub-3940256099942544/3419835294"
@@ -37,7 +36,7 @@ class MainActivity : ComponentActivity() {
     var mInterstitialAd: InterstitialAd? = null
 
 
-    @OptIn(ExperimentalPermissionsApi::class)
+//    @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -95,13 +94,13 @@ class MainActivity : ComponentActivity() {
                         },
                         content = {
 //Request permissions
-                            RequestMultiplePermissions(
-                                permissions = listOf(
-                                    Manifest.permission.ACCESS_FINE_LOCATION,
-                                    Manifest.permission.ACCESS_COARSE_LOCATION
-                                )
-                            )
-                            //MyProject()
+//                            RequestMultiplePermissions(
+//                                permissions = listOf(
+//                                    Manifest.permission.ACCESS_FINE_LOCATION,
+//                                    Manifest.permission.ACCESS_COARSE_LOCATION
+//                                )
+//                            )
+                            MyProject()
 
 
                         })

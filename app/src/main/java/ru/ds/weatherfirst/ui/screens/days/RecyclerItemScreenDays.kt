@@ -12,7 +12,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
 import ru.ds.weatherfirst.data.api.model.Forecastday
 import ru.ds.weatherfirst.ui.theme.BlueLight
 import ru.ds.weatherfirst.ui.theme.TextLight
@@ -21,7 +21,7 @@ import ru.ds.weatherfirst.ui.theme.TextLight
 @Composable
 fun RecyclerItemScreenDays(forecastday: Forecastday) {
 
-    val imagePainter = rememberImagePainter(data = "https:${forecastday.day.condition.icon}")
+    val imagePainter = rememberAsyncImagePainter(model = "https:${forecastday.day.condition.icon}")
 
     Card(
         modifier = Modifier
@@ -47,21 +47,21 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Average t: ${forecastday.day.avgtempC} C",
+                    text = "Average t: ${forecastday.day.avgtempC.toInt()}°C",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Min t: ${forecastday.day.mintempC} C",
+                    text = "Min t: ${forecastday.day.mintempC.toInt()}°C",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Max t: ${forecastday.day.maxtempC} C",
+                    text = "Max t: ${forecastday.day.maxtempC.toInt()}°C",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
@@ -114,41 +114,7 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
                     .padding(top = 14.dp, end = 5.dp),
                 contentScale = ContentScale.FillBounds
             )
-           /* Column() {
-                Text(
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "${hour.condition.text}",
-                    style = TextStyle(fontSize = 15.sp),
-                    color = TextLight
 
-                )
-                Text(
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Humidity ${hour.humidity}",
-                    style = TextStyle(fontSize = 15.sp),
-                    color = TextLight
-
-                )
-
-                Text(
-
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Time ${hour.time.takeLast(4)}",
-                    style = TextStyle(fontSize = 15.sp),
-                    color = TextLight
-
-                )
-            }
-
-            Image(
-                painter = imagePainter, contentDescription = null,
-                modifier = Modifier
-                    .size(65.dp)
-                    .padding(top = 14.dp, end = 5.dp),
-                contentScale = ContentScale.FillBounds
-            )
-
-            */
         }
     }
 
