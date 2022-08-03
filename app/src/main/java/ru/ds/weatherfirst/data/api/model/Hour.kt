@@ -1,10 +1,13 @@
 package ru.ds.weatherfirst.data.api.model
 
 
+import android.os.Parcelable
 import androidx.annotation.Keep
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Keep
 @JsonClass(generateAdapter = true)
 data class Hour(
@@ -26,4 +29,4 @@ data class Hour(
     val timeEpoch: Int,
     @Json(name = "wind_kph")
     val windKph: Double
-)
+):Parcelable

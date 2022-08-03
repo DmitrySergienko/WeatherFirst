@@ -1,10 +1,13 @@
 package ru.ds.weatherfirst.data.api.model
 
 
+import android.os.Parcelable
 import androidx.annotation.Keep
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Keep
 @JsonClass(generateAdapter = true)
 data class Location(
@@ -24,4 +27,4 @@ data class Location(
     val region: String,
     @Json(name = "tz_id")
     val tzId: String
-)
+):Parcelable

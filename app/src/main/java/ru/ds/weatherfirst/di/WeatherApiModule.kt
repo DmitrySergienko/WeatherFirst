@@ -29,4 +29,5 @@ class WeatherApiModule {
             .baseUrl(ApiConstants.BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
     }
+
 }

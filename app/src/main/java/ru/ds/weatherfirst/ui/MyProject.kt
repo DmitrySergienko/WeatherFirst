@@ -10,7 +10,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.ui.screens.TabLayout
-import ru.ds.weatherfirst.ui.screens.main.MainScreen
+import ru.ds.weatherfirst.ui.screens.main.MainScreenHoist
 
 @Composable
 fun MyProject() {
@@ -29,7 +29,7 @@ fun MyProject() {
                 .padding(top = 4.dp, start = 4.dp, end = 4.dp)
         ) {
 
-            MainScreen()
+            MainScreenHoist()
             Spacer(modifier = Modifier.height(1.dp))
             TabLayout()
 

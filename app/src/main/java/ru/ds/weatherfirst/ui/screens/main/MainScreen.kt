@@ -1,12 +1,15 @@
 package ru.ds.weatherfirst.ui.screens.main
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -19,14 +22,28 @@ import ru.ds.weatherfirst.ui.screens.HomeViewModel
 import ru.ds.weatherfirst.ui.theme.BlueLight
 import ru.ds.weatherfirst.ui.theme.TextLight
 
+//вытаскиваем переменные в отедльную функцию Hoist, чтобы MainScreen сделать stateless
+@Composable
+fun MainScreenHoist() {
+//это переменная (наш город, который может быть изменен)
+    var cityInputText by rememberSaveable { mutableStateOf("") }
+
+    MainScreen(city = cityInputText, onCityChange = { cityInputText = it })
+}
 
 @Composable
-fun MainScreen() {
+fun MainScreen(city: String, onCityChange: (String) -> Unit) {
 
     val mainScreenViewModel = viewModel(modelClass = HomeViewModel::class.java)
     val state by mainScreenViewModel.stateMain.collectAsState()
-    var cityInputText by remember { mutableStateOf("Dubai") }
 
+    val rowSection = listOf(
+        "${state.uv}",
+        "${state.condition}",
+        "${state.humidity}",
+        "${state.cloud}",
+        "${state.isDay}"
+    )
 
     mainScreenViewModel.getWeather("Dubai")
 
@@ -81,12 +98,10 @@ fun MainScreen() {
                 ) {
 
                     OutlinedTextField(
-                        value = cityInputText,
-                        onValueChange = { newText ->
-                            cityInputText = newText
-                        }, label = {
-                            Text(text = "City")
-                        },
+                        value = city,
+                        onValueChange = onCityChange,
+                        label = { Text(text = "City") },
+                        placeholder = { Text(text = "Dubai") },
                         singleLine = true,
                         modifier = Modifier
                             .padding(start = 5.dp)
@@ -94,15 +109,13 @@ fun MainScreen() {
 
                         textStyle = TextStyle(color = TextLight, fontSize = 26.sp),
                         trailingIcon = {
-                            IconButton(onClick = { mainScreenViewModel.getWeather(cityInputText) }) {
+                            IconButton(onClick = { mainScreenViewModel.getWeather(city) }) {
                                 Icon(
                                     imageVector = Icons.Filled.Edit,
                                     contentDescription = "City"
                                 )
-
                             }
                         }
-
                     )
                 }
 
@@ -113,38 +126,50 @@ fun MainScreen() {
                     style = TextStyle(fontSize = 65.sp),
                     color = TextLight
                 )
+
+
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 4.dp, end = 4.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
+                        .padding(start = 4.dp, end = 4.dp)
+                        .horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+
+                    ) {
                     Text(
-                        modifier = Modifier.padding(1.dp),
+                        modifier = Modifier.padding(1.dp).padding(end = 23.dp),
                         text = state.condition.text,
                         style = TextStyle(fontSize = 22.sp),
                         color = TextLight
                     )
                     Text(
-                        modifier = Modifier.padding(1.dp),
+                        modifier = Modifier.padding(1.dp).padding(end = 23.dp),
                         text = "UV ${state.uv}",
                         style = TextStyle(fontSize = 22.sp),
                         color = TextLight
                     )
                     Text(
-                        modifier = Modifier.padding(1.dp),
+                        modifier = Modifier.padding(1.dp).padding(end = 23.dp),
                         text = "Humidity ${state.humidity}%",
                         style = TextStyle(fontSize = 22.sp),
                         color = TextLight
                     )
-
+                    Text(
+                        modifier = Modifier.padding(1.dp).padding(end = 23.dp),
+                        text = "Temperature ${state.tempF.toInt()}F",
+                        style = TextStyle(fontSize = 22.sp),
+                        color = TextLight
+                    )
+                    Text(
+                        modifier = Modifier.padding(1.dp).padding(end = 23.dp),
+                        text = "Cloud ${state.cloud}",
+                        style = TextStyle(fontSize = 22.sp),
+                        color = TextLight
+                    )
                 }
-
-
             }
         }
     }
-
 
 }
 
