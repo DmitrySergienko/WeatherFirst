@@ -108,7 +108,12 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit) {
 
                         textStyle = TextStyle(color = TextLight, fontSize = 26.sp),
                         trailingIcon = {
-                            IconButton(onClick = { mainScreenViewModel.getWeather(city) }) {
+                            IconButton(onClick = {
+                                if (city.isNotEmpty()) mainScreenViewModel.getWeather(city)
+                                else {
+                                    mainScreenViewModel.getWeather("Dubai")
+                                }
+                            }) {
                                 Icon(
                                     imageVector = Icons.Filled.Edit,
                                     contentDescription = "City"
