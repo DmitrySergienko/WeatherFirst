@@ -41,13 +41,14 @@ fun RecyclerItemScreen(hour: Hour) {
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    modifier = Modifier
-                        .padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Temperature: ${hour.tempC.toInt()}°C",
+
+                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
+                    text = "Time ${hour.time.takeLast(5)}",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
+
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
                     text = "Feels like ${hour.feelslikeC.toInt()}°C",
@@ -62,8 +63,23 @@ fun RecyclerItemScreen(hour: Hour) {
                     color = TextLight
 
                 )
+                Text(
+                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
+                    text = "UV ${hour.uv}",
+                    style = TextStyle(fontSize = 15.sp),
+                    color = TextLight
+
+                )
             }
             Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    modifier = Modifier
+                        .padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
+                    text = "Temperature: ${hour.tempC.toInt()}°C",
+                    style = TextStyle(fontSize = 15.sp),
+                    color = TextLight
+
+                )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
                     text = hour.condition.text,
@@ -79,10 +95,11 @@ fun RecyclerItemScreen(hour: Hour) {
 
                 )
 
+
                 Text(
 
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Time ${hour.time.takeLast(5)}",
+                    text = "Wind direction ${hour.wind_dir}",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 

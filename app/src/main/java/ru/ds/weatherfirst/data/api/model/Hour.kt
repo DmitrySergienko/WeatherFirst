@@ -28,5 +28,10 @@ data class Hour(
     @Json(name = "time_epoch")
     val timeEpoch: Int,
     @Json(name = "wind_kph")
-    val windKph: Double
-):Parcelable
+    val windKph: Double,
+    @Json(name = "uv")
+    val uv: Double,
+    @Json(name = "wind_dir")
+    val wind_dir: String
+
+) : Parcelable
