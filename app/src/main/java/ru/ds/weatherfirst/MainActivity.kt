@@ -15,6 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.NavHostController
+import androidx.navigation.Navigation
+import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
@@ -22,7 +25,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
-import ru.ds.weatherfirst.ui.theme.MyProject
+import ru.ds.weatherfirst.ui.SetupNavGraph
 import ru.ds.weatherfirst.ui.theme.WeatherFirstTheme
 
 const val ADV_TEST_START = "ca-app-pub-3940256099942544/3419835294"
@@ -32,11 +35,14 @@ const val ADV_MY_BANNER = "ca-app-pub-4733065340996872/5195655548"
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    //navigation between screens
+
+    lateinit var navController: NavHostController
 
     var mInterstitialAd: InterstitialAd? = null
 
 
-//    @OptIn(ExperimentalPermissionsApi::class)
+    //@OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -58,6 +64,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
+            //Admob
             val adRequest = AdRequest.Builder().build()
             InterstitialAd.load(this, ADV_MY_BANNER, adRequest,
                 object : InterstitialAdLoadCallback() {
@@ -72,7 +79,6 @@ class MainActivity : ComponentActivity() {
                         mInterstitialAd = p0
                         mInterstitialAd?.show(this@MainActivity)
                     }
-
                 })
             WeatherFirstTheme {
                 // A surface container using the 'background' color from the theme
@@ -81,6 +87,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     Scaffold(
+                        //Admob
                         bottomBar = {
                             AndroidView(factory = {
                                 AdView(it).apply {
@@ -92,6 +99,7 @@ class MainActivity : ComponentActivity() {
                                 }
                             })
                         },
+
                         content = {
 //Request permissions
 //                            RequestMultiplePermissions(
@@ -100,16 +108,18 @@ class MainActivity : ComponentActivity() {
 //                                    Manifest.permission.ACCESS_COARSE_LOCATION
 //                                )
 //                            )
-                            MyProject()
+                            Navigation
+                            navController = rememberNavController()
+                            SetupNavGraph(navController = navController)
+                           // MyProject()
 
 
-                        })
+                        }
+                    )
                 }
-
             }
         }
     }
-
 }
 
 

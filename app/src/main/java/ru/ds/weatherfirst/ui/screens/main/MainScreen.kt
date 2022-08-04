@@ -18,26 +18,31 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.ui.screens.HomeViewModel
+import ru.ds.weatherfirst.ui.screens.navigation.Screen
 import ru.ds.weatherfirst.ui.theme.BlueLight
 import ru.ds.weatherfirst.ui.theme.TextLight
 
 //вытаскиваем переменные в отедльную функцию Hoist, чтобы MainScreen сделать stateless
 @Composable
-fun MainScreenHoist() {
+fun MainScreenHoist(
+    navController: NavController
+) {
 //это переменная (наш город, который может быть изменен)
     var cityInputText by rememberSaveable { mutableStateOf("") }
 
-    MainScreen(city = cityInputText, onCityChange = { cityInputText = it })
+    MainScreen(city = cityInputText, onCityChange = { cityInputText = it }, navController = navController)
 }
 
 @Composable
-fun MainScreen(city: String, onCityChange: (String) -> Unit) {
+fun MainScreen(city: String, onCityChange: (String) -> Unit,navController: NavController) {
 
-    val mainScreenViewModel = viewModel(modelClass = HomeViewModel::class.java)
+    //val mainScreenViewModel = viewModel(modelClass = HomeViewModel::class.java)
+    val mainScreenViewModel = hiltViewModel<HomeViewModel>()
     val state by mainScreenViewModel.stateMain.collectAsState()
 
 
@@ -75,6 +80,9 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit) {
                             .padding(start = 5.dp, top = 6.dp, end = 20.dp)
                             .size(30.dp)
                             .alpha(0.7f)
+                            .clickable {
+                                navController.navigate(route = Screen.UVscreen.route)
+                            }
                     )
 
                     Text(
@@ -112,6 +120,7 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit) {
                                 if (city.isNotEmpty()) mainScreenViewModel.getWeather(city)
                                 else {
                                     mainScreenViewModel.getWeather("Dubai")
+//                                    Toast.makeText(context, "Enter city name", Toast.LENGTH_SHORT).show()
                                 }
                             }) {
                                 Icon(
