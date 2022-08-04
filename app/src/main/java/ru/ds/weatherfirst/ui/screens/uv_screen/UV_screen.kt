@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -15,9 +17,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import ru.ds.weatherfirst.R
+import ru.ds.weatherfirst.ui.screens.HomeViewModel
 import ru.ds.weatherfirst.ui.screens.navigation.Screen
 import ru.ds.weatherfirst.ui.theme.WeatherFirstTheme
 
@@ -25,6 +29,14 @@ import ru.ds.weatherfirst.ui.theme.WeatherFirstTheme
 fun UV_screen(
     navController: NavController
 ) {
+//viewModel
+    val uvLiveData = hiltViewModel<HomeViewModel>()
+    val state by uvLiveData.stateMain.collectAsState()
+
+// вызываем метод который подкачивает liveData
+   uvLiveData.getWeather("Dubai")
+
+
     WeatherFirstTheme {
         Image(
             painter = painterResource(id = R.drawable.ic_back_new),
@@ -40,7 +52,7 @@ fun UV_screen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
+            val any = Text(
                 modifier = Modifier
                     .clickable {
                         navController.navigate(Screen.UVscreen.route){
@@ -49,16 +61,15 @@ fun UV_screen(
                             }
                         }
                     },
-                text = "Any Test",
+                text = "UV ${state.uv}",
                 color = MaterialTheme.colors.primary,
                 fontSize = MaterialTheme.typography.h2.fontSize,
                 fontWeight = FontWeight.Bold,
 
                 )
         }
-
-
     }
+
 }
 
 @Preview(showBackground = true)

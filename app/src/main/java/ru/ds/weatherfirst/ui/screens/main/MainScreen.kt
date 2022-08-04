@@ -41,7 +41,7 @@ fun MainScreenHoist(
 @Composable
 fun MainScreen(city: String, onCityChange: (String) -> Unit,navController: NavController) {
 
-    //val mainScreenViewModel = viewModel(modelClass = HomeViewModel::class.java)
+
     val mainScreenViewModel = hiltViewModel<HomeViewModel>()
     val state by mainScreenViewModel.stateMain.collectAsState()
 
