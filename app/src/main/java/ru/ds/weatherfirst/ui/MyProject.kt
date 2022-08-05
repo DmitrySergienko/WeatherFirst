@@ -8,12 +8,15 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.ui.screens.TabLayout
 import ru.ds.weatherfirst.ui.screens.main.MainScreenHoist
 
 @Composable
-fun MyProject() {
+fun MyProject(
+    navController: NavController
+) {
     WeatherFirstTheme {
         Image(
             painter = painterResource(id = R.drawable.ic_back_new),
@@ -29,7 +32,7 @@ fun MyProject() {
                 .padding(top = 4.dp, start = 4.dp, end = 4.dp)
         ) {
 
-            MainScreenHoist()
+            MainScreenHoist(navController)
             Spacer(modifier = Modifier.height(1.dp))
             TabLayout()
 

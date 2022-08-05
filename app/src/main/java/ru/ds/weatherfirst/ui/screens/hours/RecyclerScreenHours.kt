@@ -7,13 +7,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 
 
 @Composable
 fun RecyclerScreen() {
 
-    val homeViewModel = viewModel(modelClass = HomeViewModel::class.java)
+    val homeViewModel = hiltViewModel<HomeViewModel>()
     val state by homeViewModel.state.collectAsState()
 
     LazyColumn(

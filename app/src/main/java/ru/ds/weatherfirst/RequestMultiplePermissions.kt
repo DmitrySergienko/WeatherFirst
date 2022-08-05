@@ -13,7 +13,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.*
-import ru.ds.weatherfirst.ui.theme.MyProject
 
 
 @ExperimentalPermissionsApi
@@ -61,7 +60,7 @@ private fun HandleRequests(
     }
     if (result) {
         //Если permission предоставленны запускаем проект
-        MyProject()
+        //MyProject()
     } else {
         deniedContent(shouldShowRationale)
     }

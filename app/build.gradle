@@ -50,6 +50,12 @@ android {
 }
 
 dependencies {
+
+    //compose navigation
+    def nav_version = "2.5.1"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
+
     //Splash Screen
     implementation 'androidx.core:core-splashscreen:1.0.0-rc01'
 

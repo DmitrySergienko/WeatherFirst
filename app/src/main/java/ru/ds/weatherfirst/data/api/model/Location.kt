@@ -1,30 +1,28 @@
 package ru.ds.weatherfirst.data.api.model
 
 
-import android.os.Parcelable
 import androidx.annotation.Keep
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
+
 @Keep
 @JsonClass(generateAdapter = true)
 data class Location(
     @Json(name = "country")
-    val country: String,
+    val country: String = "-",
     @Json(name = "lat")
-    val lat: Double,
+    val lat: Double =0.0,
     @Json(name = "localtime")
-    val localtime: String,
+    val localtime: String = "-",
     @Json(name = "localtime_epoch")
-    val localtimeEpoch: Int,
+    val localtimeEpoch: Int =0,
     @Json(name = "lon")
-    val lon: Double,
+    val lon: Double =0.0,
     @Json(name = "name")
-    val name: String,
+    val name: String = "-",
     @Json(name = "region")
-    val region: String,
+    val region: String = "",
     @Json(name = "tz_id")
-    val tzId: String
-):Parcelable
+    val tzId: String = ""
+)
