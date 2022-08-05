@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -30,7 +31,7 @@ import androidx.compose.ui.unit.dp
 fun UVIndicator(
     canvasSize: Dp = 300.dp,
     indicatorValue: Int = 0,
-    maxIndicatorValue: Int = 100,
+    maxIndicatorValue: Int = 12,
     backgroundIndicatorColor: Color = MaterialTheme.colors.onSurface.copy(alpha = 0.1f),
     backgroundIndicatorStrokeWidth: Float = 100f,
     foregroundIndicatorColor: Color = MaterialTheme.colors.primary,
@@ -39,7 +40,7 @@ fun UVIndicator(
     bigTextFontSize: TextUnit = MaterialTheme.typography.h3.fontSize,
     bigTextColor: Color = MaterialTheme.colors.onSurface,
     bigTextSuffix: String = "UV",
-    smallText: String = "Remaining",
+    smallText: String = "Indicator",
     smallTextFontSize: TextUnit = MaterialTheme.typography.h6.fontSize,
     smallTextColor: Color = MaterialTheme.colors.onSurface.copy(alpha = 0.3f)
 ) {
@@ -71,11 +72,22 @@ fun UVIndicator(
     )
 
     val animatedBigTextColor by animateColorAsState(
-        targetValue = if (allowedIndicatorValue == 0)
-            MaterialTheme.colors.onSurface.copy(alpha = 0.3f)
-        else
-            bigTextColor,
-        animationSpec = tween(1000)
+        targetValue = when (allowedIndicatorValue){
+
+            in 3..5->  bigTextColor
+            in 6..8->  MaterialTheme.colors.primary.copy(alpha = 0.9f)
+            in 9..11->  {
+
+                MaterialTheme.colors.primary.copy(red = 0.9f)
+            }
+            else -> {MaterialTheme.colors.primary.copy(green = 0.9f)}
+                                                  }
+       ,
+
+
+
+
+        animationSpec = tween(2000)
     )
 
     Column(
@@ -184,8 +196,8 @@ fun EmbeddedElements(
     )
 }
 
-//@Composable
-//@Preview(showBackground = true)
-//fun CustomComponentPreview() {
-//    CustomComponent()
-//}
+@Composable
+@Preview(showBackground = true)
+fun CustomComponentPreview() {
+    UVIndicator()
+}

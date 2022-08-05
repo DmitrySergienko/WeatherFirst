@@ -28,7 +28,9 @@ fun SetupNavGraph(
             route = Screen.UVscreen.route
         ) {
 
-            UV_screen(navController = navController)
+            UV_screen(
+                //navController = navController
+            )
 
         }
     }
