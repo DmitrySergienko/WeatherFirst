@@ -40,7 +40,7 @@ fun UVIndicator(
     bigTextFontSize: TextUnit = MaterialTheme.typography.h3.fontSize,
     bigTextColor: Color = MaterialTheme.colors.onSurface,
     bigTextSuffix: String = "UV",
-    smallText: String = "Indicator",
+    smallText: String = "Indication",
     smallTextFontSize: TextUnit = MaterialTheme.typography.h6.fontSize,
     smallTextColor: Color = MaterialTheme.colors.onSurface.copy(alpha = 0.3f)
 ) {

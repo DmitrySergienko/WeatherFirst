@@ -86,7 +86,11 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                                 .size(30.dp)
                                 .alpha(0.7f)
                                 .clickable {
-                                    navController.navigate(route = Screen.UVscreen.route)
+                                    //открываем UV_screen и перекидываем туда аргументы
+                                    navController.navigate(route = Screen.UVscreen.passUVARG(state.uv.toInt()))
+                                    //если просто открыть окно не закидывая аргументов
+                                    //navController.navigate(route = Screen.UVscreen.route)
+
                                 }
                         )
 

@@ -2,9 +2,12 @@ package ru.ds.weatherfirst.ui
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import ru.ds.weatherfirst.ui.screens.navigation.Screen
+import ru.ds.weatherfirst.ui.screens.navigation.UV_ARG_KEY
 import ru.ds.weatherfirst.ui.screens.uv_screen.UV_screen
 import ru.ds.weatherfirst.ui.theme.MyProject
 
@@ -26,11 +29,13 @@ fun SetupNavGraph(
         }
         composable(
             route = Screen.UVscreen.route
+            ,
+            arguments = listOf(navArgument(UV_ARG_KEY){
+                type = NavType.IntType
+            })
         ) {
-
-            UV_screen(
-                //navController = navController
-            )
+            //тут указываем экран куда переходим, и можно посмотреть есть ли аргументы
+            UV_screen(navController = navController,it.arguments?.getInt(UV_ARG_KEY).toString())
 
         }
     }
