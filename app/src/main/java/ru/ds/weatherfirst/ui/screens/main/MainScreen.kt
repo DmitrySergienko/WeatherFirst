@@ -185,14 +185,6 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                             modifier = Modifier
                                 .padding(1.dp)
                                 .padding(end = 23.dp),
-                            text = "UV ${state.uv}",
-                            style = TextStyle(fontSize = 22.sp),
-                            color = TextLight
-                        )
-                        Text(
-                            modifier = Modifier
-                                .padding(1.dp)
-                                .padding(end = 23.dp),
                             text = "Humidity ${state.humidity}%",
                             style = TextStyle(fontSize = 22.sp),
                             color = TextLight
@@ -210,6 +202,22 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                                 .padding(1.dp)
                                 .padding(end = 23.dp),
                             text = "Cloud ${state.cloud}%",
+                            style = TextStyle(fontSize = 22.sp),
+                            color = TextLight
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp)
+                                .padding(end = 23.dp),
+                            text = "UV ${state.uv}",
+                            style = TextStyle(fontSize = 22.sp),
+                            color = TextLight
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp)
+                                .padding(end = 23.dp),
+                            text = "Last update: ${state.lastUpdated}",
                             style = TextStyle(fontSize = 22.sp),
                             color = TextLight
                         )

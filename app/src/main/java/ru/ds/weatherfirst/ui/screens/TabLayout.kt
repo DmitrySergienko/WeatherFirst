@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -25,13 +24,12 @@ import ru.ds.weatherfirst.ui.screens.days.RecyclerScreenDays
 import ru.ds.weatherfirst.ui.screens.uv_screen.UV_screenTab
 import ru.ds.weatherfirst.ui.theme.BlueLight
 import ru.ds.weatherfirst.ui.theme.TextLight
-import ru.ds.weatherfirst.ui.theme.WeatherFirstTheme
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TabLayout() {
 
-    val tabList = listOf("HOURS", "3 DAYS","UV")
+    val tabList = listOf("UV", "HOURS", "3 DAYS")
     //для пейджера
     val pageState = rememberPagerState()
     val tabIndex = pageState.currentPage
@@ -79,10 +77,10 @@ fun TabLayout() {
                 //.fillMaxWidth()
                 .weight(1.0f)
         ) { tabIndex ->
-            when(tabIndex){
-                0 ->RecyclerScreen()
-                1 ->RecyclerScreenDays()
-                2 -> UV_screenTab()
+            when (tabIndex) {
+                0 -> UV_screenTab()
+                1 -> RecyclerScreen()
+                2 -> RecyclerScreenDays()
             }
 
         }
@@ -90,11 +88,11 @@ fun TabLayout() {
 
 }
 
-@Preview
-@Composable
-fun TabLayoutPreview() {
-    WeatherFirstTheme {
-        TabLayout()
-    }
-
-}
+//@Preview
+//@Composable
+//fun TabLayoutPreview() {
+//    WeatherFirstTheme {
+//        TabLayout()
+//    }
+//
+//}
