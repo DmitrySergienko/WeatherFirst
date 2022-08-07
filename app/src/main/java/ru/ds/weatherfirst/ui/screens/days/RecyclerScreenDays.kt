@@ -8,7 +8,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import ru.ds.weatherfirst.data.api.model.Forecastday
 import ru.ds.weatherfirst.ui.screens.HomeViewModel
 
 @Composable
@@ -17,8 +16,11 @@ fun RecyclerScreenDays() {
     val daysLiveData = hiltViewModel<HomeViewModel>()
     val stateDays by daysLiveData.stateDay.collectAsState()
 
-    LazyColumn(contentPadding = PaddingValues(bottom = 20.dp)){
-        items(stateDays){ item: Forecastday ->  
+
+
+    LazyColumn(contentPadding = PaddingValues(bottom = 20.dp)
+    ){
+        items(stateDays){ item->
             RecyclerItemScreenDays(item)
 
         }
