@@ -35,11 +35,15 @@ fun MainScreenHoist(
 //это переменная (наш город, который может быть изменен)
     var cityInputText by rememberSaveable { mutableStateOf("") }
 
-    MainScreen(city = cityInputText, onCityChange = { cityInputText = it }, navController = navController)
+    MainScreen(
+        city = cityInputText,
+        onCityChange = { cityInputText = it },
+        navController = navController
+    )
 }
 
 @Composable
-fun MainScreen(city: String, onCityChange: (String) -> Unit,navController: NavController) {
+fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavController) {
 
 
     val mainScreenViewModel = hiltViewModel<HomeViewModel>()
@@ -48,166 +52,167 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit,navController: NavCo
 
     mainScreenViewModel.getWeather("Dubai")
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(2.dp)
-    ) {
-        Card(
+
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .alpha(0.7f)
-                .padding(bottom = 5.dp),
-            backgroundColor = BlueLight,
-            elevation = 0.dp,
-            shape = RoundedCornerShape(10.dp)
+                .padding(2.dp)
         ) {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .alpha(0.7f)
+                    .padding(bottom = 5.dp),
+                backgroundColor = BlueLight,
+                elevation = 0.dp,
+                shape = RoundedCornerShape(10.dp)
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 20.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_uv_img2),
-                        contentDescription = "UV image",
-                        modifier = Modifier
-                            .padding(start = 5.dp, top = 6.dp, end = 20.dp)
-                            .size(30.dp)
-                            .alpha(0.7f)
-                            .clickable {
-                                navController.navigate(route = Screen.UVscreen.route)
-                            }
-                    )
-
-                    Text(
-                        modifier = Modifier
-                            .padding(top = 6.dp, end = 5.dp),
-                        text = "Feels like ${state.feelslikeC.toInt()}°C",
-                        style = TextStyle(fontSize = 22.sp),
-                        color = TextLight
-
-                    )
-
-
-                }
-
-
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
-                    OutlinedTextField(
-                        value = city,
-                        onValueChange = onCityChange,
-                        label = { Text(text = "City") },
-                        placeholder = { Text(text = "Dubai") },
-                        singleLine = true,
+                    Row(
                         modifier = Modifier
-                            .padding(start = 5.dp)
-                            .align(Alignment.CenterHorizontally),
+                            .fillMaxWidth()
+                            .padding(bottom = 20.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
 
-                        textStyle = TextStyle(color = TextLight, fontSize = 26.sp),
-                        trailingIcon = {
-                            IconButton(onClick = {
-                                if (city.isNotEmpty()) mainScreenViewModel.getWeather(city)
-                                else {
-                                    mainScreenViewModel.getWeather("Dubai")
-//                                    Toast.makeText(context, "Enter city name", Toast.LENGTH_SHORT).show()
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_uv_img2),
+                            contentDescription = "UV image",
+                            modifier = Modifier
+                                .padding(start = 5.dp, top = 6.dp, end = 20.dp)
+                                .size(30.dp)
+                                .alpha(0.7f)
+                                .clickable {
+                                    navController.navigate(route = Screen.UVscreen.route)
                                 }
-                            }) {
-                                Icon(
-                                    imageVector = Icons.Filled.Edit,
-                                    contentDescription = "City"
-                                )
-                            }
-                        }
-                    )
-                }
-                Row(
-                    modifier = Modifier
-                        .padding(start = 30.dp),
-                ) {
-                    Text(
+                        )
+
+                        Text(
+                            modifier = Modifier
+                                .padding(top = 6.dp, end = 5.dp),
+                            text = "Feels like ${state.feelslikeC.toInt()}°C",
+                            style = TextStyle(fontSize = 22.sp),
+                            color = TextLight
+
+                        )
+
+
+                    }
+
+
+                    Column(
                         modifier = Modifier
-                            .padding(top = 5.dp, bottom = 15.dp, end = 5.dp),
-                        text = "${state.tempC.toInt()}°C",
-                        style = TextStyle(fontSize = 65.sp),
-                        color = TextLight
-                    )
-                    AsyncImage(
-                        model = "https:${state.condition.icon}",
-                        contentDescription = "imageIcon",
-                        modifier = Modifier
-                            .size(95.dp)
-                            .padding(top = 1.dp, end = 2.dp)
-                            .clickable {
-
-                            }
-                    )
-                }
-
-
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 4.dp, end = 4.dp)
-                        .horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                            .fillMaxWidth()
 
                     ) {
-                    Text(
+
+                        OutlinedTextField(
+                            value = city,
+                            onValueChange = onCityChange,
+                            label = { Text(text = "City") },
+                            placeholder = { Text(text = "Dubai") },
+                            singleLine = true,
+                            modifier = Modifier
+                                .padding(start = 5.dp)
+                                .align(Alignment.CenterHorizontally),
+
+                            textStyle = TextStyle(color = TextLight, fontSize = 26.sp),
+                            trailingIcon = {
+                                IconButton(onClick = {
+                                    if (city.isNotEmpty()) mainScreenViewModel.getWeather(city)
+                                    else {
+                                        mainScreenViewModel.getWeather("Dubai")
+//                                    Toast.makeText(context, "Enter city name", Toast.LENGTH_SHORT).show()
+                                    }
+                                }) {
+                                    Icon(
+                                        imageVector = Icons.Filled.Edit,
+                                        contentDescription = "City"
+                                    )
+                                }
+                            }
+                        )
+                    }
+                    Row(
                         modifier = Modifier
-                            .padding(1.dp)
-                            .padding(end = 23.dp),
-                        text = state.condition.text,
-                        style = TextStyle(fontSize = 22.sp),
-                        color = TextLight
-                    )
-                    Text(
+                            .padding(start = 30.dp),
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .padding(top = 5.dp, bottom = 15.dp, end = 5.dp),
+                            text = "${state.tempC.toInt()}°C",
+                            style = TextStyle(fontSize = 65.sp),
+                            color = TextLight
+                        )
+                        AsyncImage(
+                            model = "https:${state.condition.icon}",
+                            contentDescription = "imageIcon",
+                            modifier = Modifier
+                                .size(95.dp)
+                                .padding(top = 1.dp, end = 2.dp)
+                                .clickable {
+
+                                }
+                        )
+                    }
+
+
+
+                    Row(
                         modifier = Modifier
-                            .padding(1.dp)
-                            .padding(end = 23.dp),
-                        text = "UV ${state.uv}",
-                        style = TextStyle(fontSize = 22.sp),
-                        color = TextLight
-                    )
-                    Text(
-                        modifier = Modifier
-                            .padding(1.dp)
-                            .padding(end = 23.dp),
-                        text = "Humidity ${state.humidity}%",
-                        style = TextStyle(fontSize = 22.sp),
-                        color = TextLight
-                    )
-                    Text(
-                        modifier = Modifier
-                            .padding(1.dp)
-                            .padding(end = 23.dp),
-                        text = "Temperature ${state.tempF.toInt()}F",
-                        style = TextStyle(fontSize = 22.sp),
-                        color = TextLight
-                    )
-                    Text(
-                        modifier = Modifier
-                            .padding(1.dp)
-                            .padding(end = 23.dp),
-                        text = "Cloud ${state.cloud}%",
-                        style = TextStyle(fontSize = 22.sp),
-                        color = TextLight
-                    )
+                            .fillMaxWidth()
+                            .padding(start = 4.dp, end = 4.dp)
+                            .horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+
+                        ) {
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp)
+                                .padding(end = 23.dp),
+                            text = state.condition.text,
+                            style = TextStyle(fontSize = 22.sp),
+                            color = TextLight
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp)
+                                .padding(end = 23.dp),
+                            text = "UV ${state.uv}",
+                            style = TextStyle(fontSize = 22.sp),
+                            color = TextLight
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp)
+                                .padding(end = 23.dp),
+                            text = "Humidity ${state.humidity}%",
+                            style = TextStyle(fontSize = 22.sp),
+                            color = TextLight
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp)
+                                .padding(end = 23.dp),
+                            text = "Temperature ${state.tempF.toInt()}F",
+                            style = TextStyle(fontSize = 22.sp),
+                            color = TextLight
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp)
+                                .padding(end = 23.dp),
+                            text = "Cloud ${state.cloud}%",
+                            style = TextStyle(fontSize = 22.sp),
+                            color = TextLight
+                        )
+                    }
                 }
             }
         }
-    }
 
 }
 

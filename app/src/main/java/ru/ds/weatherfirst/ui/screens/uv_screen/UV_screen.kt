@@ -27,8 +27,6 @@ fun UV_screen() {
     val uvLiveData = hiltViewModel<HomeViewModel>()
     val state by uvLiveData.stateMain.collectAsState()
 
-// вызываем метод который подкачивает liveData
-    uvLiveData.getWeather("Dubai")
 
     WeatherFirstTheme {
         Image(

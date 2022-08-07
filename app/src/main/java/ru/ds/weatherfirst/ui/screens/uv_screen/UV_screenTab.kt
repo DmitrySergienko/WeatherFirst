@@ -1,6 +1,8 @@
 package ru.ds.weatherfirst.ui.screens.uv_screen
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -25,8 +27,6 @@ fun UV_screenTab() {
     val uvLiveData = hiltViewModel<HomeViewModel>()
     val state by uvLiveData.stateMain.collectAsState()
 
-// вызываем метод который подкачивает liveData
-    uvLiveData.getWeather("Dubai")
 
     WeatherFirstTheme {
 
@@ -52,8 +52,7 @@ fun UV_screenTab() {
                 ) {
                     // var value by rememberSaveable { mutableStateOf(0) }
                     UVIndicator(indicatorValue = state.uv.toInt())
-                    Spacer(modifier = Modifier.height(5.dp))
-                    UVText()
+                    UVTextTab()
                 }
 
             }
