@@ -40,12 +40,13 @@ class MainActivity : ComponentActivity() {
 
     //navigation between screens
     lateinit var navController: NavHostController
+
     //Admob
     var mInterstitialAd: InterstitialAd? = null
 
     private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
 
-    //@OptIn(ExperimentalPermissionsApi::class)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -68,17 +69,15 @@ class MainActivity : ComponentActivity() {
         permissionLauncher = registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
         ) {
-//            viewModel.loadWeatherInfo()
-
-
-
-
+            // Тут можно запустить код если локация получена
 
         }
-        permissionLauncher.launch(arrayOf(
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-        ))
+        permissionLauncher.launch(
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+            )
+        )
         setContent {
 
             //Admob
@@ -118,17 +117,11 @@ class MainActivity : ComponentActivity() {
                         },
 
                         content = {
-//Request permissions
-//                            RequestMultiplePermissions(
-//                                permissions = listOf(
-//                                    Manifest.permission.ACCESS_FINE_LOCATION,
-//                                    Manifest.permission.ACCESS_COARSE_LOCATION
-//                                )
-//                            )
+
                             Navigation
                             navController = rememberNavController()
                             SetupNavGraph(navController = navController)
-                           // MyProject()
+                            // MyProject()
 
 
                         }
