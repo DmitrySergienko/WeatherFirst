@@ -3,7 +3,7 @@ package ru.ds.weatherfirst.data.api
 
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.ds.weatherfirst.data.api.model.Weather
+import ru.ds.weatherfirst.domain.model.Weather
 
 private const val DAYS = "days"
 private const val CITY = "q"

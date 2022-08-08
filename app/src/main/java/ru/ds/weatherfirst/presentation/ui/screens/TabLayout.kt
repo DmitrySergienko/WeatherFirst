@@ -1,0 +1,99 @@
+package ru.ds.weatherfirst.presentation.ui.screens
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Tab
+import androidx.compose.material.TabRow
+import androidx.compose.material.TabRowDefaults
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.dp
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.pagerTabIndicatorOffset
+import com.google.accompanist.pager.rememberPagerState
+import kotlinx.coroutines.launch
+import ru.ds.weatherfirst.presentation.ui.screens.days.RecyclerScreenDays
+import ru.ds.weatherfirst.presentation.ui.screens.uv_screen.UV_screenTab
+import ru.ds.weatherfirst.presentation.ui.theme.BlueLight
+import ru.ds.weatherfirst.presentation.ui.theme.TextLight
+import ru.ds.weatherfirst.ui.screens.RecyclerScreen
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+fun TabLayout() {
+
+    val tabList = listOf("UV", "HOURS", "3 DAYS")
+    //для пейджера
+    val pageState = rememberPagerState()
+    val tabIndex = pageState.currentPage
+    val coroutineScope = rememberCoroutineScope()
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 2.dp, end = 2.dp)
+            .clip(RoundedCornerShape(6.dp))
+    ) {
+        TabRow(
+            selectedTabIndex = tabIndex,
+            indicator = { pos ->
+                TabRowDefaults.Indicator(
+                    Modifier.pagerTabIndicatorOffset(pageState, pos)
+                )
+            },
+            backgroundColor = BlueLight,
+            modifier = Modifier.alpha(0.94f),
+            contentColor = TextLight,
+
+            ) {
+            //идет перебор списка, для каждого элемнета выводит "text" и Tab
+            tabList.forEachIndexed { index, text ->
+                Tab(
+                    selected = false,
+                    onClick = {
+                        coroutineScope.launch {
+                            pageState.animateScrollToPage(index)
+                        }
+                    },
+                    text = {
+                        Text(text = text, style = TextStyle(color = TextLight))
+                    }
+                )
+            }
+
+
+        }
+        HorizontalPager(
+            count = tabList.size,
+            state = pageState,
+            modifier = Modifier
+                //.fillMaxWidth()
+                .weight(1.0f)
+        ) { tabIndex ->
+            when (tabIndex) {
+                0 -> UV_screenTab()
+                1 -> RecyclerScreen()
+                2 -> RecyclerScreenDays()
+            }
+
+        }
+    }
+
+}
+
+//@Preview
+//@Composable
+//fun TabLayoutPreview() {
+//    WeatherFirstTheme {
+//        TabLayout()
+//    }
+//
+//}

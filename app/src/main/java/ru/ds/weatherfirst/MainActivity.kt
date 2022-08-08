@@ -28,8 +28,8 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
+import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 import ru.ds.weatherfirst.ui.SetupNavGraph
-import ru.ds.weatherfirst.ui.theme.WeatherFirstTheme
 
 const val ADV_TEST_START = "ca-app-pub-3940256099942544/3419835294"
 const val ADV_TEST_BANNER = "ca-app-pub-3940256099942544/6300978111"
