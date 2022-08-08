@@ -1,5 +1,6 @@
 package ru.ds.weatherfirst
 
+import android.Manifest
 import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
@@ -7,6 +8,8 @@ import android.view.View
 import android.view.animation.AnticipateInterpolator
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -36,11 +39,11 @@ const val ADV_MY_BANNER = "ca-app-pub-4733065340996872/5195655548"
 class MainActivity : ComponentActivity() {
 
     //navigation between screens
-
     lateinit var navController: NavHostController
-
+    //Admob
     var mInterstitialAd: InterstitialAd? = null
 
+    private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
 
     //@OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +65,20 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        permissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) {
+//            viewModel.loadWeatherInfo()
+
+
+
+
+
+        }
+        permissionLauncher.launch(arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+        ))
         setContent {
 
             //Admob

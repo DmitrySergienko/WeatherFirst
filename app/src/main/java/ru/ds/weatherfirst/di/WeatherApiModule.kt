@@ -1,5 +1,8 @@
 package ru.ds.weatherfirst.di
 
+import android.app.Application
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,6 +31,11 @@ class WeatherApiModule {
         return Retrofit.Builder()
             .baseUrl(ApiConstants.BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
+    }
+    @Provides
+    @Singleton
+    fun provideFusedLocationProviderClient(app: Application): FusedLocationProviderClient {
+        return LocationServices.getFusedLocationProviderClient(app)
     }
 
 }
