@@ -26,19 +26,7 @@ class HomeViewModel @Inject constructor(
         get() = _state
 
     //for current
-    private val _stateMain = MutableStateFlow(
-        Current(
-            0,
-            Condition("no internet", "_"),
-            0.00,
-            0,
-            0,
-            "no internet",
-            0.0,
-            0.0,
-            0.00
-        )
-    )
+    private val _stateMain = MutableStateFlow(Current(0, Condition("", "_"), 0.00, 0, 0, "", 0.1, 0.0, 0.00))
     val stateMain: StateFlow<Current>
         get() = _stateMain
 
@@ -52,17 +40,17 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val lat = locationTracker.getCurrentLocation()?.latitude.toString()
             val lon = locationTracker.getCurrentLocation()?.longitude.toString()
-
             val day = weatherRepo.weatherResponse("$lat,$lon")
+
+            //for dates
             _stateDay.value = day.forecast.forecastday
 
+            //for hours and current
             val weather = weatherRepo.weatherResponse("$lat,$lon")
-            //for hours
             _state.value = weather.forecast.forecastday[0].hour
-            //for current
-            _stateMain.value = weather.current
-            //for dates
 
+
+            _stateMain.value = weather.current
         }
     }
 }
