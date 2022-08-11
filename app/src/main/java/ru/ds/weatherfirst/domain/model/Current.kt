@@ -10,21 +10,21 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Current(
     @Json(name = "cloud")
-    val cloud: Int =0,
+    val cloud: Int ,
     @Json(name = "condition")
     val condition: Condition,
     @Json(name = "feelslike_c")
-    val feelslikeC: Double = 0.0,
+    val feelslikeC: Double ,
     @Json(name = "humidity")
-    val humidity: Int = 0,
+    val humidity: Int,
     @Json(name = "is_day")
-    val isDay: Int = 0,
+    val isDay: Int,
     @Json(name = "last_updated")
-    val lastUpdated: String ="-",
+    val lastUpdated: String ,
     @Json(name = "temp_c")
-    val tempC: Double = 0.0,
+    val tempC: Double ,
     @Json(name = "temp_f")
-    val tempF: Double = 0.0,
+    val tempF: Double ,
     @Json(name = "uv")
-    val uv: Double = 0.0
+    val uv: Double
 )

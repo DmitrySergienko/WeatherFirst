@@ -10,7 +10,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Condition(
     @Json(name = "icon")
-    val icon: String = "-",
+    val icon: String ,
     @Json(name = "text")
-    val text: String = "-"
+    val text: String ="any"
 )
