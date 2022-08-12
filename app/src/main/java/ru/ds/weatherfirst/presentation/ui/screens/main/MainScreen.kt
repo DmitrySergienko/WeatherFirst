@@ -49,7 +49,7 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
     val state by mainScreenViewModel.stateMain.collectAsState()
 
 
-    mainScreenViewModel.getWeather("Dubai")
+    mainScreenViewModel.getWeather("default")
 
 
     Column(
@@ -109,12 +109,12 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                             painter = painterResource(id = R.drawable.ic_baseline_search_24),
                             contentDescription = "UV image",
                             modifier = Modifier
-                                .padding(start = 5.dp, top = 6.dp, end = 10.dp)
+                                .padding(start = 5.dp, top = 14.dp, end = 12.dp)
                                 .size(30.dp)
                                 .alpha(0.7f)
                                 .clickable {
                                     //открываем UV_screen и перекидываем туда аргументы
-                                    navController.navigate(route = Screen.UVscreen.passUVARG(state.uv.toInt()))
+                                    navController.navigate(route = Screen.Search.route)
 
                                 },
 
