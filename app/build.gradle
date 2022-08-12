@@ -51,6 +51,8 @@ android {
 
 dependencies {
 
+    //Volley
+    implementation 'com.android.volley:volley:1.2.1'
 
     // Preferences DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0-alpha04"

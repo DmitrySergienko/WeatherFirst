@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.UV_ARG_KEY
+import ru.ds.weatherfirst.presentation.ui.screens.search.SearchScreen
 import ru.ds.weatherfirst.presentation.ui.screens.uv_screen.UV_screen
 import ru.ds.weatherfirst.ui.theme.MyProject
 
@@ -25,6 +26,13 @@ fun SetupNavGraph(
         ) {
 
             MyProject(navController = navController)
+
+        }
+        composable(
+            route = Screen.Search.route
+        ) {
+
+            SearchScreen(navController = navController)
 
         }
         composable(

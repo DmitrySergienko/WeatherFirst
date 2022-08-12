@@ -26,7 +26,8 @@ class HomeViewModel @Inject constructor(
         get() = _state
 
     //for current
-    private val _stateMain = MutableStateFlow(Current(0, Condition("", "_"), 0.00, 0, 0, "", 0.1, 0.0, 0.00))
+    private val _stateMain =
+        MutableStateFlow(Current(0, Condition("", "_"), 0.00, 0, 0, "", 0.1, 0.0, 0.00))
     val stateMain: StateFlow<Current>
         get() = _stateMain
 
@@ -40,17 +41,23 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val lat = locationTracker.getCurrentLocation()?.latitude.toString()
             val lon = locationTracker.getCurrentLocation()?.longitude.toString()
+            if (city == "default") {
             val day = weatherRepo.weatherResponse("$lat,$lon")
+                //for dates
+                _stateDay.value = day.forecast.forecastday
 
-            //for dates
-            _stateDay.value = day.forecast.forecastday
+                //for hours and current
+                val weather = weatherRepo.weatherResponse("$lat,$lon")
+                _state.value = weather.forecast.forecastday[0].hour
 
-            //for hours and current
-            val weather = weatherRepo.weatherResponse("$lat,$lon")
-            _state.value = weather.forecast.forecastday[0].hour
-
-
-            _stateMain.value = weather.current
+                _stateMain.value = weather.current
+            } else {
+                val day = weatherRepo.weatherResponse(city)
+                _stateDay.value = day.forecast.forecastday
+                val weather = weatherRepo.weatherResponse(city)
+                _state.value = weather.forecast.forecastday[0].hour
+                _stateMain.value = weather.current
+            }
         }
     }
 }

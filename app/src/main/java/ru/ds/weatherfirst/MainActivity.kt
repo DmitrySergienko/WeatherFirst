@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnticipateInterpolator
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
@@ -143,17 +142,17 @@ class MainActivity : ComponentActivity() {
                         content = {
 
                             if (status == ConnectivityObserver.Status.Available) {
-                                //if internet available
+                               // if internet available
 
                                 Navigation
                                 navController = rememberNavController()
                                 SetupNavGraph(navController = navController)
+
+
                             } else {
-                                //If no internet
+                               // If no internet
                                 NoConnectionScreen()
                             }
-                            Toast.makeText(this, "Internet not available", Toast.LENGTH_SHORT)
-                                .show()
                         }
                     )
                 }
