@@ -147,10 +147,10 @@ class MainActivity : ComponentActivity() {
                                 Navigation
                                 navController = rememberNavController()
                                 SetupNavGraph(navController = navController)
-                                //ChartGraph()
+
 
                             } else {
-                                //If no internet
+                               // If no internet
                                 NoConnectionScreen()
                             }
                         }

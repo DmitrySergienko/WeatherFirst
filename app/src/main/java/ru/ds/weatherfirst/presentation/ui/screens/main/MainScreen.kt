@@ -92,15 +92,34 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
 
                             }
                     )
+                    Column(
+                        modifier = Modifier,
+                        horizontalAlignment = Alignment.End
 
-                    Text(
-                        modifier = Modifier
-                            .padding(top = 6.dp, end = 5.dp),
-                        text = "Feels like ${state.feelslikeC.toInt()}°C",
-                        style = TextStyle(fontSize = 22.sp),
-                        color = TextLight
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .padding(top = 6.dp, end = 5.dp),
+                            text = "Feels like ${state.feelslikeC.toInt()}°C",
+                            style = TextStyle(fontSize = 22.sp),
+                            color = TextLight
 
-                    )
+                        )
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_baseline_search_24),
+                            contentDescription = "UV image",
+                            modifier = Modifier
+                                .padding(start = 5.dp, top = 6.dp, end = 10.dp)
+                                .size(30.dp)
+                                .alpha(0.7f)
+                                .clickable {
+                                    //открываем UV_screen и перекидываем туда аргументы
+                                    navController.navigate(route = Screen.UVscreen.passUVARG(state.uv.toInt()))
+
+                                },
+
+                            )
+                    }
 
 
                 }
@@ -139,76 +158,98 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
 //                            }
 //                        )
                 }
-                AsyncImage(
-                    model = "https:${state.condition.icon}",
-                    contentDescription = "imageIcon",
+                Row(
                     modifier = Modifier
-                        .size(105.dp)
-                        .padding(top = 1.dp, end = 2.dp)
-                        .clickable {
+                        .fillMaxWidth()
+                        .padding(bottom = 1.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(start = 5.dp),
+                        horizontalAlignment = Alignment.Start
 
-                        }
-                )
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp),
+                            text = "Humidity ${state.humidity}%",
+                            style = TextStyle(fontSize = 16.sp),
+                            color = TextLight
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp),
+                            text = state.condition.text,
+                            style = TextStyle(fontSize = 16.sp),
+                            color = TextLight
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp),
+                            text = "UV ${state.uv}",
+                            style = TextStyle(fontSize = 16.sp),
+                            color = TextLight
+                        )
+                    }
+                    Column(
+                        modifier = Modifier
+                            .weight(1f),
+                        horizontalAlignment = Alignment.CenterHorizontally
+
+                    ) {
+                        AsyncImage(
+                            model = "https:${state.condition.icon}",
+                            contentDescription = "imageIcon",
+                            modifier = Modifier
+                                .size(105.dp)
+                                .padding(top = 1.dp, end = 2.dp)
+
+                        )
+                    }
+                    Column(
+                        modifier = Modifier
+                            .padding(end = 5.dp)
+                            .weight(1f),
+                        horizontalAlignment = Alignment.End
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp),
+                            text = "Temp ${state.tempF.toInt()}F",
+                            style = TextStyle(fontSize = 16.sp),
+                            color = TextLight
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp),
+                            text = "Cloud ${state.cloud}%",
+                            style = TextStyle(fontSize = 16.sp),
+                            color = TextLight
+                        )
+
+                    }
+                }
+
                 Text(
                     modifier = Modifier
-                        .padding(top = 5.dp, bottom = 15.dp, end = 5.dp),
+                        .padding(top = 1.dp, bottom = 15.dp, end = 5.dp),
                     text = "${state.tempC.toInt()}°C",
                     style = TextStyle(fontSize = 65.sp),
                     color = TextLight
                 )
-
-
-
-
 
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 4.dp, end = 4.dp)
                         .horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                    horizontalArrangement = Arrangement.Start,
 
                     ) {
-                    Text(
-                        modifier = Modifier
-                            .padding(1.dp)
-                            .padding(end = 23.dp),
-                        text = state.condition.text,
-                        style = TextStyle(fontSize = 20.sp),
-                        color = TextLight
-                    )
-                    Text(
-                        modifier = Modifier
-                            .padding(1.dp)
-                            .padding(end = 23.dp),
-                        text = "Humidity ${state.humidity}%",
-                        style = TextStyle(fontSize = 20.sp),
-                        color = TextLight
-                    )
-                    Text(
-                        modifier = Modifier
-                            .padding(1.dp)
-                            .padding(end = 23.dp),
-                        text = "Temperature ${state.tempF.toInt()}F",
-                        style = TextStyle(fontSize = 20.sp),
-                        color = TextLight
-                    )
-                    Text(
-                        modifier = Modifier
-                            .padding(1.dp)
-                            .padding(end = 23.dp),
-                        text = "Cloud ${state.cloud}%",
-                        style = TextStyle(fontSize = 20.sp),
-                        color = TextLight
-                    )
-                    Text(
-                        modifier = Modifier
-                            .padding(1.dp)
-                            .padding(end = 23.dp),
-                        text = "UV ${state.uv}",
-                        style = TextStyle(fontSize = 20.sp),
-                        color = TextLight
-                    )
+
                     Text(
                         modifier = Modifier
                             .padding(1.dp)
@@ -217,6 +258,7 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                         style = TextStyle(fontSize = 20.sp),
                         color = TextLight
                     )
+
                 }
             }
         }
