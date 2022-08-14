@@ -143,10 +143,17 @@ class MainActivity : ComponentActivity() {
                         },
 
                         content = {
-
+                            // if internet available
                             if (status == ConnectivityObserver.Status.Available) {
-                               // if internet available
+
+                                
                                 TestDatabase(mainViewModel)
+
+                                   // DropDown()
+                                //DropDownMenu()
+
+
+                                
 //                                Navigation
 //                                navController = rememberNavController()
 //                                SetupNavGraph(navController = navController)

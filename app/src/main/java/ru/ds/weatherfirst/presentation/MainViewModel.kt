@@ -11,4 +11,5 @@ class MainViewModel @Inject constructor(
 ): ViewModel(){
 
     val readAll = historyRepository.readAll
+
 }

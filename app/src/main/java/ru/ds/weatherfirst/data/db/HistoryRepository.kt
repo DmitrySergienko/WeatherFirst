@@ -6,4 +6,6 @@ class HistoryRepository @Inject constructor(
     private val historyDao: HistoryDao
 ) {
     val readAll = historyDao.readAll()
+
+
 }

@@ -10,13 +10,36 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.room.Room
+import ru.ds.weatherfirst.data.db.databaseSan.TestDB
 import ru.ds.weatherfirst.presentation.MainViewModel
 import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
+import java.util.concurrent.Executors
 
 @Composable
-fun TestDatabase(mainViewModel: MainViewModel) {
+fun TestDatabase(
+    mainViewModel: MainViewModel
+
+) {
 
     WeatherFirstTheme() {
+
+        val db = Room.databaseBuilder(LocalContext.current,HistoryDatabase::class.java,"new_db").build()
+        val dao =db.historyDao()
+
+        val list = listOf(
+            TestDB(1,"test1"),
+            TestDB(2,"test2"),
+            TestDB(3,"test3"),
+            TestDB(4,"test4"),
+
+
+        )
+
+        Executors.newSingleThreadExecutor().execute{
+            dao.insert(TestDB(5,"test1"))
+        }
 
 
         val result by mainViewModel.readAll.collectAsState(initial = emptyList())
@@ -27,12 +50,15 @@ fun TestDatabase(mainViewModel: MainViewModel) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             if(result.isNotEmpty()){
-                for (city_history in result){
+                for (new in result){
                     Text(
-                        text = city_history.name,
+                        text = new.name,
+
                         fontSize = MaterialTheme.typography.h4.fontSize
                     )
+
                 }
             }
             else{
@@ -44,3 +70,7 @@ fun TestDatabase(mainViewModel: MainViewModel) {
         }
     }
 }
+
+
+
+
