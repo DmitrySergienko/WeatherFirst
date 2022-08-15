@@ -1,8 +1,5 @@
 package ru.ds.weatherfirst.data.db.databaseGik
 
-import androidx.room.Dao
-import androidx.room.Query
-
 //@Dao
 //interface HistoryDAO {
 //

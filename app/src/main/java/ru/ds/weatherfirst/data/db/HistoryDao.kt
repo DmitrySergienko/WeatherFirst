@@ -1,10 +1,7 @@
 package ru.ds.weatherfirst.data.db
 
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import ru.ds.weatherfirst.data.db.databaseSan.TestDB
 
@@ -15,7 +12,11 @@ interface HistoryDao {
     fun readAll(): Flow<List<TestDB>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(history: TestDB)
+    fun insertItem(history: TestDB)
 
+    @Delete
+    fun deleteItem(history: TestDB)
 
+    @Query("DELETE FROM new_db")
+    fun deleteAll()
 }

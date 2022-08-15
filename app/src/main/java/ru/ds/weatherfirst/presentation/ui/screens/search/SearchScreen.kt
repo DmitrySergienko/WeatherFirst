@@ -9,31 +9,28 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.Card
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.unit.toSize
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.room.Room
 import coil.compose.AsyncImage
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.data.db.HistoryDatabase
 import ru.ds.weatherfirst.data.db.databaseSan.TestDB
@@ -43,34 +40,17 @@ import ru.ds.weatherfirst.presentation.ui.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.ui.theme.BlueLight
 import ru.ds.weatherfirst.presentation.ui.theme.TextLight
 import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
-import java.util.concurrent.Executors
 
+@OptIn(DelicateCoroutinesApi::class)
 @Composable
 fun SearchScreen(navController: NavController) {
 
-    val db = Room.databaseBuilder(LocalContext.current, HistoryDatabase::class.java,"new_db").build()
-    val dao =db.historyDao()
-    val list = listOf<TestDB>(
-        TestDB(1,"test1"),
-        TestDB(3,"test2"),
 
-    )
-
-
-    var selectedText by remember { mutableStateOf("") }
-    val suggestions = mutableListOf("1", "2")
-    var expanded by remember { mutableStateOf(false) }
-    var textfieldSize by remember { mutableStateOf(Size.Zero) }
-    val icon = if (expanded)
-        Icons.Filled.KeyboardArrowUp
-    else
-        Icons.Filled.KeyboardArrowDown
-
-
-
-
-    //keyboard options
-    val focusManager = LocalFocusManager.current
+    //====Database
+    val db =
+        Room.databaseBuilder(LocalContext.current, HistoryDatabase::class.java, "new_db").build()
+    val dao = db.historyDao()
+    //============
 
     var city by rememberSaveable { mutableStateOf("") }
 
@@ -158,7 +138,6 @@ fun SearchScreen(navController: NavController) {
 
                     }
 
-
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -172,87 +151,50 @@ fun SearchScreen(navController: NavController) {
                         ) {
                             OutlinedTextField(
                                 value = city,
-                                onValueChange = { newCity ->
-                                    city = newCity
-                                },
+                                onValueChange = { newCity -> city = newCity },
                                 label = { Text(text = "City") },
                                 placeholder = { Text(text = "Enter city") },
                                 singleLine = true,
-                                modifier = Modifier
-                                    .padding(start = 5.dp, bottom = 5.dp)
-                                    .onGloballyPositioned { coordinates ->
-                                        textfieldSize = coordinates.size.toSize()
-                                    },
-
+                                modifier = Modifier.padding(start = 5.dp, bottom = 5.dp),
                                 textStyle = TextStyle(color = TextLight, fontSize = 26.sp),
-                                trailingIcon = {
-                                    Icon(icon, "contentDescription",
-                                        Modifier.clickable {
-                                            expanded = !expanded
-                                            //add to room
-                                            Executors.newSingleThreadExecutor().execute{
-                                                //dao.insert(list)
-                                            }
-                                           // Log.d("VVV", list.toString())
-                                        })
-                                },
-                                keyboardOptions = KeyboardOptions(
-                                    imeAction = ImeAction.Search
-                                ),
+                                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                                 keyboardActions = KeyboardActions(
                                     onSearch = {
-
-                                        //add to room
-                                        Executors.newSingleThreadExecutor().execute{
-                                           // dao.insert(list)
-                                        }
-
                                         if (city.isNotEmpty()) {
                                             mainScreenViewModel.getWeather(city)
-
                                         } else {
                                             mainScreenViewModel.getWeather("default")
                                         }
-                                    },
-                                    onNext = {
-                                        focusManager.clearFocus()
                                     }
                                 )
                             )
-                            DropdownMenu(
-                                expanded = expanded,
-                                onDismissRequest = { expanded = false },
-                                modifier = Modifier
-                                    .width(with(LocalDensity.current) { textfieldSize.width.toDp() })
-                            ) {
-                                list.forEach { label ->
-                                    DropdownMenuItem(onClick = {
-                                        selectedText = city
-//add to room
-                                        Executors.newSingleThreadExecutor().execute{
-                                            //dao.insert(list)
-                                        }
-                                        //Log.d("VVV", list.toString())
-                                        expanded = false
-                                    }) {
-                                       // Text(text = label)
-                                    }
-                                }
+
+                            Column() {
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_baseline_history_24),
+                                    contentDescription = "Clean_image",
+                                    modifier = Modifier
+                                        .padding(start = 1.dp, top = 26.dp, end = 10.dp)
+                                        .size(30.dp)
+                                        .alpha(0.7f)
+                                        .clickable {
+                                            navController.navigate(route = Screen.History.route)
+                                            GlobalScope.launch {
+                                                dao.insertItem(TestDB(0, city)) // save to db
+
+                                            }
+
+                                        },
+                                )
+                                Text(
+                                    modifier = Modifier
+                                        .padding(start = 1.dp, top = 3.dp, end = 4.dp),
+                                    text = "History",
+                                    style = TextStyle(fontSize = 10.sp),
+                                    color = TextLight
+                                )
                             }
 
-                            Image(
-                                painter = painterResource(id = R.drawable.ic_baseline_history_24),
-                                contentDescription = "UV image",
-                                modifier = Modifier
-                                    .padding(start = 1.dp, top = 26.dp, end = 10.dp)
-                                    .size(30.dp)
-                                    .alpha(0.7f)
-                                    .clickable {
-                                        //открываем SearchScreen
-                                        navController.navigate(route = Screen.Search.route)
-
-                                    },
-                            )
                         }
                     }
                     Text(
@@ -311,7 +253,6 @@ fun SearchScreen(navController: NavController) {
                                 modifier = Modifier
                                     .size(105.dp)
                                     .padding(top = 1.dp, end = 2.dp)
-
                             )
                         }
                         Column(
@@ -338,8 +279,6 @@ fun SearchScreen(navController: NavController) {
                         }
                     }
 
-
-
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -357,7 +296,14 @@ fun SearchScreen(navController: NavController) {
                             style = TextStyle(fontSize = 20.sp),
                             color = TextLight
                         )
-
+                        Text(
+                            modifier = Modifier
+                                .padding(1.dp)
+                                .padding(end = 23.dp),
+                            text = "Last update: ${state.lastUpdated}",
+                            style = TextStyle(fontSize = 20.sp),
+                            color = TextLight
+                        )
                     }
                 }
             }

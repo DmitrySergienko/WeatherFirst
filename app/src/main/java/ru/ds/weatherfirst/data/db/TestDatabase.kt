@@ -38,7 +38,8 @@ fun TestDatabase(
         )
 
         Executors.newSingleThreadExecutor().execute{
-            dao.insert(TestDB(5,"test1"))
+            //dao.insert(TestDB(5,"test1"))
+            dao.deleteAll()
         }
 
 

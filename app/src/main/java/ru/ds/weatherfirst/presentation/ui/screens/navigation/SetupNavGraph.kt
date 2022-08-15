@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import ru.ds.weatherfirst.presentation.ui.screens.history.HistoryScreen
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.UV_ARG_KEY
 import ru.ds.weatherfirst.presentation.ui.screens.search.SearchScreen
@@ -33,6 +34,13 @@ fun SetupNavGraph(
         ) {
 
             SearchScreen(navController = navController)
+
+        }
+        composable(
+            route = Screen.History.route
+        ) {
+
+            HistoryScreen(navController = navController)
 
         }
         composable(

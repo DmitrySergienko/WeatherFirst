@@ -22,6 +22,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
+import androidx.navigation.Navigation
+import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
@@ -29,12 +31,12 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
-import ru.ds.weatherfirst.data.db.TestDatabase
 import ru.ds.weatherfirst.domain.connectivity.ConnectivityObserver
 import ru.ds.weatherfirst.domain.connectivity.NetworkConnectivityObserver
 import ru.ds.weatherfirst.presentation.MainViewModel
 import ru.ds.weatherfirst.presentation.ui.screens.main.NoConnectionScreen
 import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
+import ru.ds.weatherfirst.ui.SetupNavGraph
 
 const val ADV_TEST_START = "ca-app-pub-3940256099942544/3419835294"
 const val ADV_TEST_BANNER = "ca-app-pub-3940256099942544/6300978111"
@@ -146,20 +148,14 @@ class MainActivity : ComponentActivity() {
                             // if internet available
                             if (status == ConnectivityObserver.Status.Available) {
 
-                                
-                                TestDatabase(mainViewModel)
-
-                                   // DropDown()
+                                //TestDatabase(mainViewModel)
+                                //DropDown()
                                 //DropDownMenu()
+                                //MyDropMenu()
 
-
-                                
-//                                Navigation
-//                                navController = rememberNavController()
-//                                SetupNavGraph(navController = navController)
-
-
-
+                                Navigation
+                                navController = rememberNavController()
+                                SetupNavGraph(navController = navController)
 
                             } else {
                                // If no internet
