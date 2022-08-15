@@ -6,6 +6,7 @@ const val HISTORY_ARG_KEY = "history_argument"
 sealed class Screen(val route:String){
     object Home: Screen(route = "home_screen")
     object DropMenu: Screen(route = "drop_menu_screen")
+    object HistoryItemScreen: Screen(route = "history_item_screen")
 
     object History: Screen(route = "history_screen")
     object UVscreen: Screen(route = "UV_screen/{$UV_ARG_KEY}"){

@@ -178,7 +178,7 @@ fun SearchScreen(navController: NavController, history: String?) {
 
                     }
 
-                    //===Search screen
+                    //===Search field
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -221,10 +221,9 @@ fun SearchScreen(navController: NavController, history: String?) {
                                         .clickable {
                                             navController.navigate(route = Screen.History.route)
                                             GlobalScope.launch {
-                                                dao.insertItem(TestDB(0, city)) // save to db
-
+                                                if(city.isNotEmpty())
+                                                {dao.insertItem(TestDB(0, city))} // save to db
                                             }
-
                                         },
                                 )
                                 Text(

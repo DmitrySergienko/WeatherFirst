@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import ru.ds.weatherfirst.presentation.ui.screens.history.HistoryItemScreen
 import ru.ds.weatherfirst.presentation.ui.screens.history.HistoryScreen
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.HISTORY_ARG_KEY
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.Screen
@@ -33,6 +34,10 @@ fun SetupNavGraph(
         composable(
             route = Screen.History.route
         ) { HistoryScreen(navController = navController) }
+
+        composable(
+            route = Screen.HistoryItemScreen.route
+        ) { HistoryItemScreen(navController = navController, history = "") }
 
         composable(
             route = Screen.UVscreen.route,
