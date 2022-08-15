@@ -44,9 +44,9 @@ import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 
 @OptIn(DelicateCoroutinesApi::class)
 @Composable
-fun SearchScreen(navController: NavController, string: String?) {
+fun SearchScreen(navController: NavController, history: String?) {
 
-Log.d("VVV",string.toString())
+
     //====Database
     val db =
         Room.databaseBuilder(LocalContext.current, HistoryDatabase::class.java, "new_db").build()
@@ -57,6 +57,12 @@ Log.d("VVV",string.toString())
 
     val mainScreenViewModel = hiltViewModel<HomeViewModel>()
     val state by mainScreenViewModel.stateMain.collectAsState()
+
+    //Если пришел агрумент из Истории запускаем поиск
+    if (history?.isNotEmpty() == true && history != "{history_argument}") mainScreenViewModel.getWeather(
+        history
+    )
+    Log.d("VVV", history.toString())
 
     //mainScreenViewModel.getWeather(city)
     WeatherFirstTheme {
@@ -127,18 +133,52 @@ Log.d("VVV",string.toString())
                                 color = TextLight
 
                             )
+//                            Text(
+//                                modifier = Modifier
+//                                    .padding(top = 6.dp, end = 5.dp),
+//                                text = "BACK",
+//                                style = TextStyle(fontSize = 18.sp),
+//                                color = TextLight,
+//                            )
+                        }
+                    }
+
+//=============
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 2.dp, bottom = 1.dp),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .padding(top = 1.dp, bottom = 15.dp, end = 5.dp),
+                            text = "${state.tempC.toInt()}°C",
+                            style = TextStyle(fontSize = 65.sp),
+                            color = TextLight
+                        )
+                        if (history?.isNotEmpty() == true && history != "{history_argument}") {
                             Text(
                                 modifier = Modifier
-                                    .padding(top = 6.dp, end = 5.dp),
-                                text = "BACK",
+                                    .padding(top = 18.dp, end = 15.dp),
+                                text = history,
                                 style = TextStyle(fontSize = 18.sp),
-                                color = TextLight
-
+                                color = TextLight,
+                            )
+                        } else {
+                            Text(
+                                modifier = Modifier
+                                    .padding(top = 18.dp, end = 15.dp),
+                                text = "",
+                                style = TextStyle(fontSize = 18.sp),
+                                color = TextLight,
                             )
                         }
 
                     }
 
+                    //===Search screen
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -153,7 +193,7 @@ Log.d("VVV",string.toString())
                             OutlinedTextField(
                                 value = city,
                                 onValueChange = { newCity -> city = newCity },
-                                label = { Text(text = "City") },
+                                label = { Text(text = "Search") },
                                 placeholder = { Text(text = "Enter city") },
                                 singleLine = true,
                                 modifier = Modifier.padding(start = 5.dp, bottom = 5.dp),
@@ -198,14 +238,8 @@ Log.d("VVV",string.toString())
 
                         }
                     }
-                    Text(
-                        modifier = Modifier
-                            .padding(top = 1.dp, bottom = 15.dp, end = 5.dp),
-                        text = "${state.tempC.toInt()}°C",
-                        style = TextStyle(fontSize = 65.sp),
-                        color = TextLight
-                    )
 
+//======Detailed items
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -230,14 +264,14 @@ Log.d("VVV",string.toString())
                             Text(
                                 modifier = Modifier
                                     .padding(1.dp),
-                                text = state.condition.text,
+                                text = "UV ${state.uv}",
                                 style = TextStyle(fontSize = 16.sp),
                                 color = TextLight
                             )
                             Text(
                                 modifier = Modifier
                                     .padding(1.dp),
-                                text = "UV ${state.uv}",
+                                text = state.condition.text,
                                 style = TextStyle(fontSize = 16.sp),
                                 color = TextLight
                             )
@@ -252,7 +286,7 @@ Log.d("VVV",string.toString())
                                 model = "https:${state.condition.icon}",
                                 contentDescription = "imageIcon",
                                 modifier = Modifier
-                                    .size(105.dp)
+                                    .size(85.dp)
                                     .padding(top = 1.dp, end = 2.dp)
                             )
                         }
@@ -279,6 +313,13 @@ Log.d("VVV",string.toString())
 
                         }
                     }
+//=============
+
+
+//=============
+
+
+//=============
 
                     Row(
                         modifier = Modifier
@@ -289,14 +330,6 @@ Log.d("VVV",string.toString())
 
                         ) {
 
-                        Text(
-                            modifier = Modifier
-                                .padding(1.dp)
-                                .padding(end = 23.dp),
-                            text = "Last update: ${state.lastUpdated}",
-                            style = TextStyle(fontSize = 20.sp),
-                            color = TextLight
-                        )
                         Text(
                             modifier = Modifier
                                 .padding(1.dp)
