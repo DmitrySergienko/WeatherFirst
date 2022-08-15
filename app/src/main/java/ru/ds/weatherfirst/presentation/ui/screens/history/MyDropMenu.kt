@@ -13,11 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.room.Room
 import ru.ds.weatherfirst.data.db.HistoryDatabase
+import ru.ds.weatherfirst.presentation.ui.screens.navigation.Screen
+import ru.ds.weatherfirst.presentation.ui.theme.TextLight
 
 @Composable
-fun MyDropMenu() {
+fun MyDropMenu(
+    navController: NavController
+) {
 
     //====Database
 
@@ -41,21 +48,33 @@ fun MyDropMenu() {
     Box(
         Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
         Text(listHistory[selectedIndex],
+            style = TextStyle(fontSize = 28.sp),
+            color = TextLight,
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable(onClick = { expanded = true })
-                .background(
-                    Color.Transparent))
+                .background(Color.Transparent))
+
+
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
-            modifier = Modifier.fillMaxWidth().background(
-                Color.Transparent)
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Transparent)
         ) {
             listHistory.forEachIndexed { index, s ->
                 DropdownMenuItem(onClick = {
                     selectedIndex = index
                     expanded = false
+
+                    navController.navigate(
+                        route = Screen.Search.passHistoryArg(
+        //send selected arg to search screen
+                        s
+                        )
+                    )
+
                 }) {
                     val disabledText = if (s == disabledValue) {
                         " (Disabled)"
@@ -69,4 +88,11 @@ fun MyDropMenu() {
     }
 }
 
-
+//@Preview
+//@Composable
+//fun DrobDownPreview(){
+//    WeatherFirstTheme() {
+//        MyDropMenu()
+//    }
+//
+//}

@@ -36,7 +36,7 @@ fun HistoryScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            MyDropMenu()
+            MyDropMenu(navController)
         }
     }
 }

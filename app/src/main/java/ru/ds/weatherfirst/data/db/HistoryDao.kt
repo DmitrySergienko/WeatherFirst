@@ -19,4 +19,7 @@ interface HistoryDao {
 
     @Query("DELETE FROM new_db")
     fun deleteAll()
+
+    @Query("SELECT * FROM new_db where id = :id")
+    fun getByID(id:Int): TestDB
 }

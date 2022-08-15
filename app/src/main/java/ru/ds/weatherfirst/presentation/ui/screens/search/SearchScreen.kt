@@ -1,6 +1,7 @@
 package ru.ds.weatherfirst.presentation.ui.screens.search
 
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -43,9 +44,9 @@ import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 
 @OptIn(DelicateCoroutinesApi::class)
 @Composable
-fun SearchScreen(navController: NavController) {
+fun SearchScreen(navController: NavController, string: String?) {
 
-
+Log.d("VVV",string.toString())
     //====Database
     val db =
         Room.databaseBuilder(LocalContext.current, HistoryDatabase::class.java, "new_db").build()

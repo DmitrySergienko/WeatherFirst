@@ -152,7 +152,7 @@ class MainActivity : ComponentActivity() {
                                 //DropDown()
                                 //DropDownMenu()
                                 //MyDropMenu()
-
+//HistoryScreen(navController = navController)
                                 Navigation
                                 navController = rememberNavController()
                                 SetupNavGraph(navController = navController)
