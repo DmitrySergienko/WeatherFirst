@@ -133,17 +133,11 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 color = TextLight
 
                             )
-//                            Text(
-//                                modifier = Modifier
-//                                    .padding(top = 6.dp, end = 5.dp),
-//                                text = "BACK",
-//                                style = TextStyle(fontSize = 18.sp),
-//                                color = TextLight,
-//                            )
+
                         }
                     }
 
-//=============
+//======Main Temperature
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -158,7 +152,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                             style = TextStyle(fontSize = 65.sp),
                             color = TextLight
                         )
-                        if (history?.isNotEmpty() == true && history != "{history_argument}") {
+                        if (history?.isNotEmpty() == true && history != "{history_argument}" && city.isEmpty()) {
                             Text(
                                 modifier = Modifier
                                     .padding(top = 18.dp, end = 15.dp),
@@ -170,7 +164,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                             Text(
                                 modifier = Modifier
                                     .padding(top = 18.dp, end = 15.dp),
-                                text = "",
+                                text = city,
                                 style = TextStyle(fontSize = 18.sp),
                                 color = TextLight,
                             )
