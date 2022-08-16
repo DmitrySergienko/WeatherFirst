@@ -131,32 +131,7 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
 
                 ) {
 
-//                        OutlinedTextField(
-//                            value = city,
-//                            onValueChange = onCityChange,
-//                            label = { Text(text = "City") },
-//                            placeholder = { Text(text = "Dubai") },
-//                            singleLine = true,
-//                            modifier = Modifier
-//                                .padding(start = 5.dp)
-//                                .align(Alignment.CenterHorizontally),
-//
-//                            textStyle = TextStyle(color = TextLight, fontSize = 26.sp),
-//                            trailingIcon = {
-//                                IconButton(onClick = {
-//                                    if (city.isNotEmpty()) mainScreenViewModel.getWeather(city)
-//                                    else {
-//                                        mainScreenViewModel.getWeather("Dubai")
-////                                    Toast.makeText(context, "Enter city name", Toast.LENGTH_SHORT).show()
-//                                    }
-//                                }) {
-//                                    Icon(
-//                                        imageVector = Icons.Filled.Edit,
-//                                        contentDescription = "City"
-//                                    )
-//                                }
-//                            }
-//                        )
+//======Details========
                 }
                 Row(
                     modifier = Modifier
@@ -218,20 +193,21 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                         Text(
                             modifier = Modifier
                                 .padding(1.dp),
-                            text = "Temp ${state.tempF.toInt()}F",
+                            text = "Cloud ${state.cloud}%",
                             style = TextStyle(fontSize = 16.sp),
                             color = TextLight
                         )
                         Text(
                             modifier = Modifier
                                 .padding(1.dp),
-                            text = "Cloud ${state.cloud}%",
+                            text = "Temp ${state.tempF.toInt()}F",
                             style = TextStyle(fontSize = 16.sp),
                             color = TextLight
                         )
-
                     }
                 }
+
+//======Main Temperature=======
 
                 Text(
                     modifier = Modifier

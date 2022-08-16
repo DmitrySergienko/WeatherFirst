@@ -105,7 +105,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(bottom = 20.dp),
+                            .padding(top = 4.dp, bottom = 20.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
 
@@ -181,7 +181,7 @@ fun SearchScreen(navController: NavController, history: String?) {
 
                     }
 
-                    //===Search field
+//===Search field
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -221,7 +221,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                                     painter = painterResource(id = R.drawable.ic_baseline_history_24),
                                     contentDescription = "Clean_image",
                                     modifier = Modifier
-                                        .padding(start = 1.dp, top = 26.dp, end = 10.dp)
+                                        .padding(start = 1.dp, top = 20.dp, end = 10.dp)
                                         .size(30.dp)
                                         .alpha(0.7f)
                                         .clickable {
@@ -248,7 +248,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 10.dp, bottom = 1.dp),
+                            .padding(start = 5.dp, top = 10.dp, bottom = 1.dp, end = 5.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Column(
@@ -304,26 +304,20 @@ fun SearchScreen(navController: NavController, history: String?) {
                             Text(
                                 modifier = Modifier
                                     .padding(1.dp),
-                                text = "Temp ${state.tempF.toInt()}F",
+                                text = "Cloud ${state.cloud}%",
                                 style = TextStyle(fontSize = 16.sp),
                                 color = TextLight
                             )
                             Text(
                                 modifier = Modifier
                                     .padding(1.dp),
-                                text = "Cloud ${state.cloud}%",
+                                text = "Temp ${state.tempF.toInt()}F",
                                 style = TextStyle(fontSize = 16.sp),
                                 color = TextLight
                             )
 
                         }
                     }
-//=============
-
-
-//=============
-
-
 //=============
 
                     Row(

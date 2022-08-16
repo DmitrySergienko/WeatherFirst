@@ -24,7 +24,7 @@ fun RecyclerHistoryItem(navController: NavController) {
     val dao = db.historyDao()
 
     val result by dao.readAll().collectAsState(initial = emptyList())
-    val listHistory = mutableListOf("")
+    val listHistory = mutableListOf<String>()
 
     // add to list from db
     for (i in result) listHistory.add(i.name)
@@ -40,7 +40,6 @@ fun RecyclerHistoryItem(navController: NavController) {
             items(listHistory) { name ->
                 //для каждого элемента мы Запускаем:
                 HistoryItemScreen(history = name, navController)
-
 
             }
         }
