@@ -1,4 +1,4 @@
-package ru.ds.weatherfirst.notimplemented
+package ru.ds.weatherfirst.notimplemented.datastore
 
 //
 //class SaveDataStore(private val context: Context) {

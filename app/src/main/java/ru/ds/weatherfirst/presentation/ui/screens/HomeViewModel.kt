@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(
 
     //for current
     private val _stateMain =
-        MutableStateFlow(Current(0, Condition("", "_"), 0.00, 0, 0, "", 0.1, 0.0, 0.00))
+        MutableStateFlow(Current(0, Condition("", ""), 0.00, 0, 0, "", 0.1, 0.0, 0.00))
     val stateMain: StateFlow<Current>
         get() = _stateMain
 
