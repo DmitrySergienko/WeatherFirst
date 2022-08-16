@@ -16,10 +16,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
@@ -42,7 +45,7 @@ import ru.ds.weatherfirst.presentation.ui.theme.BlueLight
 import ru.ds.weatherfirst.presentation.ui.theme.TextLight
 import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 
-@OptIn(DelicateCoroutinesApi::class)
+@OptIn(DelicateCoroutinesApi::class, ExperimentalComposeUiApi::class)
 @Composable
 fun SearchScreen(navController: NavController, history: String?) {
 
@@ -57,6 +60,12 @@ fun SearchScreen(navController: NavController, history: String?) {
 
     val mainScreenViewModel = hiltViewModel<HomeViewModel>()
     val state by mainScreenViewModel.stateMain.collectAsState()
+
+    //dismiss keyboard
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
+
+
 
     //Если пришел агрумент из Истории запускаем поиск
     if (history?.isNotEmpty() == true && history != "{history_argument}") mainScreenViewModel.getWeather(
@@ -200,6 +209,9 @@ fun SearchScreen(navController: NavController, history: String?) {
                                         } else {
                                             mainScreenViewModel.getWeather("default")
                                         }
+                                        //dismiss keyboard
+                                        keyboardController?.hide()
+                                        focusManager.clearFocus()
                                     }
                                 )
                             )
