@@ -22,4 +22,11 @@ interface HistoryDao {
 
     @Query("SELECT * FROM new_db where id = :id")
     fun getByID(id:Int): TestDB
+
+    @Query("select * from new_db where name = :name")
+    fun getByName(name:String): TestDB
+
+
+
+
 }

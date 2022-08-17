@@ -1,5 +1,6 @@
 package ru.ds.weatherfirst.presentation.ui.screens.history
 
+
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,12 +25,14 @@ fun RecyclerHistoryItem(navController: NavController) {
     val dao = db.historyDao()
 
     val result by dao.readAll().collectAsState(initial = emptyList())
-    val listHistory = mutableListOf<String>()
 
-    // add to list from db
+    // add "name" to list from db
+    val listHistory = mutableListOf<String>()
     for (i in result) listHistory.add(i.name)
 
+
     //============
+
 
     WeatherFirstTheme() {
 
@@ -39,7 +42,7 @@ fun RecyclerHistoryItem(navController: NavController) {
 
             items(listHistory) { name ->
                 //для каждого элемента мы Запускаем:
-                HistoryItemScreen(history = name, navController)
+                HistoryItemScreen(history = name,navController)
 
             }
         }

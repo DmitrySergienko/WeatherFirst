@@ -18,7 +18,8 @@ import ru.ds.weatherfirst.ui.theme.MyProject
 
 @Composable
 fun SetupNavGraph(
-    navController: NavHostController
+    navController: NavHostController,
+    id: Int = 0
 ) {
     NavHost(
         navController = navController,
@@ -37,7 +38,8 @@ fun SetupNavGraph(
 
         composable(
             route = Screen.HistoryItemScreen.route
-        ) { HistoryItemScreen(navController = navController, history = "") }
+
+        ) { HistoryItemScreen(navController = navController, history = "")}
 
         composable(
             route = Screen.UVscreen.route,
