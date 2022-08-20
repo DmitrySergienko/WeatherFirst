@@ -33,7 +33,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
 import ru.ds.weatherfirst.domain.connectivity.ConnectivityObserver
 import ru.ds.weatherfirst.domain.connectivity.NetworkConnectivityObserver
-import ru.ds.weatherfirst.presentation.MainViewModel
+import ru.ds.weatherfirst.presentation.ui.screens.history.MainViewModel
 import ru.ds.weatherfirst.presentation.ui.screens.main.NoConnectionScreen
 import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 import ru.ds.weatherfirst.ui.SetupNavGraph
@@ -102,9 +102,6 @@ class MainActivity : ComponentActivity() {
                 initial = ConnectivityObserver.Status.Unavailable
             )
 
-//            if(status== ConnectivityObserver.Status.Available){
-//                Toast.makeText(this, "Internet available", Toast.LENGTH_SHORT).show()
-//            }
 
             //Admob
             val adRequest = AdRequest.Builder().build()
@@ -148,11 +145,6 @@ class MainActivity : ComponentActivity() {
                             // if internet available
                             if (status == ConnectivityObserver.Status.Available) {
 
-                                //TestDatabase(mainViewModel)
-                                //DropDown()
-                                //DropDownMenu()
-                                //MyDropMenu()
-//HistoryScreen(navController = navController)
                                 Navigation
                                 navController = rememberNavController()
                                 SetupNavGraph(navController = navController)

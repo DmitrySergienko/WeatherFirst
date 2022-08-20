@@ -15,9 +15,9 @@ import ru.ds.weatherfirst.data.db.HistoryDatabase
 import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 
 @Composable
-fun RecyclerHistoryItem(navController: NavController) {
+fun RecyclerHistoryItem(navController: NavController, item_remove:String) {
 
-
+    //remove single item from listHistory
     //====Database
 
     val db =
@@ -30,8 +30,10 @@ fun RecyclerHistoryItem(navController: NavController) {
     val listHistory = mutableListOf<String>()
     for (i in result) listHistory.add(i.name)
 
-
     //============
+
+    //remove single item from listHistory
+    if(item_remove.isNotEmpty()&& item_remove==""&& item_remove=="") listHistory.remove(item_remove)
 
 
     WeatherFirstTheme() {

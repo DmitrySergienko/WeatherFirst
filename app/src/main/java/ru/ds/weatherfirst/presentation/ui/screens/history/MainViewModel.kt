@@ -1,4 +1,4 @@
-package ru.ds.weatherfirst.presentation
+package ru.ds.weatherfirst.presentation.ui.screens.history
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

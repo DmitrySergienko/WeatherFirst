@@ -94,7 +94,7 @@ fun HistoryScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.padding(10.dp))
                 //MyDropMenu(navController)
-                RecyclerHistoryItem(navController)
+                RecyclerHistoryItem(navController,String())
 
 
             }
@@ -102,13 +102,5 @@ fun HistoryScreen(navController: NavController) {
 
     }
 }
-//        Column(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .verticalScroll(rememberScrollState()),
-//            horizontalAlignment = Alignment.CenterHorizontally,
-//            verticalArrangement = Arrangement.Top
-//        ) {
-//
-//        }
+
 

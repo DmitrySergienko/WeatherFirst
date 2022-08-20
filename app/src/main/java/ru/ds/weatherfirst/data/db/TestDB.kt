@@ -1,4 +1,4 @@
-package ru.ds.weatherfirst.data.db.databaseSan
+package ru.ds.weatherfirst.data.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

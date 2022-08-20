@@ -37,7 +37,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.data.db.HistoryDatabase
-import ru.ds.weatherfirst.data.db.databaseSan.TestDB
+import ru.ds.weatherfirst.data.db.TestDB
 import ru.ds.weatherfirst.presentation.ui.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.ui.screens.TabLayout
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.Screen
@@ -205,7 +205,14 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 keyboardActions = KeyboardActions(
                                     onSearch = {
                                         if (city.isNotEmpty()) {
+
+                                            // 1.run search
                                             mainScreenViewModel.getWeather(city)
+                                            // 2.save to db
+                                            GlobalScope.launch {
+                                                if(city.isNotEmpty())
+                                                {dao.insertItem(TestDB(0, city))}
+                                            }
                                         } else {
                                             mainScreenViewModel.getWeather("default")
                                         }
@@ -226,10 +233,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                                         .alpha(0.7f)
                                         .clickable {
                                             navController.navigate(route = Screen.History.route)
-                                            GlobalScope.launch {
-                                                if(city.isNotEmpty())
-                                                {dao.insertItem(TestDB(0, city))} // save to db
-                                            }
+
                                         },
                                 )
                                 Text(

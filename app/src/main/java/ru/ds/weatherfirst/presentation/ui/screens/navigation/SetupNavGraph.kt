@@ -51,14 +51,6 @@ fun SetupNavGraph(
             UV_screen(navController = navController, it.arguments?.getInt(UV_ARG_KEY).toString())
         }
 
-//        composable(
-//            route = Screen.Search.route
-//        ) {
-//            SearchScreen(
-//                navController = navController,
-//                string = it.arguments?.getString(HISTORY_ARG_KEY)
-//            )
-//        }
         composable(
             route = Screen.Search.route,
             arguments = listOf(navArgument(HISTORY_ARG_KEY) {
@@ -69,5 +61,6 @@ fun SetupNavGraph(
             SearchScreen(navController = navController, it.arguments?.getString(HISTORY_ARG_KEY))
 
         }
+
     }
 }

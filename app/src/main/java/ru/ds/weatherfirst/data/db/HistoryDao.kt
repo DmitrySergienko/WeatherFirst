@@ -3,7 +3,6 @@ package ru.ds.weatherfirst.data.db
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import ru.ds.weatherfirst.data.db.databaseSan.TestDB
 
 
 @Dao

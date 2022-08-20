@@ -22,11 +22,7 @@ android {
             useSupportLibrary true
         }
 
-//        javaCompileOptions {
-//            annotationProcessorOptions {
-//                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
-//            }
-//        }
+
     }
 
     buildTypes {
@@ -57,7 +53,10 @@ android {
 
 dependencies {
 
-//ROOM
+    //Swipe
+    implementation "me.saket.swipe:swipe:1.0.0"
+
+    //ROOM
     implementation "androidx.room:room-runtime:2.4.2"
     kapt "androidx.room:room-compiler:2.4.2"
     implementation "androidx.room:room-ktx:2.4.2"
