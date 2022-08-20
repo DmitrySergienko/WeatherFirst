@@ -9,6 +9,7 @@ sealed class Screen(val route:String){
     object Home: Screen(route = "home_screen")
     object HistoryItemScreen: Screen(route = "history_item_screen")
     object History: Screen(route = "history_screen")
+    object RecyclerHistoryItem: Screen(route = "recycler_history_item")
 
     object UVscreen: Screen(route = "UV_screen/{$UV_ARG_KEY}"){
         fun passUVARG(uv_arg: Int):String{

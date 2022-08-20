@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.room.Room
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -85,7 +86,7 @@ fun HistoryScreen(navController: NavController) {
                     Text(
                         modifier = Modifier
                             .padding(top = 18.dp, bottom = 5.dp, end = 15.dp)
-                            .clickable { GlobalScope.launch { dao.deleteAll()  }},
+                            .clickable { GlobalScope.launch { dao.deleteAll() } },
                         text = stringResource(id = R.string.clean_all),
                         style = TextStyle(fontSize = 18.sp),
                         color = TextLight,
@@ -94,7 +95,7 @@ fun HistoryScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.padding(10.dp))
                 //MyDropMenu(navController)
-                RecyclerHistoryItem(navController,String())
+                RecyclerHistoryItem(navController,hiltViewModel())
 
 
             }

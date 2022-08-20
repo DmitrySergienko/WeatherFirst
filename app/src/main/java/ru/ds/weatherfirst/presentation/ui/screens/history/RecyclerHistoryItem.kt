@@ -9,17 +9,22 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.room.Room
 import ru.ds.weatherfirst.data.db.HistoryDatabase
+import ru.ds.weatherfirst.presentation.ui.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 
 @Composable
-fun RecyclerHistoryItem(navController: NavController, item_remove:String) {
+fun RecyclerHistoryItem(
+    navController: NavController,
+    //item_remove:String,
+    historyViewModel: HomeViewModel) {
 
     //remove single item from listHistory
-    //====Database
 
+    //====Database===========
     val db =
         Room.databaseBuilder(LocalContext.current, HistoryDatabase::class.java, "new_db").build()
     val dao = db.historyDao()
@@ -30,10 +35,13 @@ fun RecyclerHistoryItem(navController: NavController, item_remove:String) {
     val listHistory = mutableListOf<String>()
     for (i in result) listHistory.add(i.name)
 
-    //============
+    //==============
+
 
     //remove single item from listHistory
-    if(item_remove.isNotEmpty()&& item_remove==""&& item_remove=="") listHistory.remove(item_remove)
+
+    val item_remove = historyViewModel.remove_item
+    if(item_remove.isNotEmpty()&& item_remove=="") listHistory.remove(item_remove)
 
 
     WeatherFirstTheme() {
@@ -44,7 +52,7 @@ fun RecyclerHistoryItem(navController: NavController, item_remove:String) {
 
             items(listHistory) { name ->
                 //для каждого элемента мы Запускаем:
-                HistoryItemScreen(history = name,navController)
+                HistoryItemScreen(history = name,navController,historyViewModel = hiltViewModel())
 
             }
         }

@@ -1,7 +1,6 @@
 package ru.ds.weatherfirst.presentation.ui.screens.search
 
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -71,7 +70,6 @@ fun SearchScreen(navController: NavController, history: String?) {
     if (history?.isNotEmpty() == true && history != "{history_argument}") mainScreenViewModel.getWeather(
         history
     )
-    Log.d("VVV", history.toString())
 
     //mainScreenViewModel.getWeather(city)
     WeatherFirstTheme {

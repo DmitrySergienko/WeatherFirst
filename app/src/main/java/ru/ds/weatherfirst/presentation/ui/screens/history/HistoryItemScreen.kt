@@ -31,13 +31,18 @@ import me.saket.swipe.SwipeAction
 import me.saket.swipe.SwipeableActionsBox
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.data.db.HistoryDatabase
+import ru.ds.weatherfirst.presentation.ui.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.ui.theme.BlueLight
 import ru.ds.weatherfirst.presentation.ui.theme.TextLight
 
 @OptIn(DelicateCoroutinesApi::class)
 @Composable
-fun HistoryItemScreen(history: String, navController: NavController) {
+fun HistoryItemScreen(
+    history: String,
+    navController: NavController,
+    historyViewModel: HomeViewModel
+) {
 
 
     //====Database
@@ -56,8 +61,9 @@ fun HistoryItemScreen(history: String, navController: NavController) {
                 dao.deleteItem(item)
             }
             //send arg to search screen to remove single (this) item from the list
-            navController.navigate(route = Screen.Search.passHistoryArg(history))
-            navController.navigate(route = Screen.History.route)
+            historyViewModel.passItem(history)
+            navController.navigate(route = Screen.History.route) //update history screen
+
         },
         icon = {
             Icon(
@@ -77,8 +83,8 @@ fun HistoryItemScreen(history: String, navController: NavController) {
                 dao.deleteItem(item)
             }
             //send arg to search screen to remove single (this) item from the list
-            navController.navigate(route = Screen.Search.passHistoryArg(history))
-            navController.navigate(route = Screen.History.route)
+            historyViewModel.passItem(history)
+            navController.navigate(route = Screen.History.route) //update history screen
 
         },
         icon = {
@@ -92,36 +98,36 @@ fun HistoryItemScreen(history: String, navController: NavController) {
         background = Color.Transparent
     )
 
-        //==========shimmer effect option =========
-        val shimmentColors = listOf(
-            BlueLight.copy(alpha = 0.7f),
-            BlueLight.copy(alpha = 0.1f),
-            BlueLight.copy(alpha = 0.4f),
-        )
+    //==========shimmer effect option =========
+    val shimmentColors = listOf(
+        BlueLight.copy(alpha = 0.7f),
+        BlueLight.copy(alpha = 0.1f),
+        BlueLight.copy(alpha = 0.4f),
+    )
 
-        val transition = rememberInfiniteTransition()
-        val translateAnim = transition.animateFloat(
-            initialValue = 0f,
-            targetValue = 1000f,
-            animationSpec = infiniteRepeatable(
-                animation = tween(
-                    durationMillis = 1000,
-                    easing = FastOutSlowInEasing,
-                ),
-                repeatMode = RepeatMode.Reverse
+    val transition = rememberInfiniteTransition()
+    val translateAnim = transition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1000f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                durationMillis = 1000,
+                easing = FastOutSlowInEasing,
             ),
+            repeatMode = RepeatMode.Reverse
+        ),
 
-            )
-        val brush = Brush.linearGradient(
-            colors = shimmentColors,
-            start = Offset.Zero,
-            end = Offset(
-                x = translateAnim.value,
-                y = translateAnim.value,
-            )
         )
+    val brush = Brush.linearGradient(
+        colors = shimmentColors,
+        start = Offset.Zero,
+        end = Offset(
+            x = translateAnim.value,
+            y = translateAnim.value,
+        )
+    )
 
-        //================swipe single item=============
+    //================swipe single item=============
 
     SwipeableActionsBox(
         modifier = Modifier.background(Color.Transparent),
@@ -179,9 +185,8 @@ fun HistoryItemScreen(history: String, navController: NavController) {
                                 dao.deleteItem(item)
                             }
                             //send arg to search screen to remove single (this) item from the list
-                            navController.navigate(route = Screen.Search.passHistoryArg(history))
-                            navController.navigate(route = Screen.History.route)
-
+                            historyViewModel.passItem(history)
+                            navController.navigate(route = Screen.History.route) //update history screen
                         },
                 )
             }

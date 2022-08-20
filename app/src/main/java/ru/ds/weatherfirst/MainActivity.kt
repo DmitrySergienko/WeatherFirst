@@ -10,7 +10,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -33,7 +32,6 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
 import ru.ds.weatherfirst.domain.connectivity.ConnectivityObserver
 import ru.ds.weatherfirst.domain.connectivity.NetworkConnectivityObserver
-import ru.ds.weatherfirst.presentation.ui.screens.history.MainViewModel
 import ru.ds.weatherfirst.presentation.ui.screens.main.NoConnectionScreen
 import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 import ru.ds.weatherfirst.ui.SetupNavGraph
@@ -45,7 +43,7 @@ const val ADV_MY_BANNER = "ca-app-pub-4733065340996872/5195655548"
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val mainViewModel: MainViewModel by viewModels()
+//    private val mainViewModel: MainViewModel by viewModels()
 
     //connectivity observer
     private lateinit var connectivityObserver: ConnectivityObserver

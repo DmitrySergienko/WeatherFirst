@@ -1,13 +1,20 @@
 package ru.ds.weatherfirst.ui
 
+import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import ru.ds.weatherfirst.presentation.ui.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.ui.screens.history.HistoryItemScreen
 import ru.ds.weatherfirst.presentation.ui.screens.history.HistoryScreen
+import ru.ds.weatherfirst.presentation.ui.screens.history.RecyclerHistoryItem
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.HISTORY_ARG_KEY
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.UV_ARG_KEY
@@ -21,6 +28,11 @@ fun SetupNavGraph(
     navController: NavHostController,
     id: Int = 0
 ) {
+
+    //remove single item from history screen
+    val mainScreenViewModel = hiltViewModel<HomeViewModel>()
+    val state by mainScreenViewModel.stateMain.collectAsState()
+
     NavHost(
         navController = navController,
         startDestination = Screen.Home.route
@@ -34,12 +46,15 @@ fun SetupNavGraph(
 
         composable(
             route = Screen.History.route
-        ) { HistoryScreen(navController = navController) }
+        ) {
+            HistoryScreen(navController = navController)
+        }
 
         composable(
             route = Screen.HistoryItemScreen.route
-
-        ) { HistoryItemScreen(navController = navController, history = "")}
+        ) {
+            HistoryItemScreen(navController = navController, history = "",historyViewModel = hiltViewModel())
+        }
 
         composable(
             route = Screen.UVscreen.route,
@@ -57,8 +72,17 @@ fun SetupNavGraph(
                 type = NavType.StringType
             })
         ) {
-            //тут указываем экран куда переходим, и можно посмотреть есть ли аргументы
             SearchScreen(navController = navController, it.arguments?.getString(HISTORY_ARG_KEY))
+        }
+
+        composable(route = Screen.RecyclerHistoryItem.route) {
+            //сохраняю аргумента в backstackEntry
+            LaunchedEffect(key1 = it) {
+                val result =
+                    navController.previousBackStackEntry?.savedStateHandle?.get<String>("city")
+                Log.d("VVV","result $result")
+            }
+            RecyclerHistoryItem(navController = navController, historyViewModel = hiltViewModel())
 
         }
 
