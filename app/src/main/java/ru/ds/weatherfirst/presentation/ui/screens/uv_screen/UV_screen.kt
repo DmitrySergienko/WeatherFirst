@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
@@ -56,7 +57,7 @@ fun UV_screen(
 
                 ) {
                 Text(
-                    text = uvComment(uv.toDouble()),
+                    text = uVComment(uv = uv.toDouble()),
                     color = MaterialTheme.colors.primary,
                     style = TextStyle(fontSize = 40.sp),
                     textAlign = TextAlign.Center,
@@ -72,19 +73,14 @@ fun UV_screen(
     }
 
 }
-fun uvComment(uv: Double):String{
+@Composable
+fun uVComment(uv: Double):String{
     val text = when(uv.toInt()){
-        in 0..3 -> "Low Hazard: No sun protection required"
-        in 4..6 -> "Medium hazard class: use protective equipment (glasses, hat, shirts, trousers)"
-        in 7..9 -> "High hazard class: try not to be in the sun, use sunscreen"
-        in 10..12 -> "Extreme hazard class: look for shade, it is better to be indoors"
-        else -> {"No internet. Please connect to clarify actual UV level."}
+        in 0..3 -> stringResource(id = R.string.low_hazard)
+        in 4..6 -> stringResource(id = R.string.medium_hazard)
+        in 7..9 -> stringResource(id = R.string.high_hazard)
+        in 10..12 -> stringResource(id = R.string.extreme_hazard)
+        else -> {stringResource(id = R.string.no_internet)}
     }
     return text
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun UV_screen_preview() {
-//    UV_screen(navController = rememberNavController())
-//}

@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -23,6 +24,7 @@ import coil.compose.AsyncImage
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.presentation.ui.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.Screen
+import ru.ds.weatherfirst.presentation.ui.screens.utils.translateCondition
 import ru.ds.weatherfirst.presentation.ui.theme.BlueLight
 import ru.ds.weatherfirst.presentation.ui.theme.TextLight
 
@@ -100,7 +102,7 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                         Text(
                             modifier = Modifier
                                 .padding(top = 6.dp, end = 5.dp),
-                            text = "Feels like ${state.feelslikeC.toInt()}°C",
+                            text = "${stringResource(id = R.string.feels_like)} ${state.feelslikeC.toInt()}°C",
                             style = TextStyle(fontSize = 22.sp),
                             color = TextLight
 
@@ -150,21 +152,21 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                         Text(
                             modifier = Modifier
                                 .padding(1.dp),
-                            text = "Humidity ${state.humidity}%",
+                            text = "${stringResource(id = R.string.humidity)} ${state.humidity}%",
                             style = TextStyle(fontSize = 16.sp),
                             color = TextLight
                         )
                         Text(
                             modifier = Modifier
                                 .padding(1.dp),
-                            text = state.condition.text,
+                            text = translateCondition(param = state.condition.text),
                             style = TextStyle(fontSize = 16.sp),
                             color = TextLight
                         )
                         Text(
                             modifier = Modifier
                                 .padding(1.dp),
-                            text = "UV ${state.uv}",
+                            text = "${stringResource(id = R.string.uv)} ${state.uv}",
                             style = TextStyle(fontSize = 16.sp),
                             color = TextLight
                         )
@@ -193,14 +195,14 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                         Text(
                             modifier = Modifier
                                 .padding(1.dp),
-                            text = "Cloud ${state.cloud}%",
+                            text = "${stringResource(id = R.string.cloud)} ${state.cloud}%",
                             style = TextStyle(fontSize = 16.sp),
                             color = TextLight
                         )
                         Text(
                             modifier = Modifier
                                 .padding(1.dp),
-                            text = "Temp ${state.tempF.toInt()}F",
+                            text = "${stringResource(id = R.string.temp)} ${state.tempF.toInt()}F",
                             style = TextStyle(fontSize = 16.sp),
                             color = TextLight
                         )
@@ -230,7 +232,7 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                         modifier = Modifier
                             .padding(1.dp)
                             .padding(end = 23.dp),
-                        text = "Last update: ${state.lastUpdated}",
+                        text = "${stringResource(id = R.string.last_update)} ${state.lastUpdated}",
                         style = TextStyle(fontSize = 20.sp),
                         color = TextLight
                     )
@@ -240,5 +242,8 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
         }
     }
 }
+
+
+
 
 

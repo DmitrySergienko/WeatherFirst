@@ -68,7 +68,7 @@ fun UV_screenTab() {
 
                         ) {
                         Text(
-                            text = "UV ${uvComment(state.uv)}",
+                            text = "UV ${uVComment(state.uv)}",
                             color = MaterialTheme.colors.primary,
                             style = TextStyle(fontSize = 28.sp),
                             textAlign = TextAlign.Center,

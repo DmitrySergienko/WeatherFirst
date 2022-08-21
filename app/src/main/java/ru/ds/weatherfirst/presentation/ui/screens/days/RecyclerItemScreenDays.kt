@@ -9,11 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.domain.model.Forecastday
+import ru.ds.weatherfirst.presentation.ui.screens.utils.translateCondition
 import ru.ds.weatherfirst.presentation.ui.theme.BlueLight
 import ru.ds.weatherfirst.presentation.ui.theme.TextLight
 
@@ -40,35 +43,35 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Date ${forecastday.date}",
+                    text = "${stringResource(id = R.string.date)} ${forecastday.date}",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Average t: ${forecastday.day.avgtempC.toInt()}°C",
+                    text = "${stringResource(id = R.string.average)} ${forecastday.day.avgtempC.toInt()}°C",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Min t: ${forecastday.day.mintempC.toInt()}°C",
+                    text = "${stringResource(id = R.string.min)} ${forecastday.day.mintempC.toInt()}°C",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Max t: ${forecastday.day.maxtempC.toInt()}°C",
+                    text = "${stringResource(id = R.string.max)} ${forecastday.day.maxtempC.toInt()}°C",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Moon phase: ${forecastday.astro.moonPhase}",
+                    text = translateCondition(param = forecastday.astro.moonPhase),
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
@@ -78,28 +81,28 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Wind: ${forecastday.day.maxwindKph} kph",
+                    text = "${stringResource(id = R.string.wind)} ${forecastday.day.maxwindKph} ${stringResource(id = R.string.kph)}",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = forecastday.day.condition.text,
+                    text = translateCondition(param = forecastday.day.condition.text),
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Sunrise ${forecastday.astro.sunrise}",
+                    text = "${stringResource(id = R.string.sunrise)} ${forecastday.astro.sunrise}",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Sunset ${forecastday.astro.sunset}",
+                    text = "${stringResource(id = R.string.sunset)} ${forecastday.astro.sunset}",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 

@@ -9,11 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.domain.model.Hour
+import ru.ds.weatherfirst.presentation.ui.screens.utils.translateCondition
 import ru.ds.weatherfirst.presentation.ui.theme.BlueLight
 import ru.ds.weatherfirst.presentation.ui.theme.TextLight
 
@@ -43,7 +46,7 @@ fun RecyclerItemScreen(hour: Hour) {
                 Text(
 
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Time ${hour.time.takeLast(5)}",
+                    text = "${stringResource(id = R.string.time)} ${hour.time.takeLast(5)}",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
@@ -51,21 +54,21 @@ fun RecyclerItemScreen(hour: Hour) {
 
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Feels like ${hour.feelslikeC.toInt()}°C",
+                    text = "${stringResource(id = R.string.feels_like)} ${hour.feelslikeC.toInt()}°C",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Wind ${hour.windKph} Kph",
+                    text = "${stringResource(id = R.string.wind)} ${hour.windKph} ${stringResource(id = R.string.kph)}",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "UV ${hour.uv}",
+                    text = "${stringResource(id = R.string.uv)} ${hour.uv}",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
@@ -75,21 +78,21 @@ fun RecyclerItemScreen(hour: Hour) {
                 Text(
                     modifier = Modifier
                         .padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Temperature: ${hour.tempC.toInt()}°C",
+                    text = "${stringResource(id = R.string.temperature)} ${hour.tempC.toInt()}°C",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = hour.condition.text,
+                    text = translateCondition(param = hour.condition.text),
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
                 )
                 Text(
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Humidity ${hour.humidity}%",
+                    text = "${stringResource(id = R.string.humidity)} ${hour.humidity}%",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 
@@ -99,7 +102,7 @@ fun RecyclerItemScreen(hour: Hour) {
                 Text(
 
                     modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "Wind direction ${hour.wind_dir}",
+                    text = "${stringResource(id = R.string.wind_direction)} ${hour.wind_dir}",
                     style = TextStyle(fontSize = 15.sp),
                     color = TextLight
 

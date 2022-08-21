@@ -1,0 +1,63 @@
+<resources>
+
+    <!--history screen-->
+    <string name="clean_all">Очистить все</string>
+    <string name="search_history">ИСТОРИЯ ПОИСКА</string>
+
+    <!--main screen-->
+    <string name="feels_like">Ощущается</string>
+    <string name="humidity">Влажность</string>
+    <string name="uv">УФ</string>
+    <string name="cloud">Облачность</string>
+
+    <string name="sunny">Ясно</string>
+
+    <!--connectivity screen-->
+    <string name="no_connection">Нет доступного интернета! Пожалуйста, подключитесь к сети, чтобы получить актуальную информацию о погоде</string>
+
+    <!--search screen-->
+    <string name="search">Поиск</string>
+    <string name="enter_city">Введите город</string>
+    <string name="history">История</string>
+
+    <!--tab screen-->
+    <string name="hours">ЧАСЫ</string>
+    <string name="days">3 ДНЯ</string>
+
+    <!--uv screen-->
+    <string name="low_hazard">Опасности нет: защита от солнца не требуется.</string>
+    <string name="medium_hazard">Средний класс опасности: необходимо использовать средства защиты (очки, головной убор, рубашки, брюки)</string>
+    <string name="high_hazard">Высокий класс опасности: старайтесь не находиться на солнце, пользуйтесь солнцезащитным кремом</string>
+    <string name="extreme_hazard">Крайний класс опасности: ищите тень, лучше в помещении</string>
+    <string name="no_internet">Нет интернета! Пожалуйста, подключитесь, чтобы уточнить фактический уровень УФ!</string>
+    <string name="app_name">УФ-индикaтор</string>
+    <string name="temp">Темп</string>
+    <string name="indication">Индекс</string>
+    <string name="last_update">Обновление</string>
+
+    <!--hour & days screens-->
+    <string name="time">Время</string>
+    <string name="wind">Ветер</string>
+    <string name="temperature">Температура:</string>
+    <string name="wind_direction">Направление ветра</string>
+    <string name="date">Дата:</string>
+    <string name="average">Средняя t:</string>
+    <string name="min">Мин t:</string>
+    <string name="max">Макс t:</string>
+    <string name="moon">Фаза луны</string>
+    <string name="sunrise">Восход</string>
+    <string name="sunset">Закат</string>
+    <string name="partly_cloudy">Переменная облачность</string>
+    <string name="cloudy">Облачно</string>
+    <string name="light_rain_shower">Небольшой дождь моросит</string>
+    <string name="overcast">Пасмурная погода</string>
+    <string name="heavy_rain">Ливень</string>
+    <string name="patchy_rain">Возможен кратковременный дождь</string>
+    <string name="moderate_rain">Умеренный дождь</string>
+    <string name="last_quarter">Последняя четверть</string>
+    <string name="waning_crescent">Растущая луна</string>
+    <string name="clear">Ясно</string>
+    <string name="kph">км/ч</string>
+
+
+</resources>

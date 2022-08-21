@@ -19,10 +19,8 @@ import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 @Composable
 fun RecyclerHistoryItem(
     navController: NavController,
-    //item_remove:String,
     historyViewModel: HomeViewModel) {
 
-    //remove single item from listHistory
 
     //====Database===========
     val db =

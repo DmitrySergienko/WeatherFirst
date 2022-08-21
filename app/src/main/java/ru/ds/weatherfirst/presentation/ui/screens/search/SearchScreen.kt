@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -40,6 +41,7 @@ import ru.ds.weatherfirst.data.db.TestDB
 import ru.ds.weatherfirst.presentation.ui.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.ui.screens.TabLayout
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.Screen
+import ru.ds.weatherfirst.presentation.ui.screens.utils.translateCondition
 import ru.ds.weatherfirst.presentation.ui.theme.BlueLight
 import ru.ds.weatherfirst.presentation.ui.theme.TextLight
 import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
@@ -63,8 +65,6 @@ fun SearchScreen(navController: NavController, history: String?) {
     //dismiss keyboard
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
-
-
 
     //Если пришел агрумент из Истории запускаем поиск
     if (history?.isNotEmpty() == true && history != "{history_argument}") mainScreenViewModel.getWeather(
@@ -135,7 +135,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                             Text(
                                 modifier = Modifier
                                     .padding(top = 6.dp, end = 5.dp),
-                                text = "Feels like ${state.feelslikeC.toInt()}°C",
+                                text = "${stringResource(id = R.string.feels_like)} ${state.feelslikeC.toInt()}°C",
                                 style = TextStyle(fontSize = 22.sp),
                                 color = TextLight
 
@@ -194,8 +194,8 @@ fun SearchScreen(navController: NavController, history: String?) {
                             OutlinedTextField(
                                 value = city,
                                 onValueChange = { newCity -> city = newCity },
-                                label = { Text(text = "Search") },
-                                placeholder = { Text(text = "Enter city") },
+                                label = { Text(text = stringResource(id = R.string.search)) },
+                                placeholder = { Text(text = stringResource(id = R.string.enter_city)) },
                                 singleLine = true,
                                 modifier = Modifier.padding(start = 5.dp, bottom = 5.dp),
                                 textStyle = TextStyle(color = TextLight, fontSize = 26.sp),
@@ -237,7 +237,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 Text(
                                     modifier = Modifier
                                         .padding(start = 1.dp, top = 3.dp, end = 4.dp),
-                                    text = "History",
+                                    text = stringResource(id = R.string.history),
                                     style = TextStyle(fontSize = 10.sp),
                                     color = TextLight
                                 )
@@ -264,21 +264,21 @@ fun SearchScreen(navController: NavController, history: String?) {
                             Text(
                                 modifier = Modifier
                                     .padding(1.dp),
-                                text = "Humidity ${state.humidity}%",
+                                text = "${stringResource(id = R.string.humidity)} ${state.humidity}%",
                                 style = TextStyle(fontSize = 16.sp),
                                 color = TextLight
                             )
                             Text(
                                 modifier = Modifier
                                     .padding(1.dp),
-                                text = "UV ${state.uv}",
+                                text = "${stringResource(id = R.string.uv)} ${state.uv}",
                                 style = TextStyle(fontSize = 16.sp),
                                 color = TextLight
                             )
                             Text(
                                 modifier = Modifier
                                     .padding(1.dp),
-                                text = state.condition.text,
+                                text = translateCondition(param = state.condition.text),
                                 style = TextStyle(fontSize = 16.sp),
                                 color = TextLight
                             )
@@ -306,14 +306,14 @@ fun SearchScreen(navController: NavController, history: String?) {
                             Text(
                                 modifier = Modifier
                                     .padding(1.dp),
-                                text = "Cloud ${state.cloud}%",
+                                text = "${stringResource(id = R.string.cloud)} ${state.cloud}%",
                                 style = TextStyle(fontSize = 16.sp),
                                 color = TextLight
                             )
                             Text(
                                 modifier = Modifier
                                     .padding(1.dp),
-                                text = "Temp ${state.tempF.toInt()}F",
+                                text = "${stringResource(id = R.string.temp)} ${state.tempF.toInt()}F",
                                 style = TextStyle(fontSize = 16.sp),
                                 color = TextLight
                             )
@@ -335,7 +335,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                             modifier = Modifier
                                 .padding(1.dp)
                                 .padding(end = 23.dp),
-                            text = "Last update: ${state.lastUpdated}",
+                            text = "${stringResource(id = R.string.last_update)} ${state.lastUpdated}",
                             style = TextStyle(fontSize = 20.sp),
                             color = TextLight
                         )

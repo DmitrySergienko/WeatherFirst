@@ -1,7 +1,69 @@
 <resources>
     <string name="app_name">UV Weather</string>
+
+    <!--history screen-->
     <string name="clean_all">Clean all</string>
     <string name="search_history">SEARCH HISTORY</string>
+
+    <!--main screen-->
+    <string name="feels_like">Feels like</string>
+    <string name="humidity">Humidity</string>
+    <string name="uv">UV</string>
+    <string name="cloud">Cloud</string>
+    <string name="temp">Temp</string>
+    <string name="last_update">Last update</string>
+
+    <!--main screen manual translate-->
+    <string name="sunny">Sunny</string>
+    <string name="partly_cloudy">Partly cloudy</string>
+    <string name="clear">Clear</string>
+    <string name="cloudy">Cloudy</string>
+    <string name="light_rain_shower">Light rain shower</string>
+    <string name="overcast">Overcast</string>
+    <string name="heavy_rain">Heavy rain</string>
+    <string name="patchy_rain">Patchy rain possible</string>
+    <string name="moderate_rain">Moderate rain</string>
+
+    <!--moon-->
+    <string name="last_quarter">Last Quarter</string>
+    <string name="waning_crescent">Waning Crescent</string>
+
+
+    <!--connectivity screen-->
     <string name="no_connection">No Internet available! Please connect to the network to get actual weather information</string>
+
+    <!--search screen-->
+    <string name="search">Search</string>
+    <string name="enter_city">Enter city</string>
+    <string name="history">History</string>
+
+    <!--tab screen-->
+    <string name="hours">HOURS</string>
+    <string name="days">3 DAYS</string>
+
+    <!--uv screen-->
+    <string name="low_hazard">Low Hazard: No sun protection required</string>
+    <string name="medium_hazard">Medium hazard class: use protective equipment (glasses, hat, shirts, trousers)</string>
+    <string name="high_hazard">High hazard class: try not to be in the sun, use sunscreen</string>
+    <string name="extreme_hazard">Extreme hazard class: look for shade, it is better to be indoors</string>
+    <string name="no_internet">No internet! Please connect to clarify actual UV level!</string>
+    <string name="indication">Indication</string>
+
+    <!--hour & days screens-->
+    <string name="time">Time</string>
+    <string name="wind">Wind</string>
+    <string name="temperature">Temperature:</string>
+    <string name="wind_direction">Wind direction:</string>
+    <string name="date">Date:</string>
+    <string name="average">Average t:</string>
+    <string name="min">Min t:</string>
+    <string name="max">Max t:</string>
+    <string name="moon">Moon phase:</string>
+    <string name="sunrise">Sunrise:</string>
+    <string name="sunset">Sunset:</string>
+    <string name="kph">kph:</string>
+
+
+
 
 </resources>

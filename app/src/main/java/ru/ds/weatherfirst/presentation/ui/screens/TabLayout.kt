@@ -13,6 +13,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -20,6 +21,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
+import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.presentation.ui.screens.days.RecyclerScreenDays
 import ru.ds.weatherfirst.presentation.ui.screens.uv_screen.UV_screenTab
 import ru.ds.weatherfirst.presentation.ui.theme.BlueLight
@@ -30,7 +32,10 @@ import ru.ds.weatherfirst.ui.screens.RecyclerScreen
 @Composable
 fun TabLayout() {
 
-    val tabList = listOf("UV", "HOURS", "3 DAYS")
+    val tabList = listOf(
+        stringResource(id = R.string.uv),
+        stringResource(id = R.string.hours),
+        stringResource(id = R.string.days))
     //для пейджера
     val pageState = rememberPagerState()
     val tabIndex = pageState.currentPage
