@@ -70,6 +70,8 @@ fun SearchScreen(navController: NavController, history: String?) {
     if (history?.isNotEmpty() == true && history != "{history_argument}") mainScreenViewModel.getWeather(
         history
     )
+    //set limit for char
+    val maxChar = 19
 
     //mainScreenViewModel.getWeather(city)
     WeatherFirstTheme {
@@ -166,6 +168,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 text = history,
                                 style = TextStyle(fontSize = 18.sp),
                                 color = TextLight,
+                                maxLines = 1
                             )
                         } else {
                             Text(
@@ -193,9 +196,18 @@ fun SearchScreen(navController: NavController, history: String?) {
                         ) {
                             OutlinedTextField(
                                 value = city,
-                                onValueChange = { newCity -> city = newCity },
+                                onValueChange = { newCity ->
+                                        if(newCity.length < maxChar){
+                                                 city = newCity
+
+                                        }
+                                            },
                                 label = { Text(text = stringResource(id = R.string.search)) },
-                                placeholder = { Text(text = stringResource(id = R.string.enter_city)) },
+                                placeholder = {
+                                    Text(
+                                        text = stringResource(id = R.string.enter_city),
+                                              maxLines = 1
+                                    )},
                                 singleLine = true,
                                 modifier = Modifier.padding(start = 5.dp, bottom = 5.dp),
                                 textStyle = TextStyle(color = TextLight, fontSize = 26.sp),
