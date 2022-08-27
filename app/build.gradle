@@ -14,8 +14,8 @@ android {
         applicationId "ru.ds.weatherfirst"
         minSdk 23
         targetSdk 32
-        versionCode 14
-        versionName "14.0"
+        versionCode 15
+        versionName "15.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
