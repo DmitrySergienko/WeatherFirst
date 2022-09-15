@@ -20,6 +20,7 @@ class HomeViewModel @Inject constructor(
     private val locationTracker: LocationTracker
 ) : ViewModel() {
 
+
     //for hours
     private val _state = MutableStateFlow(emptyList<Hour>())
     val state: StateFlow<List<Hour>>
@@ -60,6 +61,7 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
 
     var remove_item = ""
         private set // можем поменять только из viewModel
