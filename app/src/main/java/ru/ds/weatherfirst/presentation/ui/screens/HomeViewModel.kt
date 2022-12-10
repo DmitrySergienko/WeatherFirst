@@ -36,7 +36,6 @@ class HomeViewModel @Inject constructor(
     val stateDay: StateFlow<List<Forecastday>>
         get() = _stateDay
 
-
     fun getWeather(city: String) {
         viewModelScope.launch {
             val lat = locationTracker.getCurrentLocation()?.latitude.toString()

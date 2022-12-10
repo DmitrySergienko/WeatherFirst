@@ -16,14 +16,10 @@ fun RecyclerScreenDays() {
     val daysLiveData = hiltViewModel<HomeViewModel>()
     val stateDays by daysLiveData.stateDay.collectAsState()
 
-
-
     LazyColumn(contentPadding = PaddingValues(bottom = 20.dp)
     ){
         items(stateDays){ item->
             RecyclerItemScreenDays(item)
-
         }
     }
-
 }

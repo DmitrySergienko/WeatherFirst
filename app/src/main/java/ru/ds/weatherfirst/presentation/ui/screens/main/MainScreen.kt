@@ -46,13 +46,10 @@ fun MainScreenHoist(
 @Composable
 fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavController) {
 
-
     val mainScreenViewModel = hiltViewModel<HomeViewModel>()
     val state by mainScreenViewModel.stateMain.collectAsState()
 
-
     mainScreenViewModel.getWeather("default")
-
 
     Column(
         modifier = Modifier
@@ -78,7 +75,6 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                         .padding(bottom = 20.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-
                     Image(
                         painter = painterResource(id = R.drawable.ic_uv_img2),
                         contentDescription = "UV image",
@@ -91,13 +87,11 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                                 navController.navigate(route = Screen.UVscreen.passUVARG(state.uv.toInt()))
                                 //если просто открыть окно не закидывая аргументов
                                 //navController.navigate(route = Screen.UVscreen.route)
-
                             }
                     )
                     Column(
                         modifier = Modifier,
                         horizontalAlignment = Alignment.End
-
                     ) {
                         Text(
                             modifier = Modifier
@@ -105,7 +99,6 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                             text = "${stringResource(id = R.string.feels_like)} ${state.feelslikeC.toInt()}°C",
                             style = TextStyle(fontSize = 22.sp),
                             color = TextLight
-
                         )
                         Image(
                             painter = painterResource(id = R.drawable.ic_baseline_search_24),
@@ -117,24 +110,11 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                                 .clickable {
                                     //открываем UV_screen и перекидываем туда аргументы
                                     navController.navigate(route = Screen.Search.route)
-
                                 },
-
-                            )
+                        )
                     }
-
-
                 }
-
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-
-                ) {
-
 //======Details========
-                }
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -146,36 +126,15 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                             .weight(1f)
                             .padding(start = 5.dp),
                         horizontalAlignment = Alignment.Start
-
                     ) {
-
-                        Text(
-                            modifier = Modifier
-                                .padding(1.dp),
-                            text = "${stringResource(id = R.string.humidity)} ${state.humidity}%",
-                            style = TextStyle(fontSize = 16.sp),
-                            color = TextLight
-                        )
-                        Text(
-                            modifier = Modifier
-                                .padding(1.dp),
-                            text = translateCondition(param = state.condition.text),
-                            style = TextStyle(fontSize = 16.sp),
-                            color = TextLight
-                        )
-                        Text(
-                            modifier = Modifier
-                                .padding(1.dp),
-                            text = "${stringResource(id = R.string.uv)} ${state.uv}",
-                            style = TextStyle(fontSize = 16.sp),
-                            color = TextLight
-                        )
+                        MainScreenTextItem(text = "${stringResource(id = R.string.humidity)} ${state.humidity}%")
+                        MainScreenTextItem(text = translateCondition(param = state.condition.text))
+                        MainScreenTextItem(text = "${stringResource(id = R.string.uv)} ${state.uv}")
                     }
                     Column(
                         modifier = Modifier
                             .weight(1f),
                         horizontalAlignment = Alignment.CenterHorizontally
-
                     ) {
                         AsyncImage(
                             model = "https:${state.condition.icon}",
@@ -183,7 +142,6 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                             modifier = Modifier
                                 .size(105.dp)
                                 .padding(top = 1.dp, end = 2.dp)
-
                         )
                     }
                     Column(
@@ -192,25 +150,11 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                             .weight(1f),
                         horizontalAlignment = Alignment.End
                     ) {
-                        Text(
-                            modifier = Modifier
-                                .padding(1.dp),
-                            text = "${stringResource(id = R.string.cloud)} ${state.cloud}%",
-                            style = TextStyle(fontSize = 16.sp),
-                            color = TextLight
-                        )
-                        Text(
-                            modifier = Modifier
-                                .padding(1.dp),
-                            text = "${stringResource(id = R.string.temp)} ${state.tempF.toInt()}F",
-                            style = TextStyle(fontSize = 16.sp),
-                            color = TextLight
-                        )
+                        MainScreenTextItem(text = "${stringResource(id = R.string.cloud)} ${state.cloud}%")
+                        MainScreenTextItem(text = "${stringResource(id = R.string.temp)} ${state.tempF.toInt()}F")
                     }
                 }
-
 //======Main Temperature=======
-
                 Text(
                     modifier = Modifier
                         .padding(top = 1.dp, bottom = 15.dp, end = 5.dp),
@@ -218,16 +162,13 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                     style = TextStyle(fontSize = 65.sp),
                     color = TextLight
                 )
-
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 4.dp, end = 4.dp)
                         .horizontalScroll(rememberScrollState()),
                     horizontalArrangement = Arrangement.Start,
-
                     ) {
-
                     Text(
                         modifier = Modifier
                             .padding(1.dp)
@@ -236,11 +177,20 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                         style = TextStyle(fontSize = 20.sp),
                         color = TextLight
                     )
-
                 }
             }
         }
     }
+}
+
+@Composable
+fun MainScreenTextItem(text: String) {
+    Text(
+        modifier = Modifier.padding(1.dp),
+        text = text,
+        style = TextStyle(fontSize = 16.sp),
+        color = TextLight
+    )
 }
 
 

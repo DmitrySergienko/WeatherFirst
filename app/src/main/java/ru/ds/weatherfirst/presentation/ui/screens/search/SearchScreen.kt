@@ -40,6 +40,7 @@ import ru.ds.weatherfirst.data.db.HistoryDatabase
 import ru.ds.weatherfirst.data.db.TestDB
 import ru.ds.weatherfirst.presentation.ui.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.ui.screens.TabLayout
+import ru.ds.weatherfirst.presentation.ui.screens.main.MainScreenTextItem
 import ru.ds.weatherfirst.presentation.ui.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.ui.screens.utils.translateCondition
 import ru.ds.weatherfirst.presentation.ui.theme.BlueLight
@@ -49,7 +50,6 @@ import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 @OptIn(DelicateCoroutinesApi::class, ExperimentalComposeUiApi::class)
 @Composable
 fun SearchScreen(navController: NavController, history: String?) {
-
 
     //====Database
     val db =
@@ -67,7 +67,7 @@ fun SearchScreen(navController: NavController, history: String?) {
     val focusManager = LocalFocusManager.current
 
     //Если пришел агрумент из Истории запускаем поиск
-    if (history?.isNotEmpty() == true && history != "{history_argument}") mainScreenViewModel.getWeather(
+    if ((history?.isNotEmpty() == true) && (history != "{history_argument}")) mainScreenViewModel.getWeather(
         history
     )
     //set limit for char
@@ -83,7 +83,6 @@ fun SearchScreen(navController: NavController, history: String?) {
                 .alpha(0.5f),
             contentScale = ContentScale.FillBounds
         )
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -108,7 +107,6 @@ fun SearchScreen(navController: NavController, history: String?) {
                             .padding(top = 4.dp, bottom = 20.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-
                         Image(
                             painter = painterResource(id = R.drawable.ic_uv_img2),
                             contentDescription = "UV image",
@@ -127,7 +125,6 @@ fun SearchScreen(navController: NavController, history: String?) {
                                     //navController.navigate(route = Screen.UVscreen.route)
                                 }
                         )
-
                         Column(
                             modifier = Modifier
                                 .padding(end = 5.dp)
@@ -140,12 +137,9 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 text = "${stringResource(id = R.string.feels_like)} ${state.feelslikeC.toInt()}°C",
                                 style = TextStyle(fontSize = 22.sp),
                                 color = TextLight
-
                             )
-
                         }
                     }
-
 //======Main Temperature
                     Row(
                         modifier = Modifier
@@ -153,7 +147,6 @@ fun SearchScreen(navController: NavController, history: String?) {
                             .padding(top = 2.dp, bottom = 1.dp),
                         horizontalArrangement = Arrangement.Center
                     ) {
-
                         Text(
                             modifier = Modifier
                                 .padding(top = 1.dp, bottom = 15.dp, end = 5.dp),
@@ -179,14 +172,10 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 color = TextLight,
                             )
                         }
-
                     }
-
 //===Search field
                     Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-
+                        modifier = Modifier.fillMaxWidth()
                     ) {
                         Row(
                             modifier = Modifier
@@ -197,17 +186,17 @@ fun SearchScreen(navController: NavController, history: String?) {
                             OutlinedTextField(
                                 value = city,
                                 onValueChange = { newCity ->
-                                        if(newCity.length < maxChar){
-                                                 city = newCity
-
-                                        }
-                                            },
+                                    if (newCity.length < maxChar) {
+                                        city = newCity
+                                    }
+                                },
                                 label = { Text(text = stringResource(id = R.string.search)) },
                                 placeholder = {
                                     Text(
                                         text = stringResource(id = R.string.enter_city),
-                                              maxLines = 1
-                                    )},
+                                        maxLines = 1
+                                    )
+                                },
                                 singleLine = true,
                                 modifier = Modifier.padding(start = 5.dp, bottom = 5.dp),
                                 textStyle = TextStyle(color = TextLight, fontSize = 26.sp),
@@ -215,13 +204,13 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 keyboardActions = KeyboardActions(
                                     onSearch = {
                                         if (city.isNotEmpty()) {
-
                                             // 1.run search
                                             mainScreenViewModel.getWeather(city)
                                             // 2.save to db
                                             GlobalScope.launch {
-                                                if(city.isNotEmpty())
-                                                {dao.insertItem(TestDB(0, city))}
+                                                if (city.isNotEmpty()) {
+                                                    dao.insertItem(TestDB(0, city))
+                                                }
                                             }
                                         } else {
                                             mainScreenViewModel.getWeather("default")
@@ -232,7 +221,6 @@ fun SearchScreen(navController: NavController, history: String?) {
                                     }
                                 )
                             )
-
                             Column() {
                                 Image(
                                     painter = painterResource(id = R.drawable.ic_baseline_history_24),
@@ -241,10 +229,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                                         .padding(start = 1.dp, top = 20.dp, end = 10.dp)
                                         .size(30.dp)
                                         .alpha(0.7f)
-                                        .clickable {
-                                            navController.navigate(route = Screen.History.route)
-
-                                        },
+                                        .clickable { navController.navigate(route = Screen.History.route) },
                                 )
                                 Text(
                                     modifier = Modifier
@@ -254,10 +239,8 @@ fun SearchScreen(navController: NavController, history: String?) {
                                     color = TextLight
                                 )
                             }
-
                         }
                     }
-
 //======Detailed items
                     Row(
                         modifier = Modifier
@@ -270,36 +253,15 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 .weight(1f)
                                 .padding(start = 5.dp),
                             horizontalAlignment = Alignment.Start
-
                         ) {
-
-                            Text(
-                                modifier = Modifier
-                                    .padding(1.dp),
-                                text = "${stringResource(id = R.string.humidity)} ${state.humidity}%",
-                                style = TextStyle(fontSize = 16.sp),
-                                color = TextLight
-                            )
-                            Text(
-                                modifier = Modifier
-                                    .padding(1.dp),
-                                text = "${stringResource(id = R.string.uv)} ${state.uv}",
-                                style = TextStyle(fontSize = 16.sp),
-                                color = TextLight
-                            )
-                            Text(
-                                modifier = Modifier
-                                    .padding(1.dp),
-                                text = translateCondition(param = state.condition.text),
-                                style = TextStyle(fontSize = 16.sp),
-                                color = TextLight
-                            )
+                            MainScreenTextItem(text = "${stringResource(id = R.string.humidity)} ${state.humidity}%")
+                            MainScreenTextItem(text = "${stringResource(id = R.string.uv)} ${state.uv}")
+                            MainScreenTextItem(text = translateCondition(param = state.condition.text))
                         }
                         Column(
                             modifier = Modifier
                                 .weight(1f),
                             horizontalAlignment = Alignment.CenterHorizontally
-
                         ) {
                             AsyncImage(
                                 model = "https:${state.condition.icon}",
@@ -315,34 +277,18 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 .weight(1f),
                             horizontalAlignment = Alignment.End
                         ) {
-                            Text(
-                                modifier = Modifier
-                                    .padding(1.dp),
-                                text = "${stringResource(id = R.string.cloud)} ${state.cloud}%",
-                                style = TextStyle(fontSize = 16.sp),
-                                color = TextLight
-                            )
-                            Text(
-                                modifier = Modifier
-                                    .padding(1.dp),
-                                text = "${stringResource(id = R.string.temp)} ${state.tempF.toInt()}F",
-                                style = TextStyle(fontSize = 16.sp),
-                                color = TextLight
-                            )
-
+                            MainScreenTextItem(text = "${stringResource(id = R.string.cloud)} ${state.cloud}%")
+                            MainScreenTextItem(text = "${stringResource(id = R.string.temp)} ${state.tempF.toInt()}F")
                         }
                     }
 //=============
-
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(start = 4.dp, end = 4.dp)
                             .horizontalScroll(rememberScrollState()),
                         horizontalArrangement = Arrangement.Start,
-
-                        ) {
-
+                    ) {
                         Text(
                             modifier = Modifier
                                 .padding(1.dp)
@@ -357,6 +303,5 @@ fun SearchScreen(navController: NavController, history: String?) {
             Spacer(modifier = Modifier.height(1.dp))
             TabLayout()
         }
-
     }
 }

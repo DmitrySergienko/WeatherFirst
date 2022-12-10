@@ -24,5 +24,4 @@ fun RecyclerScreen() {
             RecyclerItemScreen(name)
         }
     }
-
 }

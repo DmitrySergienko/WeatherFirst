@@ -43,18 +43,13 @@ fun HistoryItemScreen(
     navController: NavController,
     historyViewModel: HomeViewModel
 ) {
-
-
     //====Database
-
-    val db =
-        Room.databaseBuilder(LocalContext.current, HistoryDatabase::class.java, "new_db").build()
+    val db = Room.databaseBuilder(LocalContext.current, HistoryDatabase::class.java, "new_db").build()
     val dao = db.historyDao()
 
     //===========swipe========
     val archive = SwipeAction(
         onSwipe = {
-
             //remove item from database
             GlobalScope.launch {
                 val item = dao.getByName(history)
@@ -63,7 +58,6 @@ fun HistoryItemScreen(
             //send arg to search screen to remove single (this) item from the list
             historyViewModel.passItem(history)
             navController.navigate(route = Screen.History.route) //update history screen
-
         },
         icon = {
             Icon(
@@ -85,7 +79,6 @@ fun HistoryItemScreen(
             //send arg to search screen to remove single (this) item from the list
             historyViewModel.passItem(history)
             navController.navigate(route = Screen.History.route) //update history screen
-
         },
         icon = {
             Icon(
@@ -94,8 +87,7 @@ fun HistoryItemScreen(
                 contentDescription = null,
                 tint = BlueLight
             )
-        },
-        background = Color.Transparent
+        }, background = Color.Transparent
     )
 
     //==========shimmer effect option =========
@@ -128,7 +120,6 @@ fun HistoryItemScreen(
     )
 
     //================swipe single item=============
-
     SwipeableActionsBox(
         modifier = Modifier.background(Color.Transparent),
         swipeThreshold = 50.dp,
@@ -136,7 +127,6 @@ fun HistoryItemScreen(
         endActions = listOf(clean),
         backgroundUntilSwipeThreshold = Color.Transparent
     ) {
-
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -150,7 +140,6 @@ fun HistoryItemScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-
                 Column(
                     modifier = Modifier
                         .weight(1f)
@@ -168,9 +157,7 @@ fun HistoryItemScreen(
                         fontSize = MaterialTheme.typography.h5.fontSize,
                         fontWeight = FontWeight.Light
                     )
-
                 }
-
                 Image(
                     painter = painterResource(id = R.drawable.ic_baseline_clear_24),
                     contentDescription = "Clean_image",

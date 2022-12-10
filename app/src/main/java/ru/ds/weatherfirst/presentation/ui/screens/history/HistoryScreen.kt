@@ -35,9 +35,7 @@ import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 fun HistoryScreen(navController: NavController) {
 
     //====Database
-
-    val db =
-        Room.databaseBuilder(LocalContext.current, HistoryDatabase::class.java, "new_db").build()
+    val db = Room.databaseBuilder(LocalContext.current, HistoryDatabase::class.java, "new_db").build()
     val dao = db.historyDao()
 
     val result by dao.readAll().collectAsState(initial = emptyList())
@@ -47,7 +45,6 @@ fun HistoryScreen(navController: NavController) {
     for (i in result) listHistory.add(i.name)
 
     //============
-
     WeatherFirstTheme {
         Image(
             painter = painterResource(id = R.drawable.ic_back_new),
@@ -57,7 +54,6 @@ fun HistoryScreen(navController: NavController) {
                 .alpha(0.5f),
             contentScale = ContentScale.FillBounds
         )
-
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -67,7 +63,6 @@ fun HistoryScreen(navController: NavController) {
             elevation = 0.dp,
             shape = RoundedCornerShape(10.dp)
         ) {
-
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -92,15 +87,11 @@ fun HistoryScreen(navController: NavController) {
                         color = TextLight,
                     )
                 }
-
                 Spacer(modifier = Modifier.padding(10.dp))
                 //MyDropMenu(navController)
                 RecyclerHistoryItem(navController,hiltViewModel())
-
-
             }
         }
-
     }
 }
 

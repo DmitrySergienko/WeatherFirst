@@ -16,5 +16,4 @@ class HistoryViewModel @Inject constructor(
     fun removeItem(newItem:MutableState<String>){
         remove_item =newItem
     }
-
 }

@@ -36,8 +36,6 @@ fun MyProject(
             MainScreenHoist(navController)
             Spacer(modifier = Modifier.height(1.dp))
             TabLayout()
-
-
         }
     }
 }

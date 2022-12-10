@@ -43,8 +43,6 @@ const val ADV_MY_BANNER = "ca-app-pub-4733065340996872/5195655548"
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-//    private val mainViewModel: MainViewModel by viewModels()
-
     //connectivity observer
     private lateinit var connectivityObserver: ConnectivityObserver
 
@@ -55,7 +53,6 @@ class MainActivity : ComponentActivity() {
     var mInterstitialAd: InterstitialAd? = null
 
     private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,7 +97,6 @@ class MainActivity : ComponentActivity() {
                 initial = ConnectivityObserver.Status.Unavailable
             )
 
-
             //Admob
             val adRequest = AdRequest.Builder().build()
             InterstitialAd.load(this, ADV_MY_BANNER, adRequest,
@@ -110,14 +106,12 @@ class MainActivity : ComponentActivity() {
                         super.onAdFailedToLoad(p0)
                         mInterstitialAd = null
                     }
-
                     override fun onAdLoaded(p0: InterstitialAd) {
                         super.onAdLoaded(p0)
                         mInterstitialAd = p0
                         mInterstitialAd?.show(this@MainActivity)
                     }
                 })
-
 
             WeatherFirstTheme {
                 // A surface container using the 'background' color from the theme
@@ -146,7 +140,6 @@ class MainActivity : ComponentActivity() {
                                 Navigation
                                 navController = rememberNavController()
                                 SetupNavGraph(navController = navController)
-
                             } else {
                                // If no internet
                                 NoConnectionScreen()

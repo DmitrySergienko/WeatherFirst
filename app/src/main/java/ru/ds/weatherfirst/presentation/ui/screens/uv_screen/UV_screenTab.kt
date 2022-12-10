@@ -30,7 +30,6 @@ fun UV_screenTab() {
     val uvLiveData = hiltViewModel<HomeViewModel>()
     val state by uvLiveData.stateMain.collectAsState()
 
-
     WeatherFirstTheme {
 
         Column(
@@ -72,20 +71,10 @@ fun UV_screenTab() {
                             color = MaterialTheme.colors.primary,
                             style = TextStyle(fontSize = 28.sp),
                             textAlign = TextAlign.Center,
-                            //fontSize = MaterialTheme.typography.h1.fontSize,
-                            //fontWeight = FontWeight.Bold,
-
                         )
                     }
                 }
             }
         }
-
     }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun UV_screen_preview() {
-//    UV_screen(navController = rememberNavController())
-//}
 }

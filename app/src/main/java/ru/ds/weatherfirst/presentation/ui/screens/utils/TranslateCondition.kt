@@ -19,7 +19,6 @@ fun translateCondition(param: String): String {
         "Last Quarter" -> stringResource(id = R.string.last_quarter)
         "Waning Crescent" -> stringResource(id = R.string.waning_crescent)
         "Clear" -> stringResource(id = R.string.clear)
-
         else -> {
             param
         }

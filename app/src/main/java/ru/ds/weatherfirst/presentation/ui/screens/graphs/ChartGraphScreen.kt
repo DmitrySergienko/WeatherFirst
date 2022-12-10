@@ -16,54 +16,48 @@ import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 @Composable
 fun ChartGraphScreen() {
 
+    Column() {
+        WeatherFirstTheme() {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                val homeViewModel = hiltViewModel<HomeViewModel>()
+                val state by homeViewModel.state.collectAsState()
 
-        Column(
+                homeViewModel.getWeather("Dubai")
 
-        ) {
-            WeatherFirstTheme() {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                val yStep = 1
+                val result = mutableListOf<Float>()
+
+                if (state.isNotEmpty()) {
+                    for (element in state) {
+                        val list = element.uv.toString().toFloat()
+                        result.add(list)
+                    }
+                }
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Transparent)
                 ) {
-                    val homeViewModel = hiltViewModel<HomeViewModel>()
-                    val state by homeViewModel.state.collectAsState()
-
-                    homeViewModel.getWeather("Dubai")
-
-                    val yStep = 1
-                    val result = mutableListOf<Float>()
-
-                    if (state.isNotEmpty()) {
-                        for (element in state) {
-                            val list = element.uv.toString().toFloat()
-                            result.add(list)
-                        }
+                    if (result.isNotEmpty()) {
+                        Graph(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(500.dp),
+                            xValues = (0..23).map { it + 1 },
+                            yValues = (0..10).map { (it + 1) * yStep },
+                            points = result,
+                            paddingSpace = 16.dp,
+                            verticalStep = yStep
+                        )
                     }
-
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(Color.Transparent)
-                    ) {
-                        if (result.isNotEmpty()) {
-
-                            Graph(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(500.dp),
-                                xValues = (0..23).map { it + 1 },
-                                yValues = (0..10).map { (it + 1) * yStep },
-                                points = result,
-                                paddingSpace = 16.dp,
-                                verticalStep = yStep
-                            )
-                        }
-                    }
-
                 }
             }
         }
     }
+}
 
 
 

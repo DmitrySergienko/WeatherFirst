@@ -57,18 +57,7 @@ fun NoConnectionScreen() {
                 fontSize = MaterialTheme.typography.h6.fontSize,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
-
-
             )
-
-
-
         }
     }
 }
-
-//@Preview
-//@Composable
-//fun NoConnectionPreview() {
-//    NoConnectionScreen()
-//}

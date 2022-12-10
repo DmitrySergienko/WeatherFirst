@@ -3,7 +3,6 @@ package ru.ds.weatherfirst.presentation.ui.screens.navigation
 const val UV_ARG_KEY = "uv_argument"
 const val HISTORY_ARG_KEY = "history_argument"
 
-
 sealed class Screen(val route:String){
 
     object Home: Screen(route = "home_screen")
@@ -22,5 +21,4 @@ sealed class Screen(val route:String){
             return "search_screen/$arg"
         }
     }
-
 }

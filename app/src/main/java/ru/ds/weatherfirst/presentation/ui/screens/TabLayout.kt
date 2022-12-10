@@ -57,7 +57,6 @@ fun TabLayout() {
             backgroundColor = BlueLight,
             modifier = Modifier.alpha(0.94f),
             contentColor = TextLight,
-
             ) {
             //идет перебор списка, для каждого элемнета выводит "text" и Tab
             tabList.forEachIndexed { index, text ->
@@ -73,14 +72,11 @@ fun TabLayout() {
                     }
                 )
             }
-
-
         }
         HorizontalPager(
             count = tabList.size,
             state = pageState,
             modifier = Modifier
-                //.fillMaxWidth()
                 .weight(1.0f)
         ) { tabIndex ->
             when (tabIndex) {
@@ -88,17 +84,6 @@ fun TabLayout() {
                 1 -> RecyclerScreen()
                 2 -> RecyclerScreenDays()
             }
-
         }
     }
-
 }
-
-//@Preview
-//@Composable
-//fun TabLayoutPreview() {
-//    WeatherFirstTheme {
-//        TabLayout()
-//    }
-//
-//}

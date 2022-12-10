@@ -39,75 +39,18 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-
             Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "${stringResource(id = R.string.date)} ${forecastday.date}",
-                    style = TextStyle(fontSize = 15.sp),
-                    color = TextLight
-
-                )
-                Text(
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "${stringResource(id = R.string.average)} ${forecastday.day.avgtempC.toInt()}°C",
-                    style = TextStyle(fontSize = 15.sp),
-                    color = TextLight
-
-                )
-                Text(
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "${stringResource(id = R.string.min)} ${forecastday.day.mintempC.toInt()}°C",
-                    style = TextStyle(fontSize = 15.sp),
-                    color = TextLight
-
-                )
-                Text(
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "${stringResource(id = R.string.max)} ${forecastday.day.maxtempC.toInt()}°C",
-                    style = TextStyle(fontSize = 15.sp),
-                    color = TextLight
-
-                )
-                Text(
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = translateCondition(param = forecastday.astro.moonPhase),
-                    style = TextStyle(fontSize = 15.sp),
-                    color = TextLight
-
-                )
-
+                CustomTextItem(text = "${stringResource(id = R.string.date)} ${forecastday.date}")
+                CustomTextItem(text = "${stringResource(id = R.string.average)} ${forecastday.day.avgtempC.toInt()}°C")
+                CustomTextItem(text = "${stringResource(id = R.string.min)} ${forecastday.day.mintempC.toInt()}°C")
+                CustomTextItem(text = "${stringResource(id = R.string.max)} ${forecastday.day.maxtempC.toInt()}°C")
+                CustomTextItem(text = translateCondition(param = forecastday.astro.moonPhase))
             }
             Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "${stringResource(id = R.string.wind)} ${forecastday.day.maxwindKph} ${stringResource(id = R.string.kph)}",
-                    style = TextStyle(fontSize = 15.sp),
-                    color = TextLight
-
-                )
-                Text(
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = translateCondition(param = forecastday.day.condition.text),
-                    style = TextStyle(fontSize = 15.sp),
-                    color = TextLight
-
-                )
-                Text(
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "${stringResource(id = R.string.sunrise)} ${forecastday.astro.sunrise}",
-                    style = TextStyle(fontSize = 15.sp),
-                    color = TextLight
-
-                )
-                Text(
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
-                    text = "${stringResource(id = R.string.sunset)} ${forecastday.astro.sunset}",
-                    style = TextStyle(fontSize = 15.sp),
-                    color = TextLight
-
-                )
-
+                CustomTextItem(text = "${stringResource(id = R.string.wind)} ${forecastday.day.maxwindKph} ${stringResource(id = R.string.kph)}")
+                CustomTextItem(text = translateCondition(param = forecastday.day.condition.text))
+                CustomTextItem(text = "${stringResource(id = R.string.sunrise)} ${forecastday.astro.sunrise}")
+                CustomTextItem(text = "${stringResource(id = R.string.sunset)} ${forecastday.astro.sunset}")
             }
             Image(
                 painter = imagePainter, contentDescription = null,
@@ -117,8 +60,16 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
                     .padding(top = 14.dp, end = 5.dp),
                 contentScale = ContentScale.FillBounds
             )
-
         }
     }
-
 }
+@Composable
+fun CustomTextItem(text: String){
+    Text(
+        modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
+        text = text,
+        style = TextStyle(fontSize = 15.sp),
+        color = TextLight
+    )
+}
+

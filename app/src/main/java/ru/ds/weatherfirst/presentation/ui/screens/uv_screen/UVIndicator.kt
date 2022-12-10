@@ -37,7 +37,6 @@ fun UVIndicator(
     backgroundIndicatorStrokeWidth: Float = 100f,
     foregroundIndicatorColor: Color = MaterialTheme.colors.primary,
     foregroundIndicatorStrokeWidth: Float = 100f,
-//    indicatorStrokeCap: StrokeCap = StrokeCap.Round,
     bigTextFontSize: TextUnit = MaterialTheme.typography.h3.fontSize,
     bigTextColor: Color = MaterialTheme.colors.onSurface,
     bigTextSuffix: String = stringResource(id =R.string.uv),
@@ -78,19 +77,12 @@ fun UVIndicator(
             in 3..5->  bigTextColor
             in 6..8->  MaterialTheme.colors.primary.copy(alpha = 0.9f)
             in 9..11->  {
-
                 MaterialTheme.colors.primary.copy(red = 0.9f)
             }
-            else -> {MaterialTheme.colors.primary.copy(green = 0.9f)}
-                                                  }
+            else -> {MaterialTheme.colors.primary.copy(green = 0.9f)} }
        ,
-
-
-
-
         animationSpec = tween(2000)
     )
-
     Column(
         modifier = Modifier
             .size(canvasSize)
@@ -100,14 +92,12 @@ fun UVIndicator(
                     componentSize = componentSize,
                     indicatorColor = backgroundIndicatorColor,
                     indicatorStrokeWidth = backgroundIndicatorStrokeWidth,
-//                    indicatorStokeCap = indicatorStrokeCap
                 )
                 foregroundIndicator(
                     sweepAngle = sweepAngle,
                     componentSize = componentSize,
                     indicatorColor = foregroundIndicatorColor,
                     indicatorStrokeWidth = foregroundIndicatorStrokeWidth,
-//                    indicatorStokeCap = indicatorStrokeCap
                 )
             },
         verticalArrangement = Arrangement.Center,
@@ -129,7 +119,6 @@ fun DrawScope.backgroundIndicator(
     componentSize: Size,
     indicatorColor: Color,
     indicatorStrokeWidth: Float,
-//    indicatorStokeCap: StrokeCap
 ) {
     drawArc(
         size = componentSize,
@@ -153,7 +142,6 @@ fun DrawScope.foregroundIndicator(
     componentSize: Size,
     indicatorColor: Color,
     indicatorStrokeWidth: Float,
-//    indicatorStokeCap: StrokeCap
 ) {
     drawArc(
         size = componentSize,
@@ -196,7 +184,6 @@ fun EmbeddedElements(
         fontWeight = FontWeight.Bold
     )
 }
-
 //@Composable
 //@Preview(showBackground = true)
 //fun CustomComponentPreview() {

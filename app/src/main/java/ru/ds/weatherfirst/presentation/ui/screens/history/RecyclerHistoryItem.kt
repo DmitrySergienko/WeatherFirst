@@ -32,26 +32,19 @@ fun RecyclerHistoryItem(
     // add "name" to list from db
     val listHistory = mutableListOf<String>()
     for (i in result) listHistory.add(i.name)
-
     //==============
 
-
     //remove single item from listHistory
-
     val item_remove = historyViewModel.remove_item
     if(item_remove.isNotEmpty()&& item_remove=="") listHistory.remove(item_remove)
 
-
     WeatherFirstTheme() {
-
         LazyColumn(
             contentPadding = PaddingValues(bottom = 20.dp)
         ) {
-
             items(listHistory) { name ->
                 //для каждого элемента мы Запускаем:
                 HistoryItemScreen(history = name,navController,historyViewModel = hiltViewModel())
-
             }
         }
     }

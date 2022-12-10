@@ -26,12 +26,6 @@ fun UV_screen(
     navController: NavController,
     uv:String
 ) {
-
-//viewModel
-//    val uvLiveData = hiltViewModel<HomeViewModel>()
-//    val state by uvLiveData.stateMain.collectAsState()
-
-
     WeatherFirstTheme {
         Image(
             painter = painterResource(id = R.drawable.ic_back_new),
@@ -48,8 +42,6 @@ fun UV_screen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-
-            // var value by rememberSaveable { mutableStateOf(0) }
             UVIndicator(indicatorValue = uv.toInt())
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -63,15 +55,10 @@ fun UV_screen(
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .alpha(0.7f)
-                    //fontSize = MaterialTheme.typography.h2.fontSize,
-                    //fontWeight = FontWeight.Bold,
-
                 )
             }
-
         }
     }
-
 }
 @Composable
 fun uVComment(uv: Double):String{

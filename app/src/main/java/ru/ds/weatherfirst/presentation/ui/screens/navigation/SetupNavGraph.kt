@@ -26,9 +26,8 @@ import ru.ds.weatherfirst.ui.theme.MyProject
 @Composable
 fun SetupNavGraph(
     navController: NavHostController,
-    id: Int = 0
+    //id: Int = 0
 ) {
-
     //remove single item from history screen
     val mainScreenViewModel = hiltViewModel<HomeViewModel>()
     val state by mainScreenViewModel.stateMain.collectAsState()
@@ -83,8 +82,6 @@ fun SetupNavGraph(
                 Log.d("VVV","result $result")
             }
             RecyclerHistoryItem(navController = navController, historyViewModel = hiltViewModel())
-
         }
-
     }
 }
