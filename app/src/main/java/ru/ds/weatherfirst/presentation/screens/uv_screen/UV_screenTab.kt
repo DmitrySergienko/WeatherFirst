@@ -39,7 +39,7 @@ fun UV_screenTab() {
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .alpha(0.7f)
+                    .alpha(0.94f)
                     .padding(bottom = 5.dp),
                 backgroundColor = BlueLight,
                 elevation = 0.dp,

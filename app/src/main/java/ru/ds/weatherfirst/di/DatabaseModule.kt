@@ -21,7 +21,7 @@ class DatabaseModule {
     ) = Room.databaseBuilder(
         context,
         HistoryDatabase::class.java,
-            "new_db"
+        "new_db"
     ).createFromAsset("database/new.db").build()
 
     @Singleton

@@ -16,6 +16,9 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -26,6 +29,13 @@ import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.screens.utils.translateCondition
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 import ru.ds.weatherfirst.presentation.theme.TextLight
+
+val fontFamily = FontFamily(
+    Font(R.font.poppins_black, FontWeight.Black),
+    Font(R.font.poppins_bold, FontWeight.Bold),
+    Font(R.font.poppins_regular, FontWeight.Normal),
+    Font(R.font.poppins_thin, FontWeight.Thin)
+)
 
 //вытаскиваем переменные в отедльную функцию Hoist, чтобы MainScreen сделать stateless
 @Composable
@@ -58,7 +68,7 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .alpha(0.7f)
+                .alpha(0.94f)
                 .padding(bottom = 5.dp),
             backgroundColor = BlueLight,
             elevation = 0.dp,
@@ -97,7 +107,9 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                                 .padding(top = 6.dp, end = 5.dp),
                             text = "${stringResource(id = R.string.feels_like)} ${state.feelslikeC.toInt()}°C",
                             style = TextStyle(fontSize = 22.sp),
-                            color = TextLight
+                            color = TextLight,
+                            fontFamily = fontFamily,
+                            fontWeight = FontWeight.Normal,
                         )
                         Image(
                             painter = painterResource(id = R.drawable.ic_baseline_search_24),
@@ -159,7 +171,9 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                         .padding(top = 1.dp, bottom = 15.dp, end = 5.dp),
                     text = "${state.tempC.toInt()}°C",
                     style = TextStyle(fontSize = 65.sp),
-                    color = TextLight
+                    color = TextLight,
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight.Normal,
                 )
                 Row(
                     modifier = Modifier
@@ -173,6 +187,8 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                             .padding(1.dp)
                             .padding(end = 23.dp),
                         text = "${stringResource(id = R.string.last_update)} ${state.lastUpdated}",
+                        fontFamily = fontFamily,
+                        fontWeight = FontWeight.Normal,
                         style = TextStyle(fontSize = 20.sp),
                         color = TextLight
                     )
@@ -185,9 +201,11 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
 @Composable
 fun MainScreenTextItem(text: String) {
     Text(
-        modifier = Modifier.padding(1.dp),
+        modifier = Modifier.padding(end = 4.dp),
         text = text,
-        style = TextStyle(fontSize = 16.sp),
+        style = TextStyle(fontSize = 14.sp),
+        fontFamily = fontFamily,
+        fontWeight = FontWeight.Normal,
         color = TextLight
     )
 }

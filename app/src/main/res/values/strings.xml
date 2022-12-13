@@ -28,7 +28,6 @@
     <string name="last_quarter">Last Quarter</string>
     <string name="waning_crescent">Waning Crescent</string>
 
-
     <!--connectivity screen-->
     <string name="no_connection">No Internet available! Please connect to the network to get actual weather information</string>
 
@@ -62,8 +61,5 @@
     <string name="sunrise">Sunrise:</string>
     <string name="sunset">Sunset:</string>
     <string name="kph">kph:</string>
-
-
-
 
 </resources>

@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -27,6 +28,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.data.db.HistoryDatabase
+import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.theme.TextLight
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
 
@@ -77,6 +79,8 @@ fun HistoryScreen(navController: NavController) {
                         text = stringResource(id = R.string.search_history),
                         style = TextStyle(fontSize = 22.sp),
                         color = TextLight,
+                        fontFamily = fontFamily,
+                        fontWeight = FontWeight.Normal,
                         )
                     Text(
                         modifier = Modifier
@@ -85,6 +89,8 @@ fun HistoryScreen(navController: NavController) {
                         text = stringResource(id = R.string.clean_all),
                         style = TextStyle(fontSize = 18.sp),
                         color = TextLight,
+                        fontFamily = fontFamily,
+                        fontWeight = FontWeight.Normal,
                     )
                 }
                 Spacer(modifier = Modifier.padding(10.dp))

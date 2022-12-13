@@ -25,6 +25,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,7 +40,9 @@ import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.data.db.HistoryDatabase
 import ru.ds.weatherfirst.data.db.TestDB
 import ru.ds.weatherfirst.presentation.screens.TabLayout
+import ru.ds.weatherfirst.presentation.screens.backgroundImage
 import ru.ds.weatherfirst.presentation.screens.main.MainScreenTextItem
+import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.screens.utils.translateCondition
 import ru.ds.weatherfirst.presentation.theme.BlueLight
@@ -75,7 +78,7 @@ fun SearchScreen(navController: NavController, history: String?) {
     //mainScreenViewModel.getWeather(city)
     WeatherFirstTheme {
         Image(
-            painter = painterResource(id = R.drawable.ic_back_new),
+            painter = painterResource(backgroundImage()),
             contentDescription = "imageBack",
             modifier = Modifier
                 .fillMaxSize()
@@ -135,7 +138,9 @@ fun SearchScreen(navController: NavController, history: String?) {
                                     .padding(top = 6.dp, end = 5.dp),
                                 text = "${stringResource(id = R.string.feels_like)} ${state.feelslikeC.toInt()}°C",
                                 style = TextStyle(fontSize = 22.sp),
-                                color = TextLight
+                                color = TextLight,
+                                fontFamily = fontFamily,
+                                fontWeight = FontWeight.Normal,
                             )
                         }
                     }
@@ -160,7 +165,9 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 text = history,
                                 style = TextStyle(fontSize = 18.sp),
                                 color = TextLight,
-                                maxLines = 1
+                                maxLines = 1,
+                                fontFamily = fontFamily,
+                                fontWeight = FontWeight.Normal,
                             )
                         } else {
                             Text(
@@ -169,6 +176,8 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 text = city,
                                 style = TextStyle(fontSize = 18.sp),
                                 color = TextLight,
+                                fontFamily = fontFamily,
+                                fontWeight = FontWeight.Normal,
                             )
                         }
                     }
@@ -193,12 +202,19 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 placeholder = {
                                     Text(
                                         text = stringResource(id = R.string.enter_city),
-                                        maxLines = 1
+                                        maxLines = 1,
+                                        fontFamily = fontFamily,
+                                        fontWeight = FontWeight.Normal,
                                     )
                                 },
                                 singleLine = true,
                                 modifier = Modifier.padding(start = 5.dp, bottom = 5.dp),
-                                textStyle = TextStyle(color = TextLight, fontSize = 26.sp),
+                                textStyle = TextStyle(
+                                    color = TextLight,
+                                    fontSize = 26.sp,
+                                    fontFamily = fontFamily,
+                                    fontWeight = FontWeight.Normal,
+                                ),
                                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                                 keyboardActions = KeyboardActions(
                                     onSearch = {
@@ -217,7 +233,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                                         //dismiss keyboard
                                         keyboardController?.hide()
                                         focusManager.clearFocus()
-                                    }
+                                    },
                                 )
                             )
                             Column() {
@@ -235,7 +251,9 @@ fun SearchScreen(navController: NavController, history: String?) {
                                         .padding(start = 1.dp, top = 3.dp, end = 4.dp),
                                     text = stringResource(id = R.string.history),
                                     style = TextStyle(fontSize = 10.sp),
-                                    color = TextLight
+                                    color = TextLight,
+                                    fontFamily = fontFamily,
+                                    fontWeight = FontWeight.Normal,
                                 )
                             }
                         }
@@ -294,7 +312,9 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 .padding(end = 23.dp),
                             text = "${stringResource(id = R.string.last_update)} ${state.lastUpdated}",
                             style = TextStyle(fontSize = 20.sp),
-                            color = TextLight
+                            color = TextLight,
+                            fontFamily = fontFamily,
+                            fontWeight = FontWeight.Normal,
                         )
                     }
                 }

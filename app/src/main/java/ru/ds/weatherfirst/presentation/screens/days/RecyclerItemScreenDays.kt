@@ -11,11 +11,13 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.domain.model.Forecastday
+import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.utils.translateCondition
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 import ru.ds.weatherfirst.presentation.theme.TextLight
@@ -57,7 +59,7 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
                 modifier = Modifier
                     .weight(0.4f)
                     .size(65.dp)
-                    .padding(top = 14.dp, end = 5.dp),
+                    .padding(top = 14.dp, end = 4.dp),
                 contentScale = ContentScale.FillBounds
             )
         }
@@ -66,10 +68,12 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
 @Composable
 fun CustomTextItem(text: String){
     Text(
-        modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 15.dp),
+        modifier = Modifier.padding(top = 4.dp, bottom = 4.dp, start = 16.dp),
         text = text,
-        style = TextStyle(fontSize = 15.sp),
-        color = TextLight
+        style = TextStyle(fontSize = 14.sp),
+        color = TextLight,
+        fontFamily = fontFamily,
+        fontWeight = FontWeight.Normal,
     )
 }
 

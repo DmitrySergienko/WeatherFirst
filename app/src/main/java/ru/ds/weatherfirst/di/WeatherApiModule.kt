@@ -9,12 +9,14 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import ru.ds.weatherfirst.data.api.ApiConstants
 import ru.ds.weatherfirst.data.api.WeatherApi
 import javax.inject.Singleton
 
+const val BASE_URL = "http://api.weatherapi.com/"
+
 @Module
 @InstallIn(SingletonComponent::class)
+
 class WeatherApiModule {
 
     @Provides
@@ -29,7 +31,7 @@ class WeatherApiModule {
     @Singleton
     fun provideRetrofit():Retrofit.Builder{
         return Retrofit.Builder()
-            .baseUrl(ApiConstants.BASE_URL)
+            .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
     }
     @Provides

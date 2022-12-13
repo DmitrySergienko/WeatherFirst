@@ -14,10 +14,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import ru.ds.weatherfirst.R
+import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
 import ru.ds.weatherfirst.ui.screens.UVIndicator
 
@@ -32,7 +34,7 @@ fun UV_screen(
             contentDescription = "imageBack",
             modifier = Modifier
                 .fillMaxSize()
-                .alpha(0.5f),
+                .alpha(0.94f),
             contentScale = ContentScale.FillBounds
         )
         Column(
@@ -54,7 +56,9 @@ fun UV_screen(
                     style = TextStyle(fontSize = 40.sp),
                     textAlign = TextAlign.Center,
                     modifier = Modifier
-                        .alpha(0.7f)
+                        .alpha(0.7f),
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight.Normal,
                 )
             }
         }

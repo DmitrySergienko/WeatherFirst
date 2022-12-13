@@ -20,18 +20,18 @@ class HomeViewModel @Inject constructor(
     private val locationTracker: LocationTracker
 ) : ViewModel() {
 
-    //for hours
+    //hours
     private val _state = MutableStateFlow(emptyList<Hour>())
     val state: StateFlow<List<Hour>>
         get() = _state
 
-    //for current
+    //current
     private val _stateMain =
         MutableStateFlow(Current(0, Condition("", ""), 0.00, 0, 0, "", 0.1, 0.0, 0.00))
     val stateMain: StateFlow<Current>
         get() = _stateMain
 
-    //for days
+    //days
     private val _stateDay = MutableStateFlow(emptyList<Forecastday>())
     val stateDay: StateFlow<List<Forecastday>>
         get() = _stateDay

@@ -31,6 +31,7 @@ import me.saket.swipe.SwipeAction
 import me.saket.swipe.SwipeableActionsBox
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.data.db.HistoryDatabase
+import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 import ru.ds.weatherfirst.presentation.theme.TextLight
@@ -154,7 +155,8 @@ fun HistoryItemScreen(
                         style = TextStyle(fontSize = 15.sp),
                         color = TextLight,
                         fontSize = MaterialTheme.typography.h5.fontSize,
-                        fontWeight = FontWeight.Light
+                        fontWeight = FontWeight.Light,
+                        fontFamily = fontFamily,
                     )
                 }
                 Image(

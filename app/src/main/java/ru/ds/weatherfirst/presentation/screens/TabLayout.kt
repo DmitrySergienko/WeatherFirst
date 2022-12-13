@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -23,6 +24,7 @@ import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.presentation.screens.days.RecyclerScreenDays
+import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.uv_screen.UV_screenTab
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 import ru.ds.weatherfirst.presentation.theme.TextLight
@@ -68,7 +70,12 @@ fun TabLayout() {
                         }
                     },
                     text = {
-                        Text(text = text, style = TextStyle(color = TextLight))
+                        Text(
+                            text = text,
+                            style = TextStyle(color = TextLight),
+                            fontFamily = fontFamily,
+                            fontWeight = FontWeight.Normal,
+                        )
                     }
                 )
             }
