@@ -32,8 +32,8 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
 import ru.ds.weatherfirst.domain.connectivity.ConnectivityObserver
 import ru.ds.weatherfirst.domain.connectivity.NetworkConnectivityObserver
+import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
 import ru.ds.weatherfirst.presentation.ui.screens.main.NoConnectionScreen
-import ru.ds.weatherfirst.presentation.ui.theme.WeatherFirstTheme
 import ru.ds.weatherfirst.ui.SetupNavGraph
 
 const val ADV_TEST_START = "ca-app-pub-3940256099942544/3419835294"
