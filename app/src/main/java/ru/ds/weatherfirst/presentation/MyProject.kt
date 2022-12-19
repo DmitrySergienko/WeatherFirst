@@ -1,7 +1,9 @@
 package ru.ds.weatherfirst.ui.theme
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -32,9 +34,7 @@ fun MyProject(
                 .fillMaxSize()
                 .padding(top = 4.dp, start = 4.dp, end = 4.dp)
         ) {
-
             MainScreenHoist(navController)
-            Spacer(modifier = Modifier.height(1.dp))
             TabLayout()
         }
     }

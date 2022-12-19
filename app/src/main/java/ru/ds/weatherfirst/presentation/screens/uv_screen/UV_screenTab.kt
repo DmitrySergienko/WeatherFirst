@@ -40,23 +40,23 @@ fun UV_screenTab() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .alpha(0.94f)
-                    .padding(bottom = 2.dp),
+                    .padding(bottom = 2.dp, top = 4.dp),
                 backgroundColor = BlueLight,
                 elevation = 0.dp,
                 shape = RoundedCornerShape(10.dp)
             ) {
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxSize()
                         .verticalScroll(rememberScrollState()),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Spacer(modifier = Modifier.padding(7.dp))
                     UVIndicator(
                         indicatorValue = state.uv.toInt(),
-                        canvasSize = 220.dp,
-                        backgroundIndicatorStrokeWidth = 50f,
-                        foregroundIndicatorStrokeWidth = 50f,
+                        canvasSize = 200.dp,
+                        backgroundIndicatorStrokeWidth = 40f,
+                        foregroundIndicatorStrokeWidth = 40f,
                         bigTextFontSize = 28.sp
                     )
                     Row(

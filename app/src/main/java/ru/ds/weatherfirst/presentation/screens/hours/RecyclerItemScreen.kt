@@ -27,7 +27,7 @@ fun RecyclerItemScreen(hour: Hour) {
         modifier = Modifier
             .fillMaxWidth()
             .alpha(0.9f)
-            .padding(bottom = 5.dp),
+            .padding(bottom = 5.dp, top = 4.dp),
         backgroundColor = BlueLight,
         elevation = 0.dp,
         shape = RoundedCornerShape(10.dp)

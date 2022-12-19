@@ -43,10 +43,21 @@
     <!--uv screen-->
     <string name="low_hazard">Low Hazard: No sun protection required</string>
     <string name="medium_hazard">Medium hazard class: use protective equipment (glasses, hat, shirts, trousers)</string>
-    <string name="high_hazard">High hazard class: try not to be in the sun, use sunscreen</string>
+    <string name="high_hazard">Avoid being outside during midday hours! Make sure you seek shade! Shirt, sunscreen and hat are a must!</string>
     <string name="extreme_hazard">Extreme hazard class: look for shade, it is better to be indoors</string>
     <string name="no_internet">No internet! Please connect to clarify actual UV level!</string>
     <string name="indication">Indication</string>
+    <string name="uv_screen_title_one">
+        The UVI is a measure of the level of UV radiation.
+        The values of the index range from zero upward - the higher the UVI, the greater the potential for damage to the skin and eye,
+        and the less time it takes for harm to occur.
+        The UVI is an important vehicle to alert people about the need to use sun protection.
+        A marked increase in the incidence of skin cancer in fair-skinned populations worldwide is strongly associated with excessive UV radiation exposure from the sun and possibly artificial sources such as sunbeds. Current evidence indicates that personal habits in relation to sun exposure constitute the most important individual risk factor for UV radiation damage.
+</string>
+    <string name="uv_chapter_one">
+       A marked increase in the incidence of skin cancer in fair-skinned populations worldwide is strongly associated with excessive UV radiation exposure from the sun and possibly artificial sources such as sunbeds. Current evidence indicates that personal habits in relation to sun exposure constitute the most important individual risk factor for UV radiation damage.
+    </string>
+
 
     <!--hour & days screens-->
     <string name="time">Time</string>

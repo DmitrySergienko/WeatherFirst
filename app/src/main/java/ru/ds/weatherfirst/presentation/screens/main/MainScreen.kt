@@ -69,7 +69,7 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(0.94f)
-                .padding(bottom = 5.dp),
+                .padding(bottom = 2.dp),
             backgroundColor = BlueLight,
             elevation = 0.dp,
             shape = RoundedCornerShape(10.dp)
@@ -189,7 +189,7 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                         text = "${stringResource(id = R.string.last_update)} ${state.lastUpdated}",
                         fontFamily = fontFamily,
                         fontWeight = FontWeight.Normal,
-                        style = TextStyle(fontSize = 20.sp),
+                        style = TextStyle(fontSize = 16.sp),
                         color = TextLight
                     )
                 }
