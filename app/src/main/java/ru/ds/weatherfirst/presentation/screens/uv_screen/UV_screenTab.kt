@@ -34,13 +34,13 @@ fun UV_screenTab() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(2.dp)
+
         ) {
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .alpha(0.94f)
-                    .padding(bottom = 5.dp),
+                    .padding(bottom = 2.dp),
                 backgroundColor = BlueLight,
                 elevation = 0.dp,
                 shape = RoundedCornerShape(10.dp)
@@ -55,11 +55,10 @@ fun UV_screenTab() {
                     UVIndicator(
                         indicatorValue = state.uv.toInt(),
                         canvasSize = 220.dp,
-                        backgroundIndicatorStrokeWidth = 70f,
-                        foregroundIndicatorStrokeWidth = 70f,
-                        bigTextFontSize = 35.sp
+                        backgroundIndicatorStrokeWidth = 50f,
+                        foregroundIndicatorStrokeWidth = 50f,
+                        bigTextFontSize = 28.sp
                     )
-                    Spacer(modifier = Modifier.padding(5.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center,
@@ -68,7 +67,7 @@ fun UV_screenTab() {
                         Text(
                             text = "UV ${uVComment(state.uv)}",
                             color = MaterialTheme.colors.primary,
-                            style = TextStyle(fontSize = 28.sp),
+                            style = TextStyle(fontSize = 20.sp),
                             textAlign = TextAlign.Center,
                         )
                     }
