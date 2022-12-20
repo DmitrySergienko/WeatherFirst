@@ -26,5 +26,15 @@ data class Current(
     @Json(name = "temp_f")
     val tempF: Double ,
     @Json(name = "uv")
-    val uv: Double
+    val uv: Double,
+    @Json(name = "wind_kph")
+    val wind_kph: Double,
+
+    @Json(name = "wind_dir")
+    val wind_dir: String,
+    @Json(name = "wind_degree")
+    val wind_degree: Int,
+    @Json(name = "pressure_in")
+    val pressure_in: Double,
+
 )

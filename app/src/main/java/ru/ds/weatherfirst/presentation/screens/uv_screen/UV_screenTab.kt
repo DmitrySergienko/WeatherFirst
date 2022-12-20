@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -85,7 +86,6 @@ fun UV_screenTab(
                                 Text(
                                     modifier = Modifier
                                         .padding(start = 10.dp),
-
                                     text = "${state.tempC.toInt()}°C",
                                     style = TextStyle(fontSize = 56.sp),
                                     color = TextLight,
@@ -108,9 +108,12 @@ fun UV_screenTab(
                                 .padding(top = 30.dp),
                             horizontalArrangement = Arrangement.Center
                         ){
-                            DetailedInfo(text = "Information",navController)
+                            CustomInfoButton(
+                                text = "Information",
+                                navController,painterResource(id = R.drawable.ic_uv_img2),
+                                Screen.UVscreen.passUVARG(state.uv.toInt()))
                         }
-
+                        Spacer(modifier = Modifier.height(20.dp))
                     }
                 }
             }
@@ -119,16 +122,15 @@ fun UV_screenTab(
 }
 
 @Composable
-fun DetailedInfo(
+fun CustomInfoButton(
     text: String,
-    navController: NavController
+    navController: NavController,
+    icon: Painter,
+    road:String
 ){
-    val mainScreenViewModel = hiltViewModel<ru.ds.weatherfirst.presentation.screens.HomeViewModel>()
-    val state by mainScreenViewModel.stateMain.collectAsState()
-
     TextButton(
         onClick = {
-            navController.navigate(route = Screen.UVscreen.passUVARG(state.uv.toInt()))
+            navController.navigate(route = road)
         },
         colors = ButtonDefaults.buttonColors(
             backgroundColor = Color.Transparent,
@@ -136,7 +138,7 @@ fun DetailedInfo(
         )
     ) {
         Icon(
-            painter = painterResource(id = R.drawable.ic_uv_img2),
+            painter = icon,
             contentDescription = "UV_button_details",
             modifier = Modifier.size(34.dp)
         )

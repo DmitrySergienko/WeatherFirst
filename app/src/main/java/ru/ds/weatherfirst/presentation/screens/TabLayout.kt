@@ -23,18 +23,17 @@ import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.presentation.screens.days.RecyclerScreenDays
+import ru.ds.weatherfirst.presentation.screens.hours.RecyclerScreen
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.uv_screen.UV_screenTab
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 import ru.ds.weatherfirst.presentation.theme.TextLight
-import ru.ds.weatherfirst.ui.screens.RecyclerScreen
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TabLayout(
     navController: NavController
 ) {
-
     val tabList = listOf(
         stringResource(id = R.string.uv),
         stringResource(id = R.string.hours),
@@ -47,7 +46,7 @@ fun TabLayout(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .height(400.dp)
+            .height(420.dp)
             .padding(start = 2.dp, end = 2.dp)
             .clip(RoundedCornerShape(1.dp))
     ) {

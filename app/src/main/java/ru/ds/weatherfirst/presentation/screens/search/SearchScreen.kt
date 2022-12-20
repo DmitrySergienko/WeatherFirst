@@ -110,21 +110,16 @@ fun SearchScreen(navController: NavController, history: String?) {
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.ic_uv_img2),
+                            painter = painterResource(id = R.drawable.ic_baseline_arrow_back_ios_24),
                             contentDescription = "UV image",
                             modifier = Modifier
-                                .padding(start = 5.dp, top = 6.dp, end = 20.dp)
+                                .padding(start = 20.dp, top = 20.dp, end = 20.dp)
                                 .size(30.dp)
-                                .alpha(0.7f)
                                 .clickable {
                                     //открываем UV_screen и перекидываем туда аргументы
-                                    navController.navigate(
-                                        route = Screen.UVscreen.passUVARG(
-                                            state.uv.toInt()
-                                        )
-                                    )
+                                    // route = Screen.UVscreen.passUVARG(state.uv.toInt())
                                     //если просто открыть окно не закидывая аргументов
-                                    //navController.navigate(route = Screen.UVscreen.route)
+                                        navController.navigate(route = Screen.Home.route)
                                 }
                         )
                         Column(
@@ -243,7 +238,6 @@ fun SearchScreen(navController: NavController, history: String?) {
                                     modifier = Modifier
                                         .padding(start = 1.dp, top = 20.dp, end = 10.dp)
                                         .size(30.dp)
-                                        .alpha(0.7f)
                                         .clickable { navController.navigate(route = Screen.History.route) },
                                 )
                                 Text(

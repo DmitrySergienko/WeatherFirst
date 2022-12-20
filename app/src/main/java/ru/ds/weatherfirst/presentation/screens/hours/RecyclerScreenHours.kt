@@ -1,4 +1,4 @@
-package ru.ds.weatherfirst.ui.screens
+package ru.ds.weatherfirst.presentation.screens.hours
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn

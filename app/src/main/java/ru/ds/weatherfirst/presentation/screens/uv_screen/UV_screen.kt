@@ -1,10 +1,8 @@
 package ru.ds.weatherfirst.presentation.screens.uv_screen
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
@@ -24,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
+import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
 import ru.ds.weatherfirst.ui.screens.UVIndicator
 
@@ -48,7 +47,23 @@ fun UV_screen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            Row(modifier = Modifier
+                .fillMaxWidth(),
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_baseline_arrow_back_ios_24),
+                    contentDescription = "UV image",
+                    modifier = Modifier
+                        .padding(start = 20.dp, top = 20.dp, end = 20.dp)
+                        .size(30.dp)
+                        .clickable {
+                            navController.navigate(route = Screen.Home.route)
+                        }
+                )
+            }
+
             UVIndicator(indicatorValue = uv.toInt())
+
                 Text(
                     text = uVComment(uv = uv.toDouble()),
                     color = MaterialTheme.colors.primary,
@@ -60,14 +75,14 @@ fun UV_screen(
                     fontFamily = fontFamily,
                     fontWeight = FontWeight.Normal,
                 )
-            uvScreenTextItem( R.string.uv_screen_title_one)
-            uvScreenTextItem(R.string.uv_chapter_one)
+            UVScreenTextItem( R.string.uv_screen_title_one)
+            UVScreenTextItem(R.string.uv_chapter_one)
         }
     }
 }
 
 @Composable
-fun uvScreenTextItem(text: Int) {
+fun UVScreenTextItem(text: Int) {
     Text(
         text = stringResource(text),
         color = MaterialTheme.colors.primary,
