@@ -8,14 +8,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "ru.ds.weatherfirst"
         minSdk 23
-        targetSdk 32
+        targetSdk 33
         versionCode 16
-        versionName "16.0"
+        versionName "16"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
