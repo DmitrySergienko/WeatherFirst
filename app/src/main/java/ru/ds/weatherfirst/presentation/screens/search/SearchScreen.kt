@@ -45,6 +45,7 @@ import ru.ds.weatherfirst.presentation.screens.main.MainScreenTextItem
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.screens.utils.translateCondition
+import ru.ds.weatherfirst.presentation.screens.uv_screen.CustomInfoButton
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 import ru.ds.weatherfirst.presentation.theme.TextLight
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
@@ -93,7 +94,7 @@ fun SearchScreen(navController: NavController, history: String?) {
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .alpha(0.7f)
+                    .alpha(0.94f)
                     .padding(bottom = 5.dp),
                 backgroundColor = BlueLight,
                 elevation = 0.dp,
@@ -119,7 +120,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                                     //открываем UV_screen и перекидываем туда аргументы
                                     // route = Screen.UVscreen.passUVARG(state.uv.toInt())
                                     //если просто открыть окно не закидывая аргументов
-                                        navController.navigate(route = Screen.Home.route)
+                                    navController.navigate(route = Screen.Home.route)
                                 }
                         )
                         Column(
@@ -146,13 +147,6 @@ fun SearchScreen(navController: NavController, history: String?) {
                             .padding(top = 2.dp, bottom = 1.dp),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Text(
-                            modifier = Modifier
-                                .padding(top = 1.dp, bottom = 15.dp, end = 5.dp),
-                            text = "${state.tempC.toInt()}°C",
-                            style = TextStyle(fontSize = 65.sp),
-                            color = TextLight
-                        )
                         if (history?.isNotEmpty() == true && history != "{history_argument}" && city.isEmpty()) {
                             Text(
                                 modifier = Modifier
@@ -231,32 +225,13 @@ fun SearchScreen(navController: NavController, history: String?) {
                                     },
                                 )
                             )
-                            Column() {
-                                Image(
-                                    painter = painterResource(id = R.drawable.ic_baseline_history_24),
-                                    contentDescription = "Clean_image",
-                                    modifier = Modifier
-                                        .padding(start = 1.dp, top = 20.dp, end = 10.dp)
-                                        .size(30.dp)
-                                        .clickable { navController.navigate(route = Screen.History.route) },
-                                )
-                                Text(
-                                    modifier = Modifier
-                                        .padding(start = 1.dp, top = 3.dp, end = 4.dp),
-                                    text = stringResource(id = R.string.history),
-                                    style = TextStyle(fontSize = 10.sp),
-                                    color = TextLight,
-                                    fontFamily = fontFamily,
-                                    fontWeight = FontWeight.Normal,
-                                )
-                            }
                         }
                     }
 //======Detailed items
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(start = 5.dp, top = 10.dp, bottom = 1.dp, end = 5.dp),
+                            .padding(start = 5.dp, top = 10.dp, end = 5.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Column(
@@ -292,7 +267,15 @@ fun SearchScreen(navController: NavController, history: String?) {
                             MainScreenTextItem(text = "${stringResource(id = R.string.temp)} ${state.tempF.toInt()}F")
                         }
                     }
-//=============
+
+                    CustomInfoButton(
+                        text = stringResource(id = R.string.history),
+                        navController =  navController,
+                        icon = painterResource(id = R.drawable.ic_baseline_history_24),
+                        road = Screen.History.route)
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()

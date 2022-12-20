@@ -29,6 +29,7 @@ import kotlinx.coroutines.launch
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.data.db.HistoryDatabase
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
+import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.theme.TextLight
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
 
@@ -70,6 +71,16 @@ fun HistoryScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(2.dp, bottom = 30.dp)
             ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_baseline_arrow_back_ios_24),
+                    contentDescription = "UV image",
+                    modifier = Modifier
+                        .padding(start = 20.dp, top = 20.dp, end = 20.dp)
+                        .size(30.dp)
+                        .clickable {
+                            navController.navigate(route = Screen.Home.route)
+                        }
+                )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
