@@ -1,9 +1,9 @@
 package ru.ds.weatherfirst.ui.theme
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -31,11 +31,23 @@ fun MyProject(
         )
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(top = 4.dp, start = 4.dp, end = 4.dp)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Top,
         ) {
-            MainScreenHoist(navController)
-            TabLayout()
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(),
+            ) {
+                TabLayout(navController)
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(),
+            ) {
+                MainScreenHoist(navController)
+            }
         }
     }
 }

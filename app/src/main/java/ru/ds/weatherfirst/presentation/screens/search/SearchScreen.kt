@@ -320,7 +320,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                 }
             }
             Spacer(modifier = Modifier.height(1.dp))
-            TabLayout()
+            TabLayout(navController)
         }
     }
 }

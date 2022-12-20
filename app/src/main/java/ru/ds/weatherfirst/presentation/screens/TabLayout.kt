@@ -1,8 +1,6 @@
 package ru.ds.weatherfirst.presentation.screens
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
@@ -17,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
@@ -32,7 +31,9 @@ import ru.ds.weatherfirst.ui.screens.RecyclerScreen
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TabLayout() {
+fun TabLayout(
+    navController: NavController
+) {
 
     val tabList = listOf(
         stringResource(id = R.string.uv),
@@ -45,7 +46,8 @@ fun TabLayout() {
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
+            .height(400.dp)
             .padding(start = 2.dp, end = 2.dp)
             .clip(RoundedCornerShape(1.dp))
     ) {
@@ -87,7 +89,7 @@ fun TabLayout() {
                 .weight(1.0f)
         ) { tabIndex ->
             when (tabIndex) {
-                0 -> UV_screenTab()
+                0 -> UV_screenTab(navController)
                 1 -> RecyclerScreen()
                 2 -> RecyclerScreenDays()
             }

@@ -62,20 +62,20 @@ fun UV_screen(
                 )
             uvScreenTextItem( R.string.uv_screen_title_one)
             uvScreenTextItem(R.string.uv_chapter_one)
-
         }
     }
 }
 
 @Composable
-fun uvScreenTextItem(text: Int){
+fun uvScreenTextItem(text: Int) {
     Text(
         text = stringResource(text),
         color = MaterialTheme.colors.primary,
         style = TextStyle(fontSize = 18.sp),
         textAlign = TextAlign.Center,
         modifier = Modifier
-            .alpha(0.7f),
+            .alpha(0.7f)
+            .padding(start = 4.dp, end = 4.dp),
         fontFamily = fontFamily,
         fontWeight = FontWeight.Normal,
     )

@@ -32,10 +32,10 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
         modifier = Modifier
             .fillMaxWidth()
             .alpha(0.9f)
-            .padding(bottom = 5.dp, top = 4.dp),
+            .padding(bottom = 4.dp, top = 4.dp),
         backgroundColor = BlueLight,
         elevation = 0.dp,
-        shape = RoundedCornerShape(10.dp)
+        shape = RoundedCornerShape(4.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),

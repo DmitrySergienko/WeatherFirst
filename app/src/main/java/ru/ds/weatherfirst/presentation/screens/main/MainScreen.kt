@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import coil.compose.AsyncImage
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.screens.utils.translateCondition
@@ -62,17 +61,17 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .padding(2.dp)
     ) {
         Card(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .alpha(0.94f)
-                .padding(bottom = 2.dp),
+                .padding(top = 4.dp),
             backgroundColor = BlueLight,
             elevation = 0.dp,
-            shape = RoundedCornerShape(10.dp)
+            shape = RoundedCornerShape(4.dp)
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth(),
@@ -81,7 +80,7 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 20.dp),
+                        .padding(bottom = 6.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Image(
@@ -90,7 +89,6 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                         modifier = Modifier
                             .padding(start = 5.dp, top = 6.dp, end = 20.dp)
                             .size(30.dp)
-                            .alpha(0.7f)
                             .clickable {
                                 //открываем UV_screen и перекидываем туда аргументы
                                 navController.navigate(route = Screen.UVscreen.passUVARG(state.uv.toInt()))
@@ -117,7 +115,6 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                             modifier = Modifier
                                 .padding(start = 5.dp, top = 14.dp, end = 12.dp)
                                 .size(30.dp)
-                                .alpha(0.7f)
                                 .clickable {
                                     //открываем UV_screen и перекидываем туда аргументы
                                     navController.navigate(route = Screen.Search.route)
@@ -147,13 +144,7 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                             .weight(1f),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        AsyncImage(
-                            model = "https:${state.condition.icon}",
-                            contentDescription = "imageIcon",
-                            modifier = Modifier
-                                .size(105.dp)
-                                .padding(top = 1.dp, end = 2.dp)
-                        )
+
                     }
                     Column(
                         modifier = Modifier
@@ -166,15 +157,7 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
                     }
                 }
 //======Main Temperature=======
-                Text(
-                    modifier = Modifier
-                        .padding(top = 1.dp, bottom = 15.dp, end = 5.dp),
-                    text = "${state.tempC.toInt()}°C",
-                    style = TextStyle(fontSize = 65.sp),
-                    color = TextLight,
-                    fontFamily = fontFamily,
-                    fontWeight = FontWeight.Normal,
-                )
+                Spacer(modifier = Modifier.padding(40.dp))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -196,6 +179,11 @@ fun MainScreen(city: String, onCityChange: (String) -> Unit, navController: NavC
             }
         }
     }
+}
+
+@Composable
+fun MainTemperature(){
+
 }
 
 @Composable
