@@ -29,6 +29,7 @@
     <string name="days">3 ДНЯ</string>
 
     <!--tab uv screen-->
+    <string name="Information">Обзор</string>
     <string name="uv_screen_title_one">
         UVI – это мера уровня УФ-излучения.
          Значения индекса варьируются от нуля вверх - чем выше УФП, тем больше вероятность повреждения кожи и глаз,

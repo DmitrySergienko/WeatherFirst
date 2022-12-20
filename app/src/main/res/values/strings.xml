@@ -27,7 +27,6 @@
     <string name="wind_degree">Wind degree</string>
     <string name="pressure">Pressure</string>
 
-
     <!--moon-->
     <string name="last_quarter">Last Quarter</string>
     <string name="waning_crescent">Waning Crescent</string>
@@ -45,6 +44,7 @@
     <string name="days">3 DAYS</string>
 
     <!--tab uv screen-->
+    <string name="Information">Information</string>
     <string name="uv_screen_title_one">
         The UVI is a measure of the level of UV radiation.
         The values of the index range from zero upward - the higher the UVI, the greater the potential for damage to the skin and eye,

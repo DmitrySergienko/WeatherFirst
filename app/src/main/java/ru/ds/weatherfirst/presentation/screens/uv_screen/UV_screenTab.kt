@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -109,7 +110,7 @@ fun UV_screenTab(
                             horizontalArrangement = Arrangement.Center
                         ){
                             CustomInfoButton(
-                                text = "Information",
+                                text = stringResource(id = R.string.indication),
                                 navController,painterResource(id = R.drawable.ic_uv_img2),
                                 Screen.UVscreen.passUVARG(state.uv.toInt()))
                         }
