@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -23,6 +24,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.ds.weatherfirst.R
+import ru.ds.weatherfirst.domain.model.Current
+import ru.ds.weatherfirst.presentation.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.screens.utils.translateCondition
 import ru.ds.weatherfirst.presentation.screens.uv_screen.CustomInfoButton
@@ -41,18 +44,22 @@ val fontFamily = FontFamily(
 fun MainScreenHoist(
     navController: NavController
 ) {
+    val mainScreenViewModel = hiltViewModel<ru.ds.weatherfirst.presentation.screens.HomeViewModel>()
+    val state by mainScreenViewModel.stateMain.collectAsState()
+
     MainScreen(
-        navController = navController
+        navController = navController,
+        mainScreenViewModel = mainScreenViewModel,
+        state = state
     )
 }
 
 @Composable
 fun MainScreen(
-    navController: NavController) {
-
-    val mainScreenViewModel = hiltViewModel<ru.ds.weatherfirst.presentation.screens.HomeViewModel>()
-    val state by mainScreenViewModel.stateMain.collectAsState()
-
+    navController: NavController,
+    mainScreenViewModel: HomeViewModel,
+    state: Current
+) {
     mainScreenViewModel.getWeather("default")
     Column(
         modifier = Modifier
@@ -62,8 +69,7 @@ fun MainScreen(
         Card(
             modifier = Modifier
                 .fillMaxSize()
-                .alpha(0.94f)
-                .padding(top = 4.dp),
+                .alpha(0.94f),
             backgroundColor = BlueLight,
             elevation = 0.dp,
             shape = RoundedCornerShape(4.dp)
@@ -141,7 +147,7 @@ fun MainScreenTextItem(text: String) {
         style = TextStyle(fontSize = 18.sp),
         fontFamily = fontFamily,
         fontWeight = FontWeight.Normal,
-        color = TextLight
+        color = Color.Black
     )
 }
 

@@ -12,7 +12,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import ru.ds.weatherfirst.data.api.WeatherApi
 import javax.inject.Singleton
 
-const val BASE_URL = "http://api.weatherapi.com/"
+const val BASE_URL = "https://api.weatherapi.com/"
 
 @Module
 @InstallIn(SingletonComponent::class)

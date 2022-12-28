@@ -34,9 +34,9 @@ fun UVIndicator(
     indicatorValue: Int = 0,
     maxIndicatorValue: Int = 12,
     backgroundIndicatorColor: Color = MaterialTheme.colors.onSurface.copy(alpha = 0.1f),
-    backgroundIndicatorStrokeWidth: Float = 100f,
+    backgroundIndicatorStrokeWidth: Float = 40f,
     foregroundIndicatorColor: Color = MaterialTheme.colors.primary,
-    foregroundIndicatorStrokeWidth: Float = 100f,
+    foregroundIndicatorStrokeWidth: Float = 40f,
     bigTextFontSize: TextUnit = MaterialTheme.typography.h3.fontSize,
     bigTextColor: Color = MaterialTheme.colors.onSurface,
     bigTextSuffix: String = stringResource(id =R.string.uv),
@@ -74,12 +74,10 @@ fun UVIndicator(
     val animatedBigTextColor by animateColorAsState(
         targetValue = when (allowedIndicatorValue){
 
-            in 3..5->  bigTextColor
+            in 3..5->  Color(R.color.light_blue)
             in 6..8->  MaterialTheme.colors.primary.copy(alpha = 0.9f)
-            in 9..11->  {
-                MaterialTheme.colors.primary.copy(red = 0.9f)
-            }
-            else -> {MaterialTheme.colors.primary.copy(green = 0.9f)} }
+            in 9..11->  { MaterialTheme.colors.primary.copy(red = 0.9f) }
+            else -> Color(R.color.light_blue) }
        ,
         animationSpec = tween(2000)
     )

@@ -40,13 +40,13 @@ fun MyProject(
                 modifier = Modifier
                     .fillMaxWidth(),
             ) {
-                TabLayout(navController)
+                MainScreenHoist(navController)
             }
             Box(
                 modifier = Modifier
                     .fillMaxWidth(),
             ) {
-                MainScreenHoist(navController)
+                TabLayout(navController)
             }
         }
     }

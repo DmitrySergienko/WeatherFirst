@@ -45,11 +45,12 @@
 
     <!--tab uv screen-->
     <string name="Information">Information</string>
+    <string name="indication_det">Index details</string>
     <string name="uv_screen_title_one">
-        The UVI is a measure of the level of UV radiation.
-        The values of the index range from zero upward - the higher the UVI, the greater the potential for damage to the skin and eye,
+        The UV is a measure of the level of UV radiation.
+        The values of the index range from zero upward - the higher the UV, the greater the potential for damage to the skin and eye,
         and the less time it takes for harm to occur.
-        The UVI is an important vehicle to alert people about the need to use sun protection.
+        The UV is an important vehicle to alert people about the need to use sun protection.
         A marked increase in the incidence of skin cancer in fair-skinned populations worldwide is strongly associated with excessive UV radiation exposure from the sun and possibly artificial sources such as sunbeds. Current evidence indicates that personal habits in relation to sun exposure constitute the most important individual risk factor for UV radiation damage.
     </string>
     <string name="uv_chapter_one">

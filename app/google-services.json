@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "358287206335",
+    "project_id": "weatherfirst-5d432",
+    "storage_bucket": "weatherfirst-5d432.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358287206335:android:646bff42535cd8e0a9630a",
+        "android_client_info": {
+          "package_name": "ru.ds.weatherfirst"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358287206335-84sh2968tmma93n7ujjmskfhogsf8rmb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXbOYZrA0AbXLT-ibnnrZgKFLNyFZIprs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358287206335-84sh2968tmma93n7ujjmskfhogsf8rmb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

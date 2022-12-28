@@ -11,8 +11,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -25,7 +25,7 @@ import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.presentation.screens.days.RecyclerScreenDays
 import ru.ds.weatherfirst.presentation.screens.hours.RecyclerScreen
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
-import ru.ds.weatherfirst.presentation.screens.uv_screen.UV_screenTab
+import ru.ds.weatherfirst.presentation.screens.uv_screen.UV_tabHoist
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 import ru.ds.weatherfirst.presentation.theme.TextLight
 
@@ -46,7 +46,7 @@ fun TabLayout(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .height(420.dp)
+            .height(480.dp)
             .padding(start = 2.dp, end = 2.dp)
             .clip(RoundedCornerShape(1.dp))
     ) {
@@ -73,7 +73,7 @@ fun TabLayout(
                     text = {
                         Text(
                             text = text,
-                            style = TextStyle(color = TextLight),
+                            color = Color.Black,
                             fontFamily = fontFamily,
                             fontWeight = FontWeight.Normal,
                         )
@@ -88,7 +88,7 @@ fun TabLayout(
                 .weight(1.0f)
         ) { tabIndex ->
             when (tabIndex) {
-                0 -> UV_screenTab(navController)
+                0 -> UV_tabHoist(navController)
                 1 -> RecyclerScreen()
                 2 -> RecyclerScreenDays()
             }

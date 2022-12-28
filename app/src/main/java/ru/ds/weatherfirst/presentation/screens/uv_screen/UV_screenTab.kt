@@ -1,9 +1,7 @@
 package ru.ds.weatherfirst.presentation.screens.uv_screen
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -23,23 +21,33 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import ru.ds.weatherfirst.R
+import ru.ds.weatherfirst.domain.model.Current
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.screens.utils.MarqueeText
 import ru.ds.weatherfirst.presentation.theme.BlueLight
-import ru.ds.weatherfirst.presentation.theme.TextLight
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
 import ru.ds.weatherfirst.ui.screens.UVIndicator
 
 @Composable
-fun UV_screenTab(
-    navController:NavController
-) {
+fun UV_tabHoist(navController:NavController){
 
-//viewModel
+    //viewModel
     val uvLiveData = hiltViewModel<ru.ds.weatherfirst.presentation.screens.HomeViewModel>()
     val state by uvLiveData.stateMain.collectAsState()
 
+    UV_screenTab(
+        navController = navController,
+        state = state
+
+    )
+}
+
+@Composable
+fun UV_screenTab(
+    navController:NavController,
+    state: Current
+) {
     WeatherFirstTheme {
         Column(
             modifier = Modifier
@@ -57,7 +65,6 @@ fun UV_screenTab(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .verticalScroll(rememberScrollState())
                 ) {
                     Spacer(modifier = Modifier.padding(7.dp))
                     Row(
@@ -89,7 +96,7 @@ fun UV_screenTab(
                                         .padding(start = 10.dp),
                                     text = "${state.tempC.toInt()}°C",
                                     style = TextStyle(fontSize = 56.sp),
-                                    color = TextLight,
+                                    color = Color.Black,
                                     fontFamily = fontFamily,
                                     fontWeight = FontWeight.Normal,
                                 )
@@ -110,7 +117,7 @@ fun UV_screenTab(
                             horizontalArrangement = Arrangement.Center
                         ){
                             CustomInfoButton(
-                                text = stringResource(id = R.string.indication),
+                                text = stringResource(id = R.string.indication_det),
                                 navController,painterResource(id = R.drawable.ic_uv_img2),
                                 Screen.UVscreen.passUVARG(state.uv.toInt()))
                         }

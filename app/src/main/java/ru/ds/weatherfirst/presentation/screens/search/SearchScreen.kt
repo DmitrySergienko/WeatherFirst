@@ -44,7 +44,6 @@ import ru.ds.weatherfirst.presentation.screens.backgroundImage
 import ru.ds.weatherfirst.presentation.screens.main.MainScreenTextItem
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
-import ru.ds.weatherfirst.presentation.screens.utils.translateCondition
 import ru.ds.weatherfirst.presentation.screens.uv_screen.CustomInfoButton
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 import ru.ds.weatherfirst.presentation.theme.TextLight
@@ -241,8 +240,6 @@ fun SearchScreen(navController: NavController, history: String?) {
                             horizontalAlignment = Alignment.Start
                         ) {
                             MainScreenTextItem(text = "${stringResource(id = R.string.humidity)} ${state.humidity}%")
-                            MainScreenTextItem(text = "${stringResource(id = R.string.uv)} ${state.uv}")
-                            MainScreenTextItem(text = translateCondition(param = state.condition.text))
                         }
                         Column(
                             modifier = Modifier

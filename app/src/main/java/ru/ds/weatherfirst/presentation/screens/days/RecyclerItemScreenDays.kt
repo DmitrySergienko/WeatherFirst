@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -20,7 +21,6 @@ import ru.ds.weatherfirst.domain.model.Forecastday
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.utils.translateCondition
 import ru.ds.weatherfirst.presentation.theme.BlueLight
-import ru.ds.weatherfirst.presentation.theme.TextLight
 
 
 @Composable
@@ -71,7 +71,7 @@ fun CustomTextItem(text: String){
         modifier = Modifier.padding(top = 4.dp, bottom = 4.dp, start = 16.dp),
         text = text,
         style = TextStyle(fontSize = 14.sp),
-        color = TextLight,
+        color = Color.Black,
         fontFamily = fontFamily,
         fontWeight = FontWeight.Normal,
     )

@@ -34,7 +34,6 @@ import ru.ds.weatherfirst.data.db.HistoryDatabase
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.theme.BlueLight
-import ru.ds.weatherfirst.presentation.theme.TextLight
 
 @OptIn(DelicateCoroutinesApi::class)
 @Composable
@@ -153,9 +152,9 @@ fun HistoryItemScreen(
                             },
                         text = history,
                         style = TextStyle(fontSize = 15.sp),
-                        color = TextLight,
+                        color = Color.Black,
                         fontSize = MaterialTheme.typography.h5.fontSize,
-                        fontWeight = FontWeight.Light,
+                        fontWeight = FontWeight.Normal,
                         fontFamily = fontFamily,
                     )
                 }
