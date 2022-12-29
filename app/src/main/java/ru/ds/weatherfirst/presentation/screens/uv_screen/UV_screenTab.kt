@@ -22,6 +22,7 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.domain.model.Current
+import ru.ds.weatherfirst.domain.model.Location
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.screens.utils.MarqueeText
@@ -35,10 +36,12 @@ fun UV_tabHoist(navController:NavController){
     //viewModel
     val uvLiveData = hiltViewModel<ru.ds.weatherfirst.presentation.screens.HomeViewModel>()
     val state by uvLiveData.stateMain.collectAsState()
+    val stateLocation by uvLiveData.location.collectAsState()
 
     UV_screenTab(
         navController = navController,
-        state = state
+        state = state,
+        stateLocation = stateLocation
 
     )
 }
@@ -46,7 +49,8 @@ fun UV_tabHoist(navController:NavController){
 @Composable
 fun UV_screenTab(
     navController:NavController,
-    state: Current
+    state: Current,
+    stateLocation: Location
 ) {
     WeatherFirstTheme {
         Column(
@@ -96,6 +100,15 @@ fun UV_screenTab(
                                         .padding(start = 10.dp),
                                     text = "${state.tempC.toInt()}°C",
                                     style = TextStyle(fontSize = 56.sp),
+                                    color = Color.Black,
+                                    fontFamily = fontFamily,
+                                    fontWeight = FontWeight.Normal,
+                                )
+                                Text(
+                                    modifier = Modifier
+                                        .padding(start = 10.dp),
+                                    text = stateLocation.tzId,
+                                    style = TextStyle(fontSize = 16.sp),
                                     color = Color.Black,
                                     fontFamily = fontFamily,
                                     fontWeight = FontWeight.Normal,
