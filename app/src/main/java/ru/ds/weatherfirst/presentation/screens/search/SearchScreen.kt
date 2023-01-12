@@ -247,7 +247,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             AsyncImage(
-                                model = "https:${state.condition.icon}",
+                                model = "https:${state.condition?.icon}",
                                 contentDescription = "imageIcon",
                                 modifier = Modifier
                                     .size(85.dp)

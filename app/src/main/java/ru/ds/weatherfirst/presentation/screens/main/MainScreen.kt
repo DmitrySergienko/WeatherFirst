@@ -44,7 +44,7 @@ val fontFamily = FontFamily(
 fun MainScreenHoist(
     navController: NavController
 ) {
-    val mainScreenViewModel = hiltViewModel<ru.ds.weatherfirst.presentation.screens.HomeViewModel>()
+    val mainScreenViewModel = hiltViewModel<HomeViewModel>()
     val state by mainScreenViewModel.stateMain.collectAsState()
 
     MainScreen(
@@ -89,7 +89,8 @@ fun MainScreen(
                         horizontalAlignment = Alignment.Start
                     ) {
                         MainScreenTextItem(text = "${stringResource(id = R.string.humidity)} ${state.humidity}%")
-                        MainScreenTextItem(text = translateCondition(param = state.condition.text))
+                        state.condition?.text?.let { translateCondition(param = it) }
+                            ?.let { MainScreenTextItem(text = it) }
                         MainScreenTextItem(text = "${stringResource(id = R.string.uv)} ${state.uv}")
                         MainScreenTextItem(text = "${stringResource(id = R.string.wind)} ${state.wind_kph} ${stringResource(id = R.string.kph)}")
                         MainScreenTextItem(text = "${stringResource(id = R.string.wind_degree)} ${state.wind_degree}")

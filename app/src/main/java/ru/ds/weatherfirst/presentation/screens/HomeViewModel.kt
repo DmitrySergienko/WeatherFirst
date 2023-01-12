@@ -8,7 +8,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import ru.ds.weatherfirst.data.repository.WeatherRepo
 import ru.ds.weatherfirst.domain.location.LocationTracker
-import ru.ds.weatherfirst.domain.model.*
+import ru.ds.weatherfirst.domain.model.Current
+import ru.ds.weatherfirst.domain.model.Forecastday
+import ru.ds.weatherfirst.domain.model.Hour
+import ru.ds.weatherfirst.domain.model.Location
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,7 +32,7 @@ class HomeViewModel @Inject constructor(
 
     //current
     private val _stateMain =
-        MutableStateFlow(Current(0, Condition("", ""), 0.00, 0, 0, "", 0.1, 0.0, 0.00,0.00,"",0,0.00))
+        MutableStateFlow(Current())
     val stateMain: StateFlow<Current>
         get() = _stateMain
 

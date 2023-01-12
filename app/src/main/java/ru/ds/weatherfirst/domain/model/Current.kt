@@ -12,9 +12,9 @@ data class Current(
     @Json(name = "cloud")
     val cloud: Int =0,
     @Json(name = "condition")
-    val condition: Condition,
+    val condition: Condition? = null,
     @Json(name = "feelslike_c")
-    val feelslikeC: Double ,
+    val feelslikeC: Double = 0.0,
     @Json(name = "humidity")
     val humidity: Int=0,
     @Json(name = "is_day")
@@ -29,7 +29,6 @@ data class Current(
     val uv: Double=0.0,
     @Json(name = "wind_kph")
     val wind_kph: Double=0.0,
-
     @Json(name = "wind_dir")
     val wind_dir: String="",
     @Json(name = "wind_degree")

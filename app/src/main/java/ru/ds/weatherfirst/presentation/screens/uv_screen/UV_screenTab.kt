@@ -89,7 +89,7 @@ fun UV_screenTab(
                                 horizontalAlignment = Alignment.End
                             ) {
                                 AsyncImage(
-                                    model = "https:${state.condition.icon}",
+                                    model = "https:${state.condition?.icon}",
                                     contentDescription = "imageIcon",
                                     modifier = Modifier
                                         .size(76.dp)
