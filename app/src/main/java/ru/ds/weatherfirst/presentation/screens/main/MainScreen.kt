@@ -60,7 +60,7 @@ fun MainScreen(
     mainScreenViewModel: HomeViewModel,
     state: Current
 ) {
-    mainScreenViewModel.getWeather("default")
+    //mainScreenViewModel.getWeather("default")
     Column(
         modifier = Modifier
             .fillMaxSize()

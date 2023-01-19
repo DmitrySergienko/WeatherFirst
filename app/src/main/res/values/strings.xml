@@ -83,5 +83,6 @@
     <!--widget-->
     <string name="widget_initial_label_loading" translatable="false">Loading…</string>
     <string name="widget_hello_world_description" translatable="false">Hello World</string>
+    <string name="error_ui_widget_error_message" translatable="false">Custom error message</string>
 
 </resources>

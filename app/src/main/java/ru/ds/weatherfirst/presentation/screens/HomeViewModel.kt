@@ -70,8 +70,14 @@ class HomeViewModel @Inject constructor(
 
     var remove_item = ""
         private set // можем поменять только из viewModel
+
     fun passItem(newItem: String){
         remove_item = newItem
     }
+
+    init {
+        getWeather("default")
+    }
+
 }
 
