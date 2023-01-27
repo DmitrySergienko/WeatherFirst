@@ -26,11 +26,11 @@ import androidx.navigation.NavController
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.domain.model.Current
 import ru.ds.weatherfirst.presentation.screens.HomeViewModel
+import ru.ds.weatherfirst.presentation.screens.days.CustomTextItem
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.screens.utils.translateCondition
 import ru.ds.weatherfirst.presentation.screens.uv_screen.CustomInfoButton
 import ru.ds.weatherfirst.presentation.theme.BlueLight
-import ru.ds.weatherfirst.presentation.theme.TextLight
 
 val fontFamily = FontFamily(
     Font(R.font.poppins_black, FontWeight.Black),
@@ -116,24 +116,15 @@ fun MainScreen(
                     Screen.Search.route
                 )
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(16.dp))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 4.dp, end = 4.dp)
+                        .padding(start = 4.dp, end = 12.dp)
                         .horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.Start,
+                    horizontalArrangement = Arrangement.End,
                 ) {
-                    Text(
-                        modifier = Modifier
-                            .padding(1.dp)
-                            .padding(end = 23.dp),
-                        text = "${stringResource(id = R.string.last_update)} ${state.lastUpdated}",
-                        fontFamily = fontFamily,
-                        fontWeight = FontWeight.Normal,
-                        style = TextStyle(fontSize = 16.sp),
-                        color = TextLight
-                    )
+                    CustomTextItem(text = "${stringResource(id = R.string.last_update)} ${state.lastUpdated}")
                 }
             }
         }

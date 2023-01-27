@@ -24,8 +24,8 @@ import kotlinx.coroutines.launch
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.presentation.screens.days.RecyclerScreenDays
 import ru.ds.weatherfirst.presentation.screens.hours.RecyclerScreen
+import ru.ds.weatherfirst.presentation.screens.main.MainScreenHoist
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
-import ru.ds.weatherfirst.presentation.screens.uv_screen.UV_tabHoist
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 import ru.ds.weatherfirst.presentation.theme.TextLight
 
@@ -46,7 +46,7 @@ fun TabLayout(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .height(530.dp)
+            .height(500.dp)
             .padding(start = 2.dp, end = 2.dp)
             .clip(RoundedCornerShape(1.dp))
     ) {
@@ -88,7 +88,8 @@ fun TabLayout(
                 .weight(1.0f)
         ) { tabIndex ->
             when (tabIndex) {
-                0 -> UV_tabHoist(navController)
+               // 0 -> UV_tabHoist(navController)
+                0 -> MainScreenHoist(navController = navController)
                 1 -> RecyclerScreen()
                 2 -> RecyclerScreenDays()
             }

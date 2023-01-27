@@ -54,9 +54,11 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //hide action bar
+        highActionBar()
 
         //Splash Screen
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -106,6 +108,7 @@ class MainActivity : ComponentActivity() {
                         super.onAdFailedToLoad(p0)
                         mInterstitialAd = null
                     }
+
                     override fun onAdLoaded(p0: InterstitialAd) {
                         super.onAdLoaded(p0)
                         mInterstitialAd = p0
@@ -141,7 +144,7 @@ class MainActivity : ComponentActivity() {
                                 navController = rememberNavController()
                                 SetupNavGraph(navController = navController)
                             } else {
-                               // If no internet
+                                // If no internet
                                 NoConnectionScreen()
                             }
                         }
@@ -149,6 +152,10 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+    private fun highActionBar(){
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        actionBar?.hide()
     }
 }
 

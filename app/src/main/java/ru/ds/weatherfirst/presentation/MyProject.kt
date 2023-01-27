@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ru.ds.weatherfirst.presentation.screens.TabLayout
 import ru.ds.weatherfirst.presentation.screens.backgroundImage
-import ru.ds.weatherfirst.presentation.screens.main.MainScreenHoist
+import ru.ds.weatherfirst.presentation.screens.uv_screen.UV_tabHoist
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
 
 @Composable
@@ -40,7 +40,7 @@ fun MyProject(
                 modifier = Modifier
                     .fillMaxWidth(),
             ) {
-                MainScreenHoist(navController)
+                UV_tabHoist(navController)
             }
             Box(
                 modifier = Modifier

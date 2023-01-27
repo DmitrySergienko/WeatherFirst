@@ -41,6 +41,7 @@ import ru.ds.weatherfirst.data.db.HistoryDatabase
 import ru.ds.weatherfirst.data.db.TestDB
 import ru.ds.weatherfirst.presentation.screens.TabLayout
 import ru.ds.weatherfirst.presentation.screens.backgroundImage
+import ru.ds.weatherfirst.presentation.screens.days.CustomTextItem
 import ru.ds.weatherfirst.presentation.screens.main.MainScreenTextItem
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
@@ -130,8 +131,8 @@ fun SearchScreen(navController: NavController, history: String?) {
                         ) {
                             Text(
                                 modifier = Modifier
-                                    .padding(top = 6.dp, end = 5.dp),
-                                text = "${stringResource(id = R.string.feels_like)} ${state.feelslikeC.toInt()}°C",
+                                    .padding(top = 20.dp, end = 8.dp),
+                                text = "${stringResource(id = R.string.temperature)} ${state.tempC.toInt()}°C",
                                 style = TextStyle(fontSize = 22.sp),
                                 color = TextLight,
                                 fontFamily = fontFamily,
@@ -147,26 +148,9 @@ fun SearchScreen(navController: NavController, history: String?) {
                         horizontalArrangement = Arrangement.Center
                     ) {
                         if (history?.isNotEmpty() == true && history != "{history_argument}" && city.isEmpty()) {
-                            Text(
-                                modifier = Modifier
-                                    .padding(top = 18.dp, end = 15.dp),
-                                text = history,
-                                style = TextStyle(fontSize = 18.sp),
-                                color = TextLight,
-                                maxLines = 1,
-                                fontFamily = fontFamily,
-                                fontWeight = FontWeight.Normal,
-                            )
+                            CustomTextItem(text = history)
                         } else {
-                            Text(
-                                modifier = Modifier
-                                    .padding(top = 18.dp, end = 15.dp),
-                                text = city,
-                                style = TextStyle(fontSize = 18.sp),
-                                color = TextLight,
-                                fontFamily = fontFamily,
-                                fontWeight = FontWeight.Normal,
-                            )
+                            CustomTextItem(text = city)
                         }
                     }
 //===Search field
@@ -236,7 +220,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                         Column(
                             modifier = Modifier
                                 .weight(1f)
-                                .padding(start = 5.dp),
+                                .padding(start = 8.dp),
                             horizontalAlignment = Alignment.Start
                         ) {
                             MainScreenTextItem(text = "${stringResource(id = R.string.humidity)} ${state.humidity}%")
@@ -280,16 +264,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                             .horizontalScroll(rememberScrollState()),
                         horizontalArrangement = Arrangement.Start,
                     ) {
-                        Text(
-                            modifier = Modifier
-                                .padding(1.dp)
-                                .padding(end = 23.dp),
-                            text = "${stringResource(id = R.string.last_update)} ${state.lastUpdated}",
-                            style = TextStyle(fontSize = 20.sp),
-                            color = TextLight,
-                            fontFamily = fontFamily,
-                            fontWeight = FontWeight.Normal,
-                        )
+
                     }
                 }
             }
