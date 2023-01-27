@@ -21,20 +21,24 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.data.api.WeatherApi
+import ru.ds.weatherfirst.domain.model.Weather
 import kotlin.coroutines.resume
 
 const val BASE_URL = "https://api.weatherapi.com/"
 private const val MY_ACTION = "MY_ACTION"
+private const val API_KEY = "886e042c31bc49c3a3f131017220902"
+
+const val MY_TAG = "VVV"
 
 class RateWidget : AppWidgetProvider() {
 
-       private val application: Application
+    private val application: Application
         get() {
             TODO()
         }
 
     private lateinit var fusedLocClient: FusedLocationProviderClient
-    suspend fun getCurrentLocation(): Location? {
+    private suspend fun getCurrentLocation(): Location? {
         val hasAccessFineLocationPermission = ContextCompat.checkSelfPermission(
             application,
             Manifest.permission.ACCESS_FINE_LOCATION
@@ -44,10 +48,11 @@ class RateWidget : AppWidgetProvider() {
             Manifest.permission.ACCESS_COARSE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
 
-        val locationManager = application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val locationManager =
+            application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) ||
                 locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        if(!hasAccessCoarseLocationPermission || !hasAccessFineLocationPermission || !isGpsEnabled) {
+        if (!hasAccessCoarseLocationPermission || !hasAccessFineLocationPermission || !isGpsEnabled) {
             return null
         }
 
@@ -99,35 +104,14 @@ class RateWidget : AppWidgetProvider() {
         ).apply {
             scope.launch {
 
-                //get rate USD & EUR (https://app.freecurrencyapi.com/)
-              // val rate = api.getRateApi(APIKEY).data
-              // val usdRate = rate?.rub?.toDouble()
-              // if (usdRate != null) {
-              //     rateDecimal(usdRate)
-              // }
-
-              // val tempRate = rate?.eur?.toDouble()
-              // val eurRate = usdRate?.let { ((1 - tempRate!!) + 1).times(it) }
-              // if (usdRate != null) {
-              //     if (eurRate != null) {
-              //         rateDecimal(eurRate)
-              //     }
-              // }
-
-                //progress bar visibility
-                setProgressBar(R.id.progress_bar, 1, 1, false)
-                setViewVisibility(R.id.progress_image, View.INVISIBLE)
-                setViewVisibility(R.id.progress_bar, View.VISIBLE)
-                //update widget manager
-                appWidgetManager.updateAppWidget(appWidgetId, this@apply)
-
-                //sleep the thread to show progress bar running
                 withContext(Dispatchers.IO) {
                     Log.d("VVV", " thread sleep")
-                    Thread.sleep(500)
+                    val lon = getCurrentLocation()?.longitude.toString()
+                    val lat = getCurrentLocation()?.latitude.toString()
 
-                    setTextViewText(R.id.textView, "USD Test")
-
+                    val location = weatherResponse("$lat,$lon")
+                    Log.d(MY_TAG, "onReceive location: $location")
+                    setTextViewText(R.id.textView, "Location: $location")
                 }
 
                 setViewVisibility(R.id.progress_bar, View.INVISIBLE)
@@ -158,39 +142,29 @@ class RateWidget : AppWidgetProvider() {
                 R.layout.initial_layout_widget
             ).apply {
                 scope.launch {
-
                     //set pending intent
                     setOnClickPendingIntent(R.id.widget_root, pendingIntent)
 
-                    //get rate USD and EUR (https://app.freecurrencyapi.com/)
-                   // val rate = api.getRateApi(APIKEY).data
-                   // val usdRate = rate?.rub?.toDouble()
-//
-                   // if (usdRate != null) {
-                   //     rateDecimal(usdRate)
-                   // }
-                   // val tempRate = rate?.eur?.toDouble()
-                   // val eurRate = usdRate?.let { ((1 - tempRate!!) + 1).times(it) }
-                   // if (usdRate != null) {
-                   //     if (eurRate != null) {
-                   //         rateDecimal(eurRate)
-                   //     }
-                   // }
+                    withContext(Dispatchers.IO) {
+                        Log.d("VVV", " thread sleep")
+                        val lon = getCurrentLocation()?.longitude.toString()
+                        val lat = getCurrentLocation()?.latitude.toString()
 
-                    setTextViewText(R.id.textView, "USD Test")
-
+                        val location = weatherResponse("$lat,$lon")
+                        Log.d(MY_TAG, "onUpd location: $location")
+                        setTextViewText(R.id.textView, "Location: $location")
+                    }
                     setViewVisibility(R.id.progress_bar, View.INVISIBLE)
                     setViewVisibility(R.id.progress_image, View.VISIBLE)
-                    Log.d("VVV", "onUpdate done")
+                    Log.d(MY_TAG, "onUpd  done")
                     appWidgetManager.updateAppWidget(appWidgetId, this@apply)
                 }
             }
         }
     }
 
-    private fun rateDecimal(value: Double): String {
-        val result = Math.round(value * 100.0) / 100.0
-        return result.toString()
+    suspend fun weatherResponse(city: String): Weather {
+        return api.getWeather(API_KEY,city,"3")
     }
 
 }
