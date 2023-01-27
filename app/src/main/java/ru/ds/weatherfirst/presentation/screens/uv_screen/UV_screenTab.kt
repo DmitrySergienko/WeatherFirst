@@ -55,7 +55,7 @@ fun UV_screenTab(
     WeatherFirstTheme {
         Column(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
         ) {
             Card(
                 modifier = Modifier
@@ -68,7 +68,7 @@ fun UV_screenTab(
             ) {
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxSize()
                 ) {
                     Spacer(modifier = Modifier.padding(7.dp))
                     Row(
@@ -117,7 +117,7 @@ fun UV_screenTab(
                     }
                     Column(
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .fillMaxSize()
                             .padding(start = 20.dp, end = 20.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
@@ -126,15 +126,16 @@ fun UV_screenTab(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(top = 30.dp),
+                                .padding(top = 60.dp, bottom = 40.dp),
                             horizontalArrangement = Arrangement.Center
                         ){
+                            Spacer(modifier = Modifier.height(60.dp))
+
                             CustomInfoButton(
                                 text = stringResource(id = R.string.indication_det),
                                 navController,painterResource(id = R.drawable.ic_uv_img2),
                                 Screen.UVscreen.passUVARG(state.uv.toInt()))
                         }
-                        Spacer(modifier = Modifier.height(20.dp))
                     }
                 }
             }
