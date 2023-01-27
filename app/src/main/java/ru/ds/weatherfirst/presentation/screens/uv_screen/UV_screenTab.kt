@@ -107,7 +107,7 @@ fun UV_screenTab(
                                 Text(
                                     modifier = Modifier
                                         .padding(start = 10.dp),
-                                    text = stateLocation.tzId,
+                                    text = stateLocation.region,
                                     style = TextStyle(fontSize = 16.sp),
                                     color = Color.Black,
                                     fontFamily = fontFamily,
