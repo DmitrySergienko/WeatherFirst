@@ -51,6 +51,19 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_hello_world_info" />
         </receiver>
+
+        <receiver
+            android:name=".widget.RateWidget"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="my_action_intent.rate"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/rate_widget_info" />
+        </receiver>
     </application>
 
 </manifest>
