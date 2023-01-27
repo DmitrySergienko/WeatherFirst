@@ -57,9 +57,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //hide action bar
-        highActionBar()
-
         //Splash Screen
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val splashScreen = installSplashScreen()
@@ -152,10 +149,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-    private fun highActionBar(){
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        actionBar?.hide()
     }
 }
 
