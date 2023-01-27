@@ -75,5 +75,6 @@
     <string name="waning_crescent">Растущая луна</string>
     <string name="clear">Ясно</string>
     <string name="kph">км/ч</string>
+    <string name="off_line">off_line</string>
 
 </resources>

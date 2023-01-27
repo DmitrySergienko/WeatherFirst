@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.ds.weatherfirst.R
@@ -40,23 +40,27 @@ fun NoConnectionScreen() {
             modifier = Modifier
                 .fillMaxSize(),
             backgroundColor = Color.Transparent,
-            elevation = 0.dp,
-            shape = RoundedCornerShape(10.dp),
+
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize(),
+                    .fillMaxSize()
+                    .padding(top = 60.dp, start = 40.dp, end = 40.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Top
             ) {
+                Image(
+                    painter =painterResource(id = R.drawable.ic_off_line),
+                    contentDescription = stringResource(id = R.string.off_line),)
+
                 Text(
-                    modifier = Modifier.padding(start = 20.dp),
+                    modifier = Modifier.padding(top = 4.dp, bottom = 4.dp, start = 16.dp),
+                    textAlign = TextAlign.Center,
                     text = stringResource(id = R.string.no_connection),
-                    style = TextStyle(fontSize = 22.sp),
+                    style = TextStyle(fontSize = 20.sp),
+                    color = Color.Black,
                     fontFamily = fontFamily,
-                    fontWeight = FontWeight.Normal,
-                    color = Color.Black
-                )
+                    fontWeight = FontWeight.Normal,)
             }
         }
     }
