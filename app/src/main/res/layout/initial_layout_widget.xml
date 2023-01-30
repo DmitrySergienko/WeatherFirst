@@ -8,85 +8,58 @@
     android:gravity="start"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:baselineAligned="true"
-        android:gravity="start"
-        android:orientation="horizontal">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="3dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="4dp"
+            android:gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="3dp"
-            android:orientation="vertical">
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="4dp"
+            android:gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="4dp"
-                android:gravity="center_horizontal"
-                android:scaleType="centerCrop"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/textView_two"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="4dp"
-                android:gravity="center_horizontal"
-                android:scaleType="centerCrop"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/textView_three"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="4dp"
-                android:gravity="center_horizontal"
-                android:scaleType="centerCrop"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/progress_image"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@drawable/ic_baseline_downloading_24"
-                    android:visibility="visible">
-                </ImageView>
-
-                <ProgressBar
-                    android:id="@+id/progress_bar"
-                    style="?android:attr/progressBarStyleSmallTitle"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:visibility="visible">
-
-                </ProgressBar>
-            </FrameLayout>
-        </LinearLayout>
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/progress_image"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:contentDescription="@string/progress_bar_image"
+            android:src="@drawable/ic_baseline_downloading_24"
+            android:visibility="visible"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleSmallTitle"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:visibility="visible">
+
+        </ProgressBar>
+    </FrameLayout>
+
 </LinearLayout>

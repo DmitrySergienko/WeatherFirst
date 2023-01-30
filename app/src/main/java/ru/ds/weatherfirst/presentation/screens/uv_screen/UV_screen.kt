@@ -114,9 +114,10 @@ fun UVScreenTextItem(text: Int) {
 fun uVComment(uv: Double):String{
     val text = when(uv.toInt()){
         in 0..2 -> stringResource(id = R.string.low_hazard)
-        in 3..6 -> stringResource(id = R.string.medium_hazard)
-        in 7..9 -> stringResource(id = R.string.high_hazard)
-        in 10..12 -> stringResource(id = R.string.extreme_hazard)
+        in 3..5 -> stringResource(id = R.string.medium_hazard)
+        in 6..7 -> stringResource(id = R.string.high_hazard)
+        in 8..10 -> stringResource(id = R.string.extreme_hazard)
+        in 11..15 -> stringResource(id = R.string.super_extreme_hazard)
         else -> {stringResource(id = R.string.no_internet)}
     }
     return text

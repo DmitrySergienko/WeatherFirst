@@ -1,4 +1,96 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">UV Weather</string>
+
+    <!--history screen-->
+    <string name="clean_all">Clean all</string>
+    <string name="search_history">SEARCH HISTORY</string>
+
+    <!--main screen-->
+    <string name="feels_like">Feels like</string>
+    <string name="humidity">Humidity</string>
+    <string name="uv">UV</string>
+    <string name="cloud">Cloud</string>
+    <string name="temp">Temp</string>
+    <string name="last_update">Last update</string>
+
+    <!--main screen manual translate-->
+    <string name="sunny">Sunny</string>
+    <string name="partly_cloudy">Partly cloudy</string>
+    <string name="clear">Clear</string>
+    <string name="cloudy">Cloudy</string>
+    <string name="light_rain_shower">Light rain shower</string>
+    <string name="overcast">Overcast</string>
+    <string name="heavy_rain">Heavy rain</string>
+    <string name="patchy_rain">Patchy rain possible</string>
+    <string name="moderate_rain">Moderate rain</string>
+    <string name="search_btn">Search</string>
+    <string name="wind_degree">Wind degree</string>
+    <string name="pressure">Pressure</string>
+
+    <!--moon-->
+    <string name="last_quarter">Last Quarter</string>
+    <string name="waning_crescent">Waning Crescent</string>
+
+    <!--connectivity screen-->
+    <string name="no_connection">No Internet available! Please connect to the network to get actual weather information</string>
+
+    <!--search screen-->
+    <string name="search">Search</string>
+    <string name="enter_city">Enter city</string>
+    <string name="history">History</string>
+
+    <!--tab screen-->
+    <string name="hours">HOURS</string>
+    <string name="days">3 DAYS</string>
+
+    <!--tab uv screen-->
+    <string name="Information">Information</string>
+    <string name="indication_det">Index details</string>
+    <string name="uv_screen_title_one">
+        The UV is a measure of the level of UV radiation.
+        The values of the index range from zero upward - the higher the UV, the greater the potential for damage to the skin and eye,
+        and the less time it takes for harm to occur.
+        The UV is an important vehicle to alert people about the need to use sun protection.
+        A marked increase in the incidence of skin cancer in fair-skinned populations worldwide is strongly associated with excessive UV radiation exposure from the sun and possibly artificial sources such as sunbeds. Current evidence indicates that personal habits in relation to sun exposure constitute the most important individual risk factor for UV radiation damage.
+    </string>
+    <string name="uv_chapter_one">
+       A marked increase in the incidence of skin cancer in fair-skinned populations worldwide is strongly associated with excessive UV radiation exposure from the sun and possibly artificial sources such as sunbeds. Current evidence indicates that personal habits in relation to sun exposure constitute the most important individual risk factor for UV radiation damage.
+    </string>
+
+    <!--uv screen-->
+    <string name="low_hazard">Low Hazard: No sun protection required. A UV Index reading two or lower means there is a minimal risk of sunburn for the average person. At this level it is suggested to wear sunglasses, use broad spectrum sunscreen and watch out for bright surfaces like sand, water and snow which reflect UV rays, increasing your exposure. The time to burn can vary by skin type, but at a low UV level it is approximately 60 minutes.</string>
+    <string name="medium_hazard">A UV Index reading between 3 and 5 means there is a moderate risk of sunburn for the average person. At this level it is suggested to seek shade between 10AM and 4PM when the sun’s rays are its strongest. Wearing protective clothing, including a hat and sunglasses, is a great way to limit exposure. Sunscreen should be applied every two hours, even on cloudy days, and reapplied after swimming or sweating. The time to burn can vary by skin type, but at a moderate UV level it is approximately 30 to 45 minutes.</string>
+    <string name="high_hazard">A UV Index reading 6 or 7 puts you at a high risk of harm from unprotected sun exposure. Following the steps from the moderate level is suggested. The time to burn can vary by skin type, but at a high UV level it is approximately 15 to 25 minutes.</string>
+    <string name="extreme_hazard">A UV Index reading 8 to 10 puts you at a very high risk of harm from unprotected sun exposure. Take extra precautions for both your skin and eyes because damage occurs quickly, typically within 15 minutes. Try to minimize your sun exposure during peak sun times, but if not possible then diligently apply and re-apply sunscreen and SPF lip balm.</string>
+    <string name="no_internet">No internet! Please connect to clarify actual UV level!</string>
+    <string name="indication">Indication</string>
+    <string name="information">Information</string>
+
+    <!--hour & days screens-->
+    <string name="time">Time</string>
+    <string name="wind">Wind</string>
+    <string name="temperature">Temperature:</string>
+    <string name="wind_direction">Wind direction:</string>
+    <string name="date">Date:</string>
+    <string name="average">Average t:</string>
+    <string name="min">Min t:</string>
+    <string name="max">Max t:</string>
+    <string name="moon">Moon phase:</string>
+    <string name="sunrise">Sunrise:</string>
+    <string name="sunset">Sunset:</string>
+    <string name="kph">kph</string>
+
+    <!--widget-->
+    <string name="widget_initial_label_loading" translatable="false">Loading…</string>
+    <string name="widget_hello_world_description" translatable="false">Hello World</string>
+    <string name="error_ui_widget_error_message" translatable="false">Custom error message</string>
     <string name="off_line">off_line</string>
+    <string name="short_low_index">Good UV</string>
+    <string name="super_extreme_hazard">A UV Index reading 11 or higher puts you in a very dangerous spot for sunburn with damage occurring in less than 10 minutes if unprotected. At this level it is best to avoid all sun exposure between 10AM and 4PM.</string>
+    <string name="protection_teme">You are protected for</string>
+    <string name="protection_teme_extrime">Be burn before</string>
+    <string name="protection">Protection</string>
+    <string name="minimum">min:</string>
+    <string name="progress_bar_image">progress bar image</string>
+
 </resources>
