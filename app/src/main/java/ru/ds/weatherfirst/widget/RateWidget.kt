@@ -1,7 +1,6 @@
 package ru.ds.weatherfirst.widget
 
 import android.Manifest
-import android.app.Application
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
@@ -16,13 +15,17 @@ import android.view.View
 import android.widget.RemoteViews
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
-import kotlinx.coroutines.*
+import com.google.android.gms.location.LocationServices
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.data.api.WeatherApi
-import ru.ds.weatherfirst.domain.model.Weather
 import kotlin.coroutines.resume
+
 
 const val BASE_URL = "https://api.weatherapi.com/"
 private const val MY_ACTION = "MY_ACTION"
@@ -32,24 +35,21 @@ const val MY_TAG = "VVV"
 
 class RateWidget : AppWidgetProvider() {
 
-    private val application: Application
-        get() {
-            TODO()
-        }
 
-    private lateinit var fusedLocClient: FusedLocationProviderClient
-    private suspend fun getCurrentLocation(): Location? {
+    private suspend fun getCurrentLocation(
+        context: Context,
+        locationClient: FusedLocationProviderClient
+    ): Location? {
         val hasAccessFineLocationPermission = ContextCompat.checkSelfPermission(
-            application,
+            context,
             Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
         val hasAccessCoarseLocationPermission = ContextCompat.checkSelfPermission(
-            application,
+            context,
             Manifest.permission.ACCESS_COARSE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
 
-        val locationManager =
-            application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) ||
                 locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
         if (!hasAccessCoarseLocationPermission || !hasAccessFineLocationPermission || !isGpsEnabled) {
@@ -57,7 +57,7 @@ class RateWidget : AppWidgetProvider() {
         }
 
         return suspendCancellableCoroutine { cont ->
-            fusedLocClient.lastLocation.apply {
+            locationClient.lastLocation.apply {
                 if (isComplete) {
                     if (isSuccessful) {
                         cont.resume(result)
@@ -78,6 +78,7 @@ class RateWidget : AppWidgetProvider() {
             }
         }
     }
+
 
     //get api by retrofit
     private val api: WeatherApi by lazy {
@@ -103,16 +104,18 @@ class RateWidget : AppWidgetProvider() {
             R.layout.initial_layout_widget
         ).apply {
             scope.launch {
+//=================
+                val fusedLocationProviderClient =
+                    LocationServices.getFusedLocationProviderClient(context)
+                getCurrentLocation(context, fusedLocationProviderClient)
+                val lat = getCurrentLocation(context, fusedLocationProviderClient)?.latitude.toString()
+                val lon = getCurrentLocation(context, fusedLocationProviderClient)?.longitude.toString()
 
-                withContext(Dispatchers.IO) {
-                    Log.d("VVV", " thread sleep")
-                    val lon = getCurrentLocation()?.longitude.toString()
-                    val lat = getCurrentLocation()?.latitude.toString()
-
-                    val location = weatherResponse("$lat,$lon")
-                    Log.d(MY_TAG, "onReceive location: $location")
-                    setTextViewText(R.id.textView, "Location: $location")
-                }
+                Log.d(MY_TAG, "onReceive() called lat: $lat")
+                val weather = api.getWeather(API_KEY,"$lat,$lon","3")
+                Log.d(MY_TAG, "onReceive() weather: ${weather.current}")
+//=================
+                setTextViewText(R.id.textView, "Location: 123")
 
                 setViewVisibility(R.id.progress_bar, View.INVISIBLE)
                 setViewVisibility(R.id.progress_image, View.VISIBLE)
@@ -130,9 +133,7 @@ class RateWidget : AppWidgetProvider() {
     ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
         //отправляюь интен чтобы активировать метод OnReceive, (для этого использую pending intent)
-        val intent = Intent(context, RateWidget::class.java).apply {
-            action = MY_ACTION
-        }
+        val intent = Intent(context, RateWidget::class.java).apply { action = MY_ACTION }
         val pendingIntent =
             PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
@@ -145,26 +146,24 @@ class RateWidget : AppWidgetProvider() {
                     //set pending intent
                     setOnClickPendingIntent(R.id.widget_root, pendingIntent)
 
-                    withContext(Dispatchers.IO) {
-                        Log.d("VVV", " thread sleep")
-                        val lon = getCurrentLocation()?.longitude.toString()
-                        val lat = getCurrentLocation()?.latitude.toString()
+//=================
+                    val fusedLocationProviderClient =
+                        LocationServices.getFusedLocationProviderClient(context)
+                    getCurrentLocation(context, fusedLocationProviderClient)
+                    val lat = getCurrentLocation(context, fusedLocationProviderClient)?.latitude.toString()
+                    val lon = getCurrentLocation(context, fusedLocationProviderClient)?.longitude.toString()
 
-                        val location = weatherResponse("$lat,$lon")
-                        Log.d(MY_TAG, "onUpd location: $location")
-                        setTextViewText(R.id.textView, "Location: $location")
-                    }
+                    Log.d(MY_TAG, "onUpd() called lat: $lat")
+                    val weather = api.getWeather(API_KEY,"$lat,$lon","3")
+                    Log.d(MY_TAG, "onUpd() weather: ${weather.current}")
+//=================
+
                     setViewVisibility(R.id.progress_bar, View.INVISIBLE)
                     setViewVisibility(R.id.progress_image, View.VISIBLE)
-                    Log.d(MY_TAG, "onUpd  done")
                     appWidgetManager.updateAppWidget(appWidgetId, this@apply)
                 }
             }
         }
-    }
-
-    suspend fun weatherResponse(city: String): Weather {
-        return api.getWeather(API_KEY,city,"3")
     }
 
 }

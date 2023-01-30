@@ -1,5 +1,6 @@
 package ru.ds.weatherfirst.presentation.screens
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,7 @@ import ru.ds.weatherfirst.domain.model.Forecastday
 import ru.ds.weatherfirst.domain.model.Hour
 import ru.ds.weatherfirst.domain.model.Location
 import javax.inject.Inject
-
+const val MY_TAG = "VVV"
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val weatherRepo: WeatherRepo,
@@ -45,6 +46,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val lat = locationTracker.getCurrentLocation()?.latitude.toString()
             val lon = locationTracker.getCurrentLocation()?.longitude.toString()
+            Log.d(MY_TAG, "ViewModel lat: $lat")
             if (city == "default") {
             val day = weatherRepo.weatherResponse("$lat,$lon")
                 //for dates
@@ -52,6 +54,7 @@ class HomeViewModel @Inject constructor(
 
                 //for hours and current
                 val weather = weatherRepo.weatherResponse("$lat,$lon")
+                Log.d(ru.ds.weatherfirst.widget.MY_TAG, "viewModel weather: ${weather.current}")
                 _state.value = weather.forecast.forecastday[0].hour
 
                 //for location
