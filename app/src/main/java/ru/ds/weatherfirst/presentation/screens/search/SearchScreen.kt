@@ -42,7 +42,6 @@ import ru.ds.weatherfirst.data.db.TestDB
 import ru.ds.weatherfirst.presentation.screens.TabLayout
 import ru.ds.weatherfirst.presentation.screens.backgroundImage
 import ru.ds.weatherfirst.presentation.screens.days.CustomTextItem
-import ru.ds.weatherfirst.presentation.screens.main.MainScreenTextItem
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.screens.uv_screen.CustomInfoButton
@@ -95,13 +94,15 @@ fun SearchScreen(navController: NavController, history: String?) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .alpha(0.94f)
-                    .padding(bottom = 5.dp),
+                    .padding(4.dp),
                 backgroundColor = BlueLight,
                 elevation = 0.dp,
-                shape = RoundedCornerShape(10.dp)
+                shape = RoundedCornerShape(8.dp)
             ) {
                 Column(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Row(
@@ -211,49 +212,26 @@ fun SearchScreen(navController: NavController, history: String?) {
                         }
                     }
 //======Detailed items
-                    Row(
+                    Column(
                         modifier = Modifier
-                            .fillMaxWidth()
                             .padding(start = 5.dp, top = 10.dp, end = 5.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Column(
+                        AsyncImage(
+                            model = "https:${state.condition?.icon}",
+                            contentDescription = "imageIcon",
                             modifier = Modifier
-                                .weight(1f)
-                                .padding(start = 8.dp),
-                            horizontalAlignment = Alignment.Start
-                        ) {
-                            MainScreenTextItem(text = "${stringResource(id = R.string.humidity)} ${state.humidity}%")
-                        }
-                        Column(
-                            modifier = Modifier
-                                .weight(1f),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            AsyncImage(
-                                model = "https:${state.condition?.icon}",
-                                contentDescription = "imageIcon",
-                                modifier = Modifier
-                                    .size(85.dp)
-                                    .padding(top = 1.dp, end = 2.dp)
-                            )
-                        }
-                        Column(
-                            modifier = Modifier
-                                .padding(end = 5.dp)
-                                .weight(1f),
-                            horizontalAlignment = Alignment.End
-                        ) {
-                            MainScreenTextItem(text = "${stringResource(id = R.string.cloud)} ${state.cloud}%")
-                            MainScreenTextItem(text = "${stringResource(id = R.string.temp)} ${state.tempF.toInt()}F")
-                        }
+                                .size(85.dp)
+                                .padding(top = 1.dp, end = 2.dp)
+                        )
                     }
 
                     CustomInfoButton(
                         text = stringResource(id = R.string.history),
-                        navController =  navController,
+                        navController = navController,
                         icon = painterResource(id = R.drawable.ic_baseline_history_24),
-                        road = Screen.History.route)
+                        road = Screen.History.route
+                    )
 
                     Spacer(modifier = Modifier.height(20.dp))
 

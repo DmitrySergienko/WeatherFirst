@@ -61,14 +61,15 @@ fun UV_screenTab(
                 modifier = Modifier
                     .fillMaxSize()
                     .alpha(0.94f)
-                    .padding(bottom = 2.dp, top = 4.dp),
+                    .padding(4.dp),
                 backgroundColor = BlueLight,
                 elevation = 0.dp,
-                shape = RoundedCornerShape(4.dp)
+                shape = RoundedCornerShape(8.dp)
             ) {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
+                        .padding(top = 16.dp)
                 ) {
                     Spacer(modifier = Modifier.padding(7.dp))
                     Row(
@@ -121,12 +122,12 @@ fun UV_screenTab(
                             .padding(start = 20.dp, end = 20.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
-                        MarqueeText(text = "UV ${uVComment(state.uv)}")
+                        MarqueeText(text = uVComment(state.uv))
 
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(top = 60.dp, bottom = 40.dp),
+                                .padding(top = 60.dp, bottom = 30.dp),
                             horizontalArrangement = Arrangement.Center
                         ){
                             Spacer(modifier = Modifier.height(60.dp))

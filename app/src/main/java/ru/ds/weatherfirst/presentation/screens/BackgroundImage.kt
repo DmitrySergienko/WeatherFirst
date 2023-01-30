@@ -8,6 +8,7 @@ import ru.ds.weatherfirst.R
 
 @Composable
 fun backgroundImage(): Int {
+
     val mainScreenViewModel = hiltViewModel<HomeViewModel>()
     val state by mainScreenViewModel.stateMain.collectAsState()
 
@@ -15,16 +16,16 @@ fun backgroundImage(): Int {
     var backImage = R.drawable.ic_back_new
     val currentTemp = state.tempC.toInt()
 
-    if (currentTemp < -1) {
-        backImage = R.drawable.ic_snow_forest
+    backImage = if (currentTemp < -1) {
+        R.drawable.ic_snow_forest
     } else {
         if (humidity > 86) {
-            backImage = R.drawable.ic_rein
+            R.drawable.ic_rein
         } else {
             if (currentTemp > 40) {
-                backImage = R.drawable.ic_dune
+                R.drawable.ic_dune
             } else {
-                backImage = R.drawable.ic_back_new
+                R.drawable.ic_back_new
             }
         }
     }

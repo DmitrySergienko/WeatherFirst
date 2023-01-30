@@ -5,22 +5,18 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.ds.weatherfirst.R
@@ -64,47 +60,60 @@ fun MainScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(2.dp)
     ) {
         Card(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(top = 2.dp)
                 .alpha(0.94f),
             backgroundColor = BlueLight,
             elevation = 0.dp,
-            shape = RoundedCornerShape(4.dp)
+            shape = RoundedCornerShape(topEnd = 2.dp,
+                topStart = 2.dp, bottomEnd = 8.dp, bottomStart = 8.dp)
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .padding(start = 8.dp, end = 8.dp)
+                    .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 20.dp, start = 20.dp),
+                        .padding(top = 8.dp, start = 4.dp, end = 10.dp)
+                        .horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.End,
+                ) {
+                    CustomTextItem(text = "${stringResource(id = R.string.last_update)} ${state.lastUpdated}")
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 20.dp),
                 ) {
                     Column(
                         modifier = Modifier
                             .weight(1f),
                         horizontalAlignment = Alignment.Start
                     ) {
-                        MainScreenTextItem(text = "${stringResource(id = R.string.humidity)} ${state.humidity}%")
+                        CustomTextItem(text = "${stringResource(id = R.string.humidity)} ${state.humidity}%")
                         state.condition?.text?.let { translateCondition(param = it) }
-                            ?.let { MainScreenTextItem(text = it) }
-                        MainScreenTextItem(text = "${stringResource(id = R.string.uv)} ${state.uv}")
-                        MainScreenTextItem(text = "${stringResource(id = R.string.wind)} ${state.wind_kph} ${stringResource(id = R.string.kph)}")
-                        MainScreenTextItem(text = "${stringResource(id = R.string.wind_degree)} ${state.wind_degree}")
+                            ?.let { CustomTextItem(text = it) }
+                        CustomTextItem(text = "${stringResource(id = R.string.uv)} ${state.uv}")
+                        CustomTextItem(text = "${stringResource(id = R.string.wind)} ${state.wind_kph} ${stringResource(id = R.string.kph)}")
+                        CustomTextItem(text = "${stringResource(id = R.string.wind_degree)} ${state.wind_degree}")
                     }
                     Column(
                         modifier = Modifier
+                            .padding(end = 8.dp)
                             .weight(1f),
-                        horizontalAlignment = Alignment.Start
+                        horizontalAlignment = Alignment.End
                     ) {
-                        MainScreenTextItem(text = "${stringResource(id = R.string.feels_like)} ${state.feelslikeC.toInt()}°C")
-                        MainScreenTextItem(text = "${stringResource(id = R.string.cloud)} ${state.cloud}%")
-                        MainScreenTextItem(text = "${stringResource(id = R.string.temp)} ${state.tempF.toInt()}F")
-                        MainScreenTextItem(text = "${stringResource(id = R.string.wind_direction)} ${state.wind_dir}")
-                        MainScreenTextItem(text = "${stringResource(id = R.string.pressure)} ${state.pressure_in} in")
+                        CustomTextItem(text = "${stringResource(id = R.string.feels_like)} ${state.feelslikeC.toInt()}°C")
+                        CustomTextItem(text = "${stringResource(id = R.string.cloud)} ${state.cloud}%")
+                        CustomTextItem(text = "${stringResource(id = R.string.temp)} ${state.tempF.toInt()}F")
+                        CustomTextItem(text = "${stringResource(id = R.string.wind_direction)} ${state.wind_dir}")
+                        CustomTextItem(text = "${stringResource(id = R.string.pressure)} ${state.pressure_in} in")
                     }
                 }
                 Spacer(modifier = Modifier.height(20.dp))
@@ -117,31 +126,11 @@ fun MainScreen(
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 4.dp, end = 12.dp)
-                        .horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.End,
-                ) {
-                    CustomTextItem(text = "${stringResource(id = R.string.last_update)} ${state.lastUpdated}")
-                }
             }
         }
     }
 }
 
-@Composable
-fun MainScreenTextItem(text: String) {
-    Text(
-        modifier = Modifier.padding(end = 4.dp),
-        text = text,
-        style = TextStyle(fontSize = 18.sp),
-        fontFamily = fontFamily,
-        fontWeight = FontWeight.Normal,
-        color = Color.Black
-    )
-}
 
 
 

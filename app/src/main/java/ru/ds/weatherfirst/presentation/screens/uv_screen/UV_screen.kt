@@ -55,6 +55,7 @@ fun UV_screen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .padding(top = 16.dp)
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center

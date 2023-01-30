@@ -47,8 +47,8 @@ fun TabLayout(
         modifier = Modifier
             .fillMaxSize()
             .height(500.dp)
-            .padding(start = 2.dp, end = 2.dp)
-            .clip(RoundedCornerShape(1.dp))
+            .padding(start = 4.dp, end = 4.dp)
+            .clip(RoundedCornerShape(8.dp))
     ) {
         TabRow(
             selectedTabIndex = tabIndex,

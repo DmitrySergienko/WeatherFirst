@@ -3,36 +3,32 @@
     android:id="@+id/widget_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="start"
+    android:layout_gravity="end"
     android:baselineAligned="true"
-    android:gravity="start"
+    android:gravity="end"
     android:orientation="horizontal">
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="3dp"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="4dp"
             android:gravity="center_horizontal"
-            android:scaleType="centerCrop"
+            android:layout_gravity="end"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
         <TextView
             android:id="@+id/textView_two"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="4dp"
+            android:layout_gravity="end"
             android:gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:textColor="@color/white"
@@ -42,7 +38,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="4">
 
         <ImageView
             android:id="@+id/progress_image"

@@ -67,13 +67,14 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
 }
 @Composable
 fun CustomTextItem(text: String){
-    Text(
-        modifier = Modifier.padding(top = 4.dp, bottom = 4.dp, start = 16.dp),
-        text = text,
-        style = TextStyle(fontSize = 14.sp),
-        color = Color.Black,
-        fontFamily = fontFamily,
-        fontWeight = FontWeight.Normal,
-    )
+    
+        Text(
+            modifier = Modifier.padding(top = 4.dp, bottom = 4.dp, start = 16.dp),
+            text = text,
+            style = TextStyle(fontSize = 14.sp),
+            color = Color.Black,
+            fontFamily = fontFamily,
+            fontWeight = FontWeight.Normal,
+        )
 }
 

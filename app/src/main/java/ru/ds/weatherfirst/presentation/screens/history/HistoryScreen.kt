@@ -69,7 +69,7 @@ fun HistoryScreen(navController: NavController) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(2.dp, bottom = 30.dp)
+                    .padding(top =16.dp,bottom = 30.dp, start = 2.dp, end = 2.dp)
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_baseline_arrow_back_ios_24),
