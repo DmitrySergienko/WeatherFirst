@@ -89,8 +89,8 @@
     <string name="super_extreme_hazard">A UV Index reading 11 or higher puts you in a very dangerous spot for sunburn with damage occurring in less than 10 minutes if unprotected. At this level it is best to avoid all sun exposure between 10AM and 4PM.</string>
     <string name="protection_teme">You are protected for</string>
     <string name="protection_teme_extrime">Be burn before</string>
-    <string name="protection">Protection</string>
-    <string name="minimum">min:</string>
+    <string name="protection">Safe time</string>
+    <string name="minimum">min</string>
     <string name="progress_bar_image">progress bar image</string>
 
 </resources>

@@ -92,5 +92,7 @@
     <string name="protection">Safe time</string>
     <string name="minimum">min</string>
     <string name="progress_bar_image">progress bar image</string>
+    <string name="loading" translatable="false">Loading</string>
+    <string name="loading_failed" translatable="false">Loading Failed</string>
 
 </resources>

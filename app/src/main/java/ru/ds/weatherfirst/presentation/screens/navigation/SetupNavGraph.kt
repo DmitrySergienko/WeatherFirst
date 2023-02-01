@@ -19,12 +19,14 @@ import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.screens.navigation.UV_ARG_KEY
 import ru.ds.weatherfirst.presentation.screens.search.SearchScreen
 import ru.ds.weatherfirst.presentation.screens.uv_screen.UV_screen
+import ru.ds.weatherfirst.presentation.utils.WeatherState
 import ru.ds.weatherfirst.ui.theme.MyProject
 
 
 @Composable
 fun SetupNavGraph(
     navController: NavHostController,
+    weatherState:WeatherState
     //id: Int = 0
 ) {
     //remove single item from history screen
@@ -39,7 +41,7 @@ fun SetupNavGraph(
         composable(
             route = Screen.Home.route
         ) {
-            MyProject(navController = navController)
+            MyProject(navController = navController, weatherState)
         }
 
         composable(

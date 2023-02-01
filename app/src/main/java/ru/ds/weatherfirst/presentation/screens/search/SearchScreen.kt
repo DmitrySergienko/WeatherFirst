@@ -1,6 +1,7 @@
 package ru.ds.weatherfirst.presentation.screens.search
 
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -53,6 +54,7 @@ import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
 @Composable
 fun SearchScreen(navController: NavController, history: String?) {
 
+    val context = LocalContext.current
     //====Database
     val db =
         Room.databaseBuilder(LocalContext.current, HistoryDatabase::class.java, "new_db").build()
@@ -201,6 +203,7 @@ fun SearchScreen(navController: NavController, history: String?) {
                                                 }
                                             }
                                         } else {
+                                            Toast.makeText(context,R.string.enter_city,Toast.LENGTH_SHORT).show()
                                             mainScreenViewModel.getWeather("default")
                                         }
                                         //dismiss keyboard
