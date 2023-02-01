@@ -1,5 +1,6 @@
 package ru.ds.weatherfirst.presentation.screens.uv_screen
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -23,25 +24,32 @@ import coil.compose.AsyncImage
 import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.domain.model.Current
 import ru.ds.weatherfirst.domain.model.Location
+import ru.ds.weatherfirst.presentation.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.screens.utils.MarqueeText
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
+import ru.ds.weatherfirst.presentation.utils.WeatherState
 import ru.ds.weatherfirst.ui.screens.UVIndicator
 
+const val MY_LOG = "VVVV"
+
 @Composable
-fun UV_tabHoist(navController:NavController){
+fun UV_tabHoist(
+    navController:NavController,
+    weatherState: WeatherState){
 
     //viewModel
-    val uvLiveData = hiltViewModel<ru.ds.weatherfirst.presentation.screens.HomeViewModel>()
+    val uvLiveData = hiltViewModel<HomeViewModel>()
     val state by uvLiveData.stateMain.collectAsState()
     val stateLocation by uvLiveData.location.collectAsState()
 
     UV_screenTab(
         navController = navController,
         state = state,
-        stateLocation = stateLocation
+        stateLocation = stateLocation,
+        weatherState = weatherState,
 
     )
 }
@@ -50,8 +58,19 @@ fun UV_tabHoist(navController:NavController){
 fun UV_screenTab(
     navController:NavController,
     state: Current,
-    stateLocation: Location
+    stateLocation: Location,
+    weatherState:WeatherState,
+
 ) {
+    val mainScreenViewModel = hiltViewModel<HomeViewModel>()
+
+    when (weatherState) {
+        is WeatherState.Loading -> Log.d(MY_LOG, "UV screen state Loading: $weatherState")
+        is WeatherState.Success -> mainScreenViewModel.getWeather("default")
+        is WeatherState.Error -> Log.d(MY_LOG, "UV screen state Error: $weatherState")
+    }
+
+
     WeatherFirstTheme {
         Column(
             modifier = Modifier

@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.Navigation
 import androidx.navigation.compose.rememberNavController
@@ -32,6 +33,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
 import ru.ds.weatherfirst.domain.connectivity.ConnectivityObserver
 import ru.ds.weatherfirst.domain.connectivity.NetworkConnectivityObserver
+import ru.ds.weatherfirst.presentation.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
 import ru.ds.weatherfirst.presentation.ui.screens.main.NoConnectionScreen
 import ru.ds.weatherfirst.ui.SetupNavGraph
@@ -48,6 +50,7 @@ class MainActivity : ComponentActivity() {
 
     //navigation between screens
     lateinit var navController: NavHostController
+
 
     //Admob
     var mInterstitialAd: InterstitialAd? = null
@@ -139,7 +142,11 @@ class MainActivity : ComponentActivity() {
 
                                 Navigation
                                 navController = rememberNavController()
-                                SetupNavGraph(navController = navController)
+                                val homeViewModel: HomeViewModel = viewModel()
+                                SetupNavGraph(
+                                    navController = navController,
+                                    homeViewModel.weatherState
+                                )
                             } else {
                                 // If no internet
                                 NoConnectionScreen()

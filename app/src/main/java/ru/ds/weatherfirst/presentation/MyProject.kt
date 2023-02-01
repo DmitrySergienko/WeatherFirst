@@ -15,10 +15,12 @@ import ru.ds.weatherfirst.presentation.screens.TabLayout
 import ru.ds.weatherfirst.presentation.screens.backgroundImage
 import ru.ds.weatherfirst.presentation.screens.uv_screen.UV_tabHoist
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
+import ru.ds.weatherfirst.presentation.utils.WeatherState
 
 @Composable
 fun MyProject(
-    navController: NavController
+    navController: NavController,
+    weatherState: WeatherState
 ) {
     WeatherFirstTheme {
         Image(
@@ -40,7 +42,7 @@ fun MyProject(
                 modifier = Modifier
                     .fillMaxWidth(),
             ) {
-                UV_tabHoist(navController)
+                UV_tabHoist(navController,weatherState)
             }
             Box(
                 modifier = Modifier

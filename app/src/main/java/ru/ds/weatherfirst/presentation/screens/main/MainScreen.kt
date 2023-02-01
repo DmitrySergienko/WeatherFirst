@@ -45,7 +45,6 @@ fun MainScreenHoist(
 
     MainScreen(
         navController = navController,
-        mainScreenViewModel = mainScreenViewModel,
         state = state
     )
 }
@@ -53,10 +52,9 @@ fun MainScreenHoist(
 @Composable
 fun MainScreen(
     navController: NavController,
-    mainScreenViewModel: HomeViewModel,
     state: Current
 ) {
-    //mainScreenViewModel.getWeather("default")
+
     Column(
         modifier = Modifier
             .fillMaxSize()
