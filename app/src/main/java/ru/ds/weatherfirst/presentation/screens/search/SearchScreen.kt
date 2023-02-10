@@ -45,7 +45,7 @@ import ru.ds.weatherfirst.presentation.screens.backgroundImage
 import ru.ds.weatherfirst.presentation.screens.days.CustomTextItem
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
-import ru.ds.weatherfirst.presentation.screens.uv_screen.CustomInfoButton
+import ru.ds.weatherfirst.presentation.screens.utils.CustomInfoButton
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 import ru.ds.weatherfirst.presentation.theme.TextLight
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
@@ -228,12 +228,12 @@ fun SearchScreen(navController: NavController, history: String?) {
                                 .padding(top = 1.dp, end = 2.dp)
                         )
                     }
-
                     CustomInfoButton(
                         text = stringResource(id = R.string.history),
                         navController = navController,
                         icon = painterResource(id = R.drawable.ic_baseline_history_24),
-                        road = Screen.History.route
+                        road = Screen.History.route,
+                        state.uv.toInt()
                     )
 
                     Spacer(modifier = Modifier.height(20.dp))

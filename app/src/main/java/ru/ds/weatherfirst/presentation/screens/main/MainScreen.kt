@@ -24,8 +24,8 @@ import ru.ds.weatherfirst.domain.model.Current
 import ru.ds.weatherfirst.presentation.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.screens.days.CustomTextItem
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
+import ru.ds.weatherfirst.presentation.screens.utils.CustomInfoButton
 import ru.ds.weatherfirst.presentation.screens.utils.translateCondition
-import ru.ds.weatherfirst.presentation.screens.uv_screen.CustomInfoButton
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 
 val fontFamily = FontFamily(
@@ -120,7 +120,8 @@ fun MainScreen(
                     text = stringResource(id = R.string.search_btn),
                     navController = navController,
                     icon = painterResource(id = R.drawable.ic_baseline_search_24),
-                    Screen.Search.route
+                    Screen.Search.route,
+                    state.uv.toInt()
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))

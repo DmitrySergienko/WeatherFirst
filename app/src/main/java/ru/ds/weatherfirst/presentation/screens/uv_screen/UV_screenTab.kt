@@ -3,7 +3,8 @@ package ru.ds.weatherfirst.presentation.screens.uv_screen
 import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Card
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -11,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -27,6 +27,7 @@ import ru.ds.weatherfirst.domain.model.Location
 import ru.ds.weatherfirst.presentation.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
+import ru.ds.weatherfirst.presentation.screens.utils.CustomInfoButton
 import ru.ds.weatherfirst.presentation.screens.utils.MarqueeText
 import ru.ds.weatherfirst.presentation.theme.BlueLight
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
@@ -153,8 +154,11 @@ fun UV_screenTab(
 
                             CustomInfoButton(
                                 text = stringResource(id = R.string.indication_det),
-                                navController,painterResource(id = R.drawable.ic_uv_img2),
-                                Screen.UVscreen.passUVARG(state.uv.toInt()))
+                                navController,
+                                painterResource(id = R.drawable.ic_uv_img2),
+                                Screen.UVscreen.passUVARG(state.uv.toInt()),
+                                state.uv.toInt()
+                            )
                         }
                     }
                 }
@@ -163,33 +167,6 @@ fun UV_screenTab(
     }
 }
 
-@Composable
-fun CustomInfoButton(
-    text: String,
-    navController: NavController,
-    icon: Painter,
-    road:String
-){
-    TextButton(
-        onClick = {
-            navController.navigate(route = road)
-        },
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = Color.Transparent,
-            contentColor = Color.White
-        )
-    ) {
-        Icon(
-            painter = icon,
-            contentDescription = "UV_button_details",
-            modifier = Modifier.size(34.dp)
-        )
-        Spacer(modifier = Modifier.width(14.dp))
-        Text(
-            text = text,
-            fontSize = 20.sp,
-            fontFamily = fontFamily,
-            fontWeight = FontWeight.Normal
-        )
-    }
-}
+
+
+
