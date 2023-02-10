@@ -54,14 +54,17 @@ fun RecyclerItemScreenDays(forecastday: Forecastday) {
                 CustomTextItem(text = "${stringResource(id = R.string.sunrise)} ${forecastday.astro.sunrise}")
                 CustomTextItem(text = "${stringResource(id = R.string.sunset)} ${forecastday.astro.sunset}")
             }
-            Image(
-                painter = imagePainter, contentDescription = null,
-                modifier = Modifier
-                    .weight(0.4f)
-                    .size(65.dp)
-                    .padding(top = 14.dp, end = 4.dp),
-                contentScale = ContentScale.FillBounds
-            )
+            Column(
+                modifier = Modifier.weight(0.4f)
+            ) {
+                Image(
+                    painter = imagePainter, contentDescription = null,
+                    modifier = Modifier
+                        .size(50.dp)
+                        .padding(top = 14.dp, end = 5.dp),
+                    contentScale = ContentScale.FillBounds
+                )
+            }
         }
     }
 }
