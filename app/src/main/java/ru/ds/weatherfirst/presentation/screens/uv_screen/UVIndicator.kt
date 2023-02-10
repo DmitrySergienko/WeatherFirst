@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import ru.ds.weatherfirst.R
+import ru.ds.weatherfirst.presentation.theme.*
 
 
 @Composable
@@ -35,10 +36,8 @@ fun UVIndicator(
     maxIndicatorValue: Int = 12,
     backgroundIndicatorColor: Color = MaterialTheme.colors.onSurface.copy(alpha = 0.1f),
     backgroundIndicatorStrokeWidth: Float = 40f,
-    foregroundIndicatorColor: Color = MaterialTheme.colors.primary,
     foregroundIndicatorStrokeWidth: Float = 40f,
     bigTextFontSize: TextUnit = MaterialTheme.typography.h3.fontSize,
-    bigTextColor: Color = MaterialTheme.colors.onSurface,
     bigTextSuffix: String = stringResource(id =R.string.uv),
     smallText: String = stringResource(id =R.string.indication),
     smallTextFontSize: TextUnit = MaterialTheme.typography.h6.fontSize,
@@ -71,16 +70,18 @@ fun UVIndicator(
         animationSpec = tween(1000)
     )
 
-    val animatedBigTextColor by animateColorAsState(
+    val animatedColor by animateColorAsState(
         targetValue = when (allowedIndicatorValue){
-
-            in 3..5->  Color(R.color.light_blue)
-            in 6..8->  MaterialTheme.colors.primary.copy(alpha = 0.9f)
-            in 9..11->  { MaterialTheme.colors.primary.copy(red = 0.9f) }
-            else -> Color(R.color.light_blue) }
-       ,
+            in 0..2 -> {R4}
+            in 3..5 -> {R3}
+            in 6..7 -> {R2}
+            in 8..10 -> {R1}
+            in 11..15 -> { R0}
+            else -> {R4 }
+        },
         animationSpec = tween(2000)
     )
+
     Column(
         modifier = Modifier
             .size(canvasSize)
@@ -94,7 +95,7 @@ fun UVIndicator(
                 foregroundIndicator(
                     sweepAngle = sweepAngle,
                     componentSize = componentSize,
-                    indicatorColor = foregroundIndicatorColor,
+                    indicatorColor = animatedColor,
                     indicatorStrokeWidth = foregroundIndicatorStrokeWidth,
                 )
             },
@@ -104,7 +105,7 @@ fun UVIndicator(
         EmbeddedElements(
             bigText = receivedValue,
             bigTextFontSize = bigTextFontSize,
-            bigTextColor = animatedBigTextColor,
+            bigTextColor = animatedColor,
             bigTextSuffix = bigTextSuffix,
             smallText = smallText,
             smallTextColor = smallTextColor,
@@ -182,6 +183,7 @@ fun EmbeddedElements(
         fontWeight = FontWeight.Bold
     )
 }
+
 //@Composable
 //@Preview(showBackground = true)
 //fun CustomComponentPreview() {

@@ -8,4 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_blue">#2196F3</color>
+
+    <color name="red_indicator">#f44336</color>
+    <color name="orange_indicator">#ff9800</color>
+    <color name="yellow_indicator">#ffc107</color>
+    <color name="green_lite_indicator">#cddc39</color>
+    <color name="green_indicator">#4caf50</color>
+
 </resources>
