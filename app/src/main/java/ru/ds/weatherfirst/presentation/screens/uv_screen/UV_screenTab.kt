@@ -34,7 +34,7 @@ import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
 import ru.ds.weatherfirst.presentation.utils.WeatherState
 import ru.ds.weatherfirst.ui.screens.UVIndicator
 
-const val MY_LOG = "VVVV"
+const val MY_LOGG = "VVVV"
 
 @Composable
 fun UV_tabHoist(
@@ -66,9 +66,9 @@ fun UV_screenTab(
     val mainScreenViewModel = hiltViewModel<HomeViewModel>()
 
     when (weatherState) {
-        is WeatherState.Loading -> Log.d(MY_LOG, "UV screen state Loading: $weatherState")
+        is WeatherState.Loading -> Log.d(MY_LOGG, "UV screen state Loading: $weatherState")
         is WeatherState.Success -> mainScreenViewModel.getWeather("default")
-        is WeatherState.Error -> Log.d(MY_LOG, "UV screen state Error: $weatherState")
+        is WeatherState.Error -> Log.d(MY_LOGG, "UV screen state Error: $weatherState")
     }
 
 

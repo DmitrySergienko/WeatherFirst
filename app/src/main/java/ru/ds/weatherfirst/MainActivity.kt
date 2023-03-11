@@ -25,7 +25,6 @@ import ru.ds.weatherfirst.domain.connectivity.ConnectivityObserver
 import ru.ds.weatherfirst.domain.connectivity.NetworkConnectivityObserver
 import ru.ds.weatherfirst.presentation.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
-import ru.ds.weatherfirst.presentation.ui.screens.main.NoConnectionScreen
 import ru.ds.weatherfirst.ui.SetupNavGraph
 
 @AndroidEntryPoint
@@ -73,11 +72,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     Scaffold(
-
                         content = {
-                            // if internet available
-                            if (status == ConnectivityObserver.Status.Available) {
-
                                 Navigation
                                 navController = rememberNavController()
                                 val homeViewModel: HomeViewModel = viewModel()
@@ -85,10 +80,6 @@ class MainActivity : ComponentActivity() {
                                     navController = navController,
                                     homeViewModel.weatherState
                                 )
-                            } else {
-                                // If no internet
-                                NoConnectionScreen()
-                            }
                         }
                     )
                 }

@@ -11,6 +11,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import ru.ds.weatherfirst.presentation.LoadingScreen
 import ru.ds.weatherfirst.presentation.screens.history.HistoryItemScreen
 import ru.ds.weatherfirst.presentation.screens.history.HistoryScreen
 import ru.ds.weatherfirst.presentation.screens.history.RecyclerHistoryItem
@@ -19,6 +20,7 @@ import ru.ds.weatherfirst.presentation.screens.navigation.Screen
 import ru.ds.weatherfirst.presentation.screens.navigation.UV_ARG_KEY
 import ru.ds.weatherfirst.presentation.screens.search.SearchScreen
 import ru.ds.weatherfirst.presentation.screens.uv_screen.UV_screen
+import ru.ds.weatherfirst.presentation.ui.screens.main.NoConnectionScreen
 import ru.ds.weatherfirst.presentation.utils.WeatherState
 import ru.ds.weatherfirst.ui.theme.MyProject
 
@@ -41,7 +43,13 @@ fun SetupNavGraph(
         composable(
             route = Screen.Home.route
         ) {
-            MyProject(navController = navController, weatherState)
+
+            when(weatherState){
+                is WeatherState.Success -> MyProject(navController = navController, weatherState)
+                is WeatherState.Loading -> LoadingScreen()
+                is WeatherState.Error-> NoConnectionScreen()
+            }
+
         }
 
         composable(

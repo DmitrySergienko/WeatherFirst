@@ -1,20 +1,9 @@
 package ru.ds.weatherfirst.presentation.screens
 
 import android.util.Log
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,7 +11,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
-import ru.ds.weatherfirst.R
 import ru.ds.weatherfirst.data.repository.WeatherRepo
 import ru.ds.weatherfirst.domain.location.LocationTracker
 import ru.ds.weatherfirst.domain.model.Current
@@ -70,8 +58,11 @@ class HomeViewModel @Inject constructor(
                 weatherState = try {
                     val lat = locationTracker.getCurrentLocation()?.latitude.toString()
                     val lon = locationTracker.getCurrentLocation()?.longitude.toString()
+                    Log.d(MY_TAG, "lat: $lat")
+                    Log.d(MY_TAG, "lon: $lon")
                     val data = weatherRepo.weatherResponse("$lat,$lon")
                     Log.d(MY_TAG, "getWeather() called: $weatherState")
+                    Log.d(MY_TAG, "data: $data")
                     //for dates
                     _stateDay.value = data.forecast.forecastday
                     //for hours and current
@@ -95,11 +86,10 @@ class HomeViewModel @Inject constructor(
                     _stateDay.value = data.forecast.forecastday
                     _state.value = data.forecast.forecastday[0].hour
                     _stateMain.value = data.current
-                    Log.d(MY_TAG, "getWeather() called: $weatherState")
+
                     WeatherState.Success(data)
                     //IOException
                 } catch (e: IOException) {
-                    Log.e(MY_TAG, "getWeather() Error: $weatherState")
                     WeatherState.Error
                     //HttpException
                 } catch (e: HttpException) {
@@ -122,27 +112,4 @@ class HomeViewModel @Inject constructor(
 
 }
 
-@Composable
-fun LoadingScreen(modifier: Modifier = Modifier) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier.fillMaxSize()
-    ) {
-        Image(
-            modifier = Modifier.size(200.dp),
-            painter = painterResource(R.drawable.ic_off_line),
-            contentDescription = stringResource(R.string.loading)
-        )
-    }
-}
-
-@Composable
-fun ErrorScreen(modifier: Modifier = Modifier) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier.fillMaxSize()
-    ) {
-        Text(stringResource(R.string.loading_failed))
-    }
-}
 
