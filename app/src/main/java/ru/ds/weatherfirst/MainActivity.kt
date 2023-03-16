@@ -9,6 +9,8 @@ import android.view.View
 import android.view.animation.AnticipateInterpolator
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
@@ -27,9 +29,9 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import dagger.hilt.android.AndroidEntryPoint
 import ru.ds.weatherfirst.domain.connectivity.ConnectivityObserver
 import ru.ds.weatherfirst.domain.connectivity.NetworkConnectivityObserver
-import ru.ds.weatherfirst.presentation.permission.RequestMultiplePermissions
 import ru.ds.weatherfirst.presentation.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
+import ru.ds.weatherfirst.presentation.ui.screens.main.NoConnectionScreen
 import ru.ds.weatherfirst.ui.SetupNavGraph
 
 @AndroidEntryPoint
@@ -38,6 +40,9 @@ class MainActivity : ComponentActivity() {
 
     //connectivity observer
     private lateinit var connectivityObserver: ConnectivityObserver
+
+    //permission request
+    private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
 
     //navigation between screens
     lateinit var navController: NavHostController
@@ -62,49 +67,58 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        //connectivity observer
-        connectivityObserver = NetworkConnectivityObserver(applicationContext)
-
-        setContent {
-            //request permissions
-            RequestMultiplePermissions(
-                permissions = listOf(
-                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.POST_NOTIFICATIONS,
-
-                )
-            )
+        //permission request
+        permissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) {
+            // permission granted launch code
 
             //connectivity observer
-            val status by connectivityObserver.observe().collectAsState(
-                initial = ConnectivityObserver.Status.Unavailable
-            )
+            connectivityObserver = NetworkConnectivityObserver(applicationContext)
 
-            WeatherFirstTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Scaffold(
-                        content = {
-                                Navigation
-                                navController = rememberNavController()
-                                val homeViewModel: HomeViewModel = viewModel()
-                                SetupNavGraph(
-                                    navController = navController,
-                                    homeViewModel.weatherState
-                                )
-                        }
-                    )
+            setContent {
+
+                //connectivity observer
+                val status by connectivityObserver.observe().collectAsState(
+                    initial = ConnectivityObserver.Status.Unavailable
+                )
+
+                WeatherFirstTheme {
+                    // A surface container using the 'background' color from the theme
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colors.background
+                    ) {
+                        Scaffold(
+                            content = {
+
+                                // if internet available
+                                if (status == ConnectivityObserver.Status.Available) {
+                                    Navigation
+                                    navController = rememberNavController()
+                                    val homeViewModel: HomeViewModel = viewModel()
+                                    SetupNavGraph(
+                                        navController = navController,
+                                        homeViewModel.weatherState
+                                    )
+                                }else{
+                                    NoConnectionScreen()
+                                }
+                            }
+                        )
+                    }
                 }
             }
         }
+
+        permissionLauncher.launch(
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+            )
+        )
     }
 }
-
-
 
 
 
