@@ -3,6 +3,11 @@ package ru.ds.weatherfirst
 //import androidx.activity.result.contract.ActivityResultContracts
 import android.Manifest
 import android.animation.ObjectAnimator
+import android.app.PendingIntent
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -33,6 +38,7 @@ import ru.ds.weatherfirst.presentation.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.theme.WeatherFirstTheme
 import ru.ds.weatherfirst.presentation.ui.screens.main.NoConnectionScreen
 import ru.ds.weatherfirst.ui.SetupNavGraph
+import ru.ds.weatherfirst.widget.RateWidget
 
 @AndroidEntryPoint
 @ExperimentalPermissionsApi
@@ -50,6 +56,11 @@ class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //first launch attach the widget
+        val appContext = this.applicationContext
+        val sharedPrefs = appContext.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val isFirstLaunch = sharedPrefs.getBoolean("firstLaunch", true)
 
         //Splash Screen
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -84,6 +95,8 @@ class MainActivity : ComponentActivity() {
                 )
 
                 WeatherFirstTheme {
+                    //navigation
+                    navController = rememberNavController()
                     // A surface container using the 'background' color from the theme
                     Surface(
                         modifier = Modifier.fillMaxSize(),
@@ -101,12 +114,34 @@ class MainActivity : ComponentActivity() {
                                         navController = navController,
                                         homeViewModel.weatherState
                                     )
-                                }else{
+                                } else {
                                     NoConnectionScreen()
                                 }
                             }
                         )
                     }
+                }
+                if (isFirstLaunch) {
+                    //Add widget to the main screen Alert
+                    val mAppWidgetManager = AppWidgetManager.getInstance(this)
+
+                    val myProvider = ComponentName(this, RateWidget::class.java)
+                    val b = Bundle()
+                    b.putString("123", "ggg")
+
+
+                    if (mAppWidgetManager.isRequestPinAppWidgetSupported) {
+                        val pinnedWidgetCallbackIntent = Intent(this, RateWidget::class.java)
+                        val successCallback = PendingIntent.getBroadcast(
+                            this,
+                            0, pinnedWidgetCallbackIntent, PendingIntent.FLAG_IMMUTABLE
+                        )
+                        mAppWidgetManager.requestPinAppWidget(myProvider, b, successCallback)
+                    }
+                    //first launch
+                    val editor = sharedPrefs.edit()
+                    editor.putBoolean("firstLaunch", false)
+                    editor.apply()
                 }
             }
         }

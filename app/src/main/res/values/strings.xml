@@ -47,15 +47,17 @@
     <string name="Information">Information</string>
     <string name="indication_det">Index details</string>
     <string name="uv_screen_title_one">
-        The UV is a measure of the level of UV radiation.
-        The values of the index range from zero upward - the higher the UV, the greater the potential for damage to the skin and eye,
-        and the less time it takes for harm to occur.
-        The UV is an important vehicle to alert people about the need to use sun protection.
-        A marked increase in the incidence of skin cancer in fair-skinned populations worldwide is strongly associated with excessive UV radiation exposure from the sun and possibly artificial sources such as sunbeds. Current evidence indicates that personal habits in relation to sun exposure constitute the most important individual risk factor for UV radiation damage.
+    The UV index is a measurement of the intensity of ultraviolet (UV) radiation from the sun. It is typically represented on a scale of 0 to 11 or higher, with higher numbers indicating higher levels of UV radiation. The UV index helps people understand the potential risks of sun exposure and guides them in taking appropriate sun protection measures, such as wearing sunscreen, protective clothing, and sunglasses, and seeking shade during peak UV hours.
     </string>
     <string name="uv_chapter_one">
-       A marked increase in the incidence of skin cancer in fair-skinned populations worldwide is strongly associated with excessive UV radiation exposure from the sun and possibly artificial sources such as sunbeds. Current evidence indicates that personal habits in relation to sun exposure constitute the most important individual risk factor for UV radiation damage.
-    </string>
+        Exposure to excessive UV radiation can pose several dangers to people. Here are some of the potential risks associated with prolonged or unprotected sun exposure:
+Sunburn: UV radiation can cause sunburn, which is characterized by red, painful, and inflamed skin. Severe sunburns can lead to blistering, peeling, and increased risk of skin damage.
+Skin Damage: Over time, repeated exposure to UV radiation can lead to premature aging of the skin, including wrinkles, fine lines, age spots, and sagging skin. It can also contribute to the development of skin cancer.
+Eye Damage: UV radiation can harm the eyes, causing conditions like photokeratitis (sunburn of the cornea) and cataracts (clouding of the eye\'s lens). Prolonged exposure to UV radiation without proper eye protection can increase the risk of these eye conditions.
+Suppression of Immune System: Excessive UV exposure can weaken the immune system, making individuals more susceptible to infections and diseases.
+Increased Risk of Skin Cancer: The most significant danger of UV radiation is its association with skin cancer. Prolonged and unprotected exposure to UV radiation, particularly intense sunburns during childhood, can increase the risk of developing skin cancer later in life.
+To minimize these risks, it is important to follow sun safety guidelines, such as wearing sunscreen, protective clothing, and sunglasses, seeking shade during peak UV hours, and avoiding excessive sun exposure.
+      </string>
 
     <!--uv screen-->
     <string name="low_hazard">Low Hazard: No sun protection required. A UV Index reading two or lower means there is a minimal risk of sunburn for the average person. At this level it is suggested to wear sunglasses, use broad spectrum sunscreen and watch out for bright surfaces like sand, water and snow which reflect UV rays, increasing your exposure. The time to burn can vary by skin type, but at a low UV level it is approximately 60 minutes.</string>

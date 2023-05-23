@@ -20,12 +20,11 @@ fun RecyclerHistoryItem(
     navController: NavController,
     historyViewModel: ru.ds.weatherfirst.presentation.screens.HomeViewModel
 ) {
-
-
     //====Database===========
     val db =
         Room.databaseBuilder(LocalContext.current, HistoryDatabase::class.java, "new_db").build()
     val dao = db.historyDao()
+
 
     val result by dao.readAll().collectAsState(initial = emptyList())
 
