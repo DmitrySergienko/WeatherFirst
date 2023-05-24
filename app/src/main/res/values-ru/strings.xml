@@ -84,7 +84,7 @@
     <string name="super_extreme_hazard">Показатель UV-индекса 11 или выше очень опасен, солнечный ожог происходит менее чем за 10 минут, если вы не защищены. На этом уровне лучше всего избегать пребывания на солнце с 10:00 до 16:00.</string>
     <string name="protection_teme">Безопасное время</string>
     <string name="protection_teme_extrime">Опасно</string>
-    <string name="protection">Безопасно до</string>
+    <string name="protection">Безопасно</string>
     <string name="minimum">мин</string>
     <string name="progress_bar_image">progress bar image</string>
 
