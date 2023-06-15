@@ -2,7 +2,13 @@ package ru.ds.weatherfirst.presentation.screens.uv_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -10,6 +16,8 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -21,8 +29,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.ds.weatherfirst.R
+import ru.ds.weatherfirst.presentation.screens.HomeViewModel
 import ru.ds.weatherfirst.presentation.screens.backgroundImage
 import ru.ds.weatherfirst.presentation.screens.main.fontFamily
 import ru.ds.weatherfirst.presentation.screens.navigation.Screen
@@ -33,8 +43,12 @@ import ru.ds.weatherfirst.ui.screens.UVIndicator
 @Composable
 fun UV_screen(
     navController: NavController,
-    uv:String
+    uv:String,
+
 ) {
+    val uvLiveData = hiltViewModel<HomeViewModel>()
+    val state by uvLiveData.stateMain.collectAsState()
+
     WeatherFirstTheme {
         Image(
             painter = painterResource(backgroundImage()),
@@ -75,7 +89,10 @@ fun UV_screen(
                     )
                 }
 
-                UVIndicator(indicatorValue = uv.toInt())
+                UVIndicator(
+                    indicatorValue = uv.toInt(),
+                    onClick = {navController.navigate(Screen.UVscreen.passUVARG(state.uv.toInt()))}
+                )
 
                 Text(
                     text = uVComment(uv = uv.toDouble()),

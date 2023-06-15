@@ -4,12 +4,18 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -26,7 +32,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import ru.ds.weatherfirst.R
-import ru.ds.weatherfirst.presentation.theme.*
+import ru.ds.weatherfirst.presentation.theme.R0
+import ru.ds.weatherfirst.presentation.theme.R1
+import ru.ds.weatherfirst.presentation.theme.R2
+import ru.ds.weatherfirst.presentation.theme.R3
+import ru.ds.weatherfirst.presentation.theme.R4
 
 
 @Composable
@@ -41,7 +51,8 @@ fun UVIndicator(
     bigTextSuffix: String = stringResource(id =R.string.uv),
     smallText: String = stringResource(id =R.string.indication),
     smallTextFontSize: TextUnit = MaterialTheme.typography.h6.fontSize,
-    smallTextColor: Color = MaterialTheme.colors.onSurface.copy(alpha = 0.3f)
+    smallTextColor: Color = MaterialTheme.colors.onSurface.copy(alpha = 0.3f),
+    onClick: () -> Unit
 ) {
     var allowedIndicatorValue by remember {
         mutableStateOf(maxIndicatorValue)
@@ -84,6 +95,7 @@ fun UVIndicator(
 
     Column(
         modifier = Modifier
+            .clickable { onClick() }
             .size(canvasSize)
             .drawBehind {
                 val componentSize = size / 1.25f

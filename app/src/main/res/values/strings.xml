@@ -1,33 +1,34 @@
 <resources>
-    <string name="app_name">UV Weather</string>
+    <!--App Name-->
+    <string name="app_name">UV Index</string>
 
-    <!--history screen-->
-    <string name="clean_all">Clean all</string>
-    <string name="search_history">SEARCH HISTORY</string>
+    <!--History Screen-->
+    <string name="clean_all">Clear All</string>
+    <string name="search_history">Search History</string>
 
-    <!--main screen-->
-    <string name="feels_like">Feels like</string>
+    <!--Main Screen-->
+    <string name="feels_like">Feels Like</string>
     <string name="humidity">Humidity</string>
-    <string name="uv">UV</string>
-    <string name="cloud">Cloud</string>
-    <string name="temp">Temp</string>
-    <string name="last_update">Last update</string>
+    <string name="uv">UV Index</string>
+    <string name="cloud">Cloud Cover</string>
+    <string name="temp">Temperature</string>
+    <string name="last_update">Last Updated</string>
 
-    <!--main screen manual translate-->
+    <!--Main Screen Manual Translate-->
     <string name="sunny">Sunny</string>
-    <string name="partly_cloudy">Partly cloudy</string>
-    <string name="clear">Clear</string>
+    <string name="partly_cloudy">Partly Cloudy</string>
+    <string name="clear">Clear Sky</string>
     <string name="cloudy">Cloudy</string>
-    <string name="light_rain_shower">Light rain shower</string>
+    <string name="light_rain_shower">Light Rain Shower</string>
     <string name="overcast">Overcast</string>
-    <string name="heavy_rain">Heavy rain</string>
-    <string name="patchy_rain">Patchy rain possible</string>
-    <string name="moderate_rain">Moderate rain</string>
+    <string name="heavy_rain">Heavy Rain</string>
+    <string name="patchy_rain">Possible Patchy Rain</string>
+    <string name="moderate_rain">Moderate Rain</string>
     <string name="search_btn">Search</string>
-    <string name="wind_degree">Wind degree</string>
-    <string name="pressure">Pressure</string>
+    <string name="wind_degree">Wind Degree</string>
+    <string name="pressure">Atmospheric Pressure</string>
 
-    <!--moon-->
+    <!--Moon Phases-->
     <string name="last_quarter">Last Quarter</string>
     <string name="waning_crescent">Waning Crescent</string>
 
@@ -68,32 +69,32 @@ To minimize these risks, it is important to follow sun safety guidelines, such a
     <string name="indication">Indication</string>
     <string name="information">Information</string>
 
-    <!--hour & days screens-->
+    <!--Hour & Day Screens-->
     <string name="time">Time</string>
     <string name="wind">Wind</string>
     <string name="temperature">Temperature:</string>
-    <string name="wind_direction">Wind direction:</string>
+    <string name="wind_direction">Wind Direction:</string>
     <string name="date">Date:</string>
     <string name="average">Average t:</string>
     <string name="min">Min t:</string>
     <string name="max">Max t:</string>
-    <string name="moon">Moon phase:</string>
+    <string name="moon">Moon Phase:</string>
     <string name="sunrise">Sunrise:</string>
     <string name="sunset">Sunset:</string>
     <string name="kph">kph</string>
 
-    <!--widget-->
+    <!--Widget-->
     <string name="widget_initial_label_loading" translatable="false">Loading…</string>
-    <string name="widget_hello_world_description" translatable="false">Hello World</string>
-    <string name="error_ui_widget_error_message" translatable="false">Custom error message</string>
-    <string name="off_line">off_line</string>
-    <string name="short_low_index">Safety UV</string>
-    <string name="super_extreme_hazard">A UV Index reading 11 or higher puts you in a very dangerous spot for sunburn with damage occurring in less than 10 minutes if unprotected. At this level it is best to avoid all sun exposure between 10AM and 4PM.</string>
-    <string name="protection_teme">You are protected for</string>
-    <string name="protection_teme_extrime">Be burn before</string>
-    <string name="protection">Safe time</string>
+    <string name="widget_hello_world_description" translatable="false">Hello, World!</string>
+    <string name="error_ui_widget_error_message" translatable="false">Custom Error Message</string>
+    <string name="off_line">Offline</string>
+    <string name="short_low_index">Safe UV Index</string>
+    <string name="super_extreme_hazard">A UV Index reading of 11 or higher places you at extreme risk of sunburn. Damage may occur in less than 10 minutes if unprotected. It is best to avoid all sun exposure between 10 AM and 4 PM at this level.</string>
+    <string name="protection_teme">You Are Protected For</string>
+    <string name="protection_teme_extrime">Risk of Burn Before</string>
+    <string name="protection">Safe Time</string>
     <string name="minimum">min</string>
-    <string name="progress_bar_image">progress bar image</string>
+    <string name="progress_bar_image">Progress Bar Image</string>
     <string name="loading" translatable="false">Loading</string>
     <string name="loading_failed" translatable="false">Loading Failed</string>
 

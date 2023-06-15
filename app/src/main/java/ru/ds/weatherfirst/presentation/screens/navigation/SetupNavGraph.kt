@@ -31,9 +31,6 @@ fun SetupNavGraph(
     weatherState:WeatherState
     //id: Int = 0
 ) {
-    //remove single item from history screen
-    val mainScreenViewModel = hiltViewModel<ru.ds.weatherfirst.presentation.screens.HomeViewModel>()
-    val state by mainScreenViewModel.stateMain.collectAsState()
 
     NavHost(
         navController = navController,
@@ -71,7 +68,10 @@ fun SetupNavGraph(
             })
         ) {
             //тут указываем экран куда переходим, и можно посмотреть есть ли аргументы
-            UV_screen(navController = navController, it.arguments?.getInt(UV_ARG_KEY).toString())
+            UV_screen(
+                navController = navController,
+                it.arguments?.getInt(UV_ARG_KEY).toString()
+            )
         }
 
         composable(

@@ -1,11 +1,11 @@
 <resources>
 
     <!--history screen-->
-    <string name="clean_all">Очистить все</string>
+    <string name="clean_all">Очистить всё</string>
     <string name="search_history">ИСТОРИЯ ПОИСКА</string>
 
     <!--main screen-->
-    <string name="feels_like">Ощущается</string>
+    <string name="feels_like">Ощущается как</string>
     <string name="humidity">Влажность</string>
     <string name="uv">UV</string>
     <string name="cloud">Облачность</string>
@@ -16,11 +16,11 @@
     <string name="sunny">Ясно</string>
 
     <!--connectivity screen-->
-    <string name="no_connection">Нет доступного интернета! Пожалуйста, подключитесь к сети, чтобы получить актуальную информацию о погоде</string>
+    <string name="no_connection">Нет доступа к интернету! Пожалуйста, подключитесь к сети для получения актуальной информации о погоде.</string>
 
     <!--search screen-->
     <string name="search">Поиск</string>
-    <string name="enter_city">Введите город</string>
+    <string name="enter_city">Введите название города</string>
     <string name="history">История</string>
     <string name="information">Информация</string>
 
@@ -30,7 +30,7 @@
 
     <!--tab uv screen-->
     <string name="Information">Обзор</string>
-    <string name="indication_det">Индекс информация</string>
+    <string name="indication_det">Информация об индексе</string>
     <string name="uv_screen_title_one">
        Индекс УФ-излучения - это измерение интенсивности ультрафиолетового (УФ) излучения от солнца. Обычно он представлен на шкале от 0 до 11 и выше, причем более высокие значения указывают на более высокий уровень УФ-излучения. Индекс УФ-излучения помогает людям понять потенциальные риски от воздействия солнца и руководит их в принятии соответствующих мер по защите от солнца, таких как использование солнцезащитного крема, защитной одежды, солнцезащитных очков и поиск тени в периоды максимального УФ-излучения.
     </string>
@@ -51,7 +51,7 @@
     <string name="high_hazard">Показатель UV-индекса 6 или 7 подвергает вас высокому риску вреда от незащищенного пребывания на солнце. Предлагается следовать шагам от среднего уровня. Время до ожога может варьироваться в зависимости от типа кожи, но при высоком уровне UV-излучения оно составляет примерно от 15 до 25 минут.</string>
     <string name="extreme_hazard">Показатель UV-индекса от 8 до 10 подвергает вас очень высокому риску вреда от незащищенного пребывания на солнце. Примите дополнительные меры предосторожности как для кожи, так и для глаз, поскольку повреждение происходит быстро, обычно в течение 15 минут. Старайтесь свести к минимуму пребывание на солнце в часы пик, но если это невозможно, тщательно наносите и повторно наносите солнцезащитный крем и бальзам для губ с SPF.</string>
     <string name="no_internet">Нет интернета! Пожалуйста, подключитесь, чтобы уточнить фактический уровень UV!</string>
-    <string name="app_name">UV-индикaтор</string>
+    <string name="app_name">UV-индекс</string>
     <string name="temp">Темп</string>
     <string name="indication">Индекс</string>
     <string name="last_update"> </string>
@@ -70,22 +70,22 @@
     <string name="sunset">Закат</string>
     <string name="partly_cloudy">Переменная облачность</string>
     <string name="cloudy">Облачно</string>
-    <string name="light_rain_shower">Небольшой дождь моросит</string>
-    <string name="overcast">Пасмурная погода</string>
+    <string name="light_rain_shower">Небольшой дождь</string>
+    <string name="overcast">Пасмурно</string>
     <string name="heavy_rain">Ливень</string>
     <string name="patchy_rain">Возможен кратковременный дождь</string>
     <string name="moderate_rain">Умеренный дождь</string>
     <string name="last_quarter">Последняя четверть</string>
-    <string name="waning_crescent">Растущая луна</string>
+    <string name="waning_crescent">Убывающая луна</string>
     <string name="clear">Ясно</string>
     <string name="kph">км/ч</string>
     <string name="off_line">Нет интернета</string>
     <string name="short_low_index">Благоприятно</string>
-    <string name="super_extreme_hazard">Показатель UV-индекса 11 или выше очень опасен, солнечный ожог происходит менее чем за 10 минут, если вы не защищены. На этом уровне лучше всего избегать пребывания на солнце с 10:00 до 16:00.</string>
-    <string name="protection_teme">Безопасное время</string>
+    <string name="super_extreme_hazard">Уровень УФ-индекса 11 или выше очень опасен, солнечный ожог может возникнуть менее чем за 10 минут без защиты. Желательно избегать пребывания на солнце с 10:00 до 16:00.</string>
+    <string name="protection_teme">Безопасное время нахождения на солнце</string>
     <string name="protection_teme_extrime">Опасно</string>
     <string name="protection">Безопасно</string>
     <string name="minimum">мин</string>
-    <string name="progress_bar_image">progress bar image</string>
+    <string name="progress_bar_image">Изображение прогресс-бара</string>
 
 </resources>

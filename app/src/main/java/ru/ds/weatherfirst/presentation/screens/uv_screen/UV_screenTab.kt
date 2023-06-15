@@ -1,7 +1,15 @@
 package ru.ds.weatherfirst.presentation.screens.uv_screen
 
 import android.util.Log
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -103,7 +111,8 @@ fun UV_screenTab(
                             canvasSize = 200.dp,
                             backgroundIndicatorStrokeWidth = 40f,
                             foregroundIndicatorStrokeWidth = 40f,
-                            bigTextFontSize = 28.sp
+                            bigTextFontSize = 28.sp,
+                            onClick = {navController.navigate(Screen.UVscreen.passUVARG(state.uv.toInt()))}
                         )
                             Column(modifier = Modifier
                                 .padding(end = 16.dp),
