@@ -41,7 +41,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerExtensionVersion = "1.2.0-rc02"
 
     }
     packagingOptions {
@@ -52,6 +52,7 @@ android {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.21"
 
     //Swipe
     implementation "me.saket.swipe:swipe:1.0.0"

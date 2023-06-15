@@ -5,13 +5,14 @@ buildscript {
         kotlinVersion = '1.5.31'
         ktlintVersion = '0.41.0'
         coroutines = '1.5.0'
-        moshi_version = '1.12.0'
+        moshi_version = '1.14.0'
         accompanist_version = '0.24.9-beta'
     }
     dependencies {
         classpath 'com.google.gms:google-services:4.3.13'
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.42'
         classpath 'com.android.tools.build:gradle:7.0.2'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
 
     }
 
